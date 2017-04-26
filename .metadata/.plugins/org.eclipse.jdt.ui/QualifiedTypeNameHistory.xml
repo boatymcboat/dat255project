@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.security.auth.login.Configuration"/>
+<fullyQualifiedTypeName name="se.viktoria.util.Configuration"/>
+<fullyQualifiedTypeName name="se.viktoria.stm.portcdm.connector.common.SubmissionService"/>
+<fullyQualifiedTypeName name="eu.portcdm.messaging.PortCallMessage"/>
+</qualifiedTypeNameHistroy>
