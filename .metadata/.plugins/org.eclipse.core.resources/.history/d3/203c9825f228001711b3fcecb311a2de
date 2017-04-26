@@ -1,0 +1,22 @@
+package portcdm;
+
+import se.viktoria.util.*;
+import java.util.*;
+import java.util.function.Predicate;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Configuration configuration = new Configuration(
+				"config",
+				"/",
+				new Predicate<Map.Entry<Object,Object>>() {
+					@Override
+					public boolean test(Map.Entry<Object,Object> objectObjectEntry) {
+						return !objectObjectEntry.getKey().toString().equals("pass");
+					}
+				});
+		configuration.reload();
+	}
+
+}

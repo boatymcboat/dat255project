@@ -11,7 +11,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Configuration configuration = new Configuration(
-				"config",
+				"portcdm.conf",
 				"/",
 				new Predicate<Map.Entry<Object,Object>>() {
 					@Override
@@ -31,6 +31,8 @@ public class Main {
 		// messages = createMEssages();
 		// ** Submit the messages
 		//submissionService.submitUpdates(messages);
+		
+		
 	}
 
 }
