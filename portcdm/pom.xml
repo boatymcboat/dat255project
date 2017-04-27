@@ -5,7 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
     <artifactId>portcdm</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>../locationregistry</module>
+    </modules>
     <name>portcdm</name>
     <description>test</description>
     <repositories>
