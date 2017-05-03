@@ -22,9 +22,18 @@ import javafx.scene.text.*;
 import java.lang.*;
 import java.awt.event.*;
 public class AppLayout {
+    private static boolean view1_isCreated = false;
+    private static boolean view2_isCreated = false;
+    private static boolean view3_isCreated = false;
+    private static Scene defaultView;
+    private static Scene view1;
+    private static Scene view2;
+    private static Scene view3;
+    private static Stage mainStage;
 
     public static void Setup_App(Stage primaryStage){
-        primaryStage.setTitle("Professional Ship Agent Software 2018");
+        mainStage = primaryStage;
+        mainStage.setTitle("Professional Ship Agent Software 2018");
 
 
         final Text sceneTitle = new Text("Welcome to the portCDM agent application");
@@ -40,18 +49,23 @@ public class AppLayout {
         button.setAlignment(Pos.BOTTOM_CENTER);
         button.getChildren().add(btn);
         GridPane grid = Setup_Grid();
-        Scene scene = new Scene(grid, 800, 500);
+        defaultView = new Scene(grid, 1200, 768);
         grid.add(choiceBox, 0,5);
         grid.add(sceneTitle, 0, 0);
         grid.add(button,0,15);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(true);
+        mainStage.setScene(defaultView);
+        mainStage.setResizable(true);
         btn.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e){
                 if(choices.getValue() != null && !choices.getValue().toString().isEmpty()){
                     if (choices.getValue().toString().equals("option1")){
-                        sceneTitle.setText("You have chosen option1");
+                        if(!view1_isCreated){
+                            view1 = View_1.Create_View();
+                            view1_isCreated = true;
+                        }
+                        mainStage.setScene(view1);
+
                     }
                     else if (choices.getValue().toString().equals("option2")){
                         sceneTitle.setText("You have chosen option2");
@@ -62,7 +76,7 @@ public class AppLayout {
                 }
             }
         });
-        primaryStage.show();
+        mainStage.show();
 
     }
 
@@ -73,6 +87,19 @@ public class AppLayout {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
         return grid;
+    }
+    public static HBox Back_Button(){
+        HBox button = new HBox(10);
+        Button btn = new Button("Back");
+        button.getChildren().add(btn);
+        btn.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent e){
+                mainStage.setScene(defaultView);
+                mainStage.show();
+            }
+        });
+        return button;
     }
 
     public static ComboBox Create_Drop_Down_Menu(String[] optionsArray){
