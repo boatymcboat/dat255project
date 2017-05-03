@@ -15,8 +15,8 @@ public class View_1 {
         GridPane grid = AppLayout.Setup_Grid();
 
         ScrollPane rootPane = new ScrollPane();
-        rootPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        rootPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        rootPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        rootPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         rootPane.setContent(grid);
 
         Scene scene = new Scene(rootPane, SizeAndGrid.getSceneWidth(), SizeAndGrid.getSceneHeight());
