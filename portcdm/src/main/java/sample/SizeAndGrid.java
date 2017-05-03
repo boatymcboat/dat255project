@@ -6,14 +6,14 @@ package sample;
 public class SizeAndGrid {
     private static int sceneWidth = 1200;
     private static int sceneHeight = 768;
-    private static int sceneTitleColumn = 0;
-    private static int sceneTitleRow = 0;
-    private static int choiceBoxColumn = 0;
-    private static int choiceBoxRow = 5;
-    private static int hBoxButtonColumn = 0;
-    private static int hBoxButtonRow = 15;
-    private static int backButtonColumn = 0;
-    private static int backButtonRow = 45;
+    private static int sceneTitleColumn = 30;
+    private static int sceneTitleRow = 20;
+    private static int choiceBoxColumn = 30;
+    private static int choiceBoxRow = 30;
+    private static int hBoxButtonColumn = 30;
+    private static int hBoxButtonRow = 35;
+    private static int backButtonColumn = 30;
+    private static int backButtonRow = 65;
 
 
     public static int getSceneHeight() {

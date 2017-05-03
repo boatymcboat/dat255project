@@ -21,6 +21,7 @@ import javafx.geometry.*;
 import javafx.scene.text.*;
 import java.lang.*;
 import java.awt.event.*;
+import javafx.scene.control.ScrollPane;
 
 import static sample.SizeAndGrid.*;
 
@@ -38,6 +39,13 @@ public class AppLayout {
         mainStage = primaryStage;
         mainStage.setTitle("Professional Ship Agent Software 2018");
 
+        GridPane grid = Setup_Grid();
+
+        ScrollPane rootPane = new ScrollPane();
+        rootPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        rootPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        rootPane.setContent(grid);
+
 
         final Text sceneTitle = new Text("Welcome to the portCDM agent application");
         sceneTitle.setFont(Font.font(26));
@@ -51,11 +59,13 @@ public class AppLayout {
         HBox hBoxButton =  new HBox (10);
         hBoxButton.setAlignment(Pos.BOTTOM_CENTER);
         hBoxButton.getChildren().add(btn);
-        GridPane grid = Setup_Grid();
-        defaultView = new Scene(grid, getSceneWidth(), getSceneHeight());
+
         grid.add(choiceBox, getChoiceBoxColumn(), getChoiceBoxRow());
         grid.add(sceneTitle, getSceneTitleColumn(), getSceneTitleRow());
         grid.add(hBoxButton, gethBoxButtonColumn(), gethBoxButtonRow());
+
+        defaultView = new Scene(rootPane, getSceneWidth(), getSceneHeight());
+
         mainStage.setScene(defaultView);
         mainStage.setResizable(true);
         btn.setOnAction(new EventHandler<ActionEvent>(){
