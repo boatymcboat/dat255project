@@ -22,7 +22,7 @@ public class Controller {
     public Controller() {
     }
 
-    public static List<PortCallSummary> runUpdates() {
+    public List<PortCallSummary> runUpdates() {
         PortCallMessage portCallMessage;
 
         // * 1. Setup ApiClient and connection to PortCDM
@@ -30,7 +30,7 @@ public class Controller {
 
         apiClient = new ApiClient();
         //Base path = URL to PortCDM (i.e. http://192.168.56.101:8080/amss)
-        //apiClient.setBasePath( "http://192.168.56.101:8080/dmp" );
+        apiClient.setBasePath( "http://192.168.56.101:4567/amss");
         //apiClient.setBasePath( "http://dev.portcdm.eu/amss" );
 
         //Authenticate with headers
@@ -40,17 +40,20 @@ public class Controller {
 
 
 
-        /*StateupdateApi stateupdateApi = new StateupdateApi( apiClient );
+        StateupdateApi stateupdateApi = new StateupdateApi( apiClient );
 
         // * 3. Fetch new message
         portCallMessage = getExampleMessage();
+        //portCallMessage.setPortCallId("urn:x-mrn:stm:portcdm:port_call:SEGOT:e093e8f1-7622-435e-b0cb-73f64c58f5e5");
 
         // * 4. Send message to PortCDM
         try {
             stateupdateApi.sendMessage( portCallMessage );
+
+
         } catch (ApiException e) {
             e.printStackTrace();
-        }*/
+        }
 
 
         apiClient.setBasePath( "http://192.168.56.101:8080/dmp" );
@@ -60,6 +63,10 @@ public class Controller {
             List<PortCallSummary> portCallSummaries = portcallsApi.getAllPortCalls(30);
             //System.out.println(portCallSummaries.size());
             //System.out.println(portcallsApi.getAllPortCalls(30));
+            List<PortCallMessage> messages = stateupdateApi.getPortCallMessages(30);
+            for (PortCallMessage message : messages) {
+                //System.out.println(message.getLocationState());
+            }
             return portCallSummaries;
         } catch (eu.portcdm.client.ApiException e) {
             e.printStackTrace();

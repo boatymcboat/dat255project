@@ -20,7 +20,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //Controller.connect();
-        new Controller().runUpdates();
+        Controller cnt = new Controller();
+        System.out.println(cnt.runUpdates());
         launch(args);
 
     }
