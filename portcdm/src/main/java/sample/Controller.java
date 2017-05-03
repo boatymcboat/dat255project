@@ -22,7 +22,7 @@ public class Controller {
     public Controller() {
     }
 
-    public List<PortCallSummary> runUpdates() {
+    public static List<PortCallSummary> runUpdates() {
         PortCallMessage portCallMessage;
 
         // * 1. Setup ApiClient and connection to PortCDM
