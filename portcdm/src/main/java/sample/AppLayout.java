@@ -21,6 +21,9 @@ import javafx.geometry.*;
 import javafx.scene.text.*;
 import java.lang.*;
 import java.awt.event.*;
+
+import static sample.SizeAndGrid.*;
+
 public class AppLayout {
     private static boolean view1_isCreated = false;
     private static boolean view2_isCreated = false;
@@ -45,14 +48,14 @@ public class AppLayout {
         HBox choiceBox = new HBox(10);
         choiceBox.setAlignment(Pos.BOTTOM_CENTER);
         choiceBox.getChildren().add(choices);
-        HBox button =  new HBox (10);
-        button.setAlignment(Pos.BOTTOM_CENTER);
-        button.getChildren().add(btn);
+        HBox hBoxButton =  new HBox (10);
+        hBoxButton.setAlignment(Pos.BOTTOM_CENTER);
+        hBoxButton.getChildren().add(btn);
         GridPane grid = Setup_Grid();
-        defaultView = new Scene(grid, 1200, 768);
-        grid.add(choiceBox, 0,5);
-        grid.add(sceneTitle, 0, 0);
-        grid.add(button,0,15);
+        defaultView = new Scene(grid, getSceneWidth(), getSceneHeight());
+        grid.add(choiceBox, getChoiceBoxColumn(), getChoiceBoxRow());
+        grid.add(sceneTitle, getSceneTitleColumn(), getSceneTitleRow());
+        grid.add(hBoxButton, gethBoxButtonColumn(), gethBoxButtonRow());
         mainStage.setScene(defaultView);
         mainStage.setResizable(true);
         btn.setOnAction(new EventHandler<ActionEvent>(){
