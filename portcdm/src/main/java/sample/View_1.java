@@ -11,15 +11,12 @@ import javafx.scene.text.Text;
 
 
 public class View_1 {
-    public static Scene Create_View(){
-        GridPane grid = AppLayout.Setup_Grid();
+    public static Scene Create_View1(){
 
-        ScrollPane rootPane = new ScrollPane();
-        rootPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        rootPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        rootPane.setContent(grid);
+        SetupView.Setup_View();
+        GridPane grid = SetupView.getGrid();
 
-        Scene scene = new Scene(rootPane, SizeAndGrid.getSceneWidth(), SizeAndGrid.getSceneHeight());
+        Scene scene = SetupView.getScene();
         HBox back = AppLayout.Back_Button();
         back.setAlignment(Pos.BOTTOM_LEFT);
         grid.add(back, SizeAndGrid.getBackButtonColumn(), SizeAndGrid.getBackButtonRow());
