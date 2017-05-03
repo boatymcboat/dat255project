@@ -19,7 +19,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        Controller.connect();
+        //Controller.connect();
+        new Controller().runUpdates();
         launch(args);
 
     }
