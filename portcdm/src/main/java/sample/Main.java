@@ -1,5 +1,6 @@
 package sample;
 
+import eu.portcdm.dto.*;
 import eu.portcdm.messaging.PortCallMessage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +31,9 @@ public class Main extends Application {
         // För att hämta 100 meddelanden:
         // readMessages();
 
+        // För att skriva ut senaste Statement för Arrival_Vessel_PilotBA (hårdkodad vilken portcall det är)
+        // System.out.println(getLatestEstimatePilotBA());
+
         launch(args);
 
     }
@@ -46,5 +50,33 @@ public class Main extends Application {
         for (PortCallMessage message : messages){
             System.out.println(message.getComment());
         }
+    }
+
+    public static Statement getLatestEstimatePilotBA(){
+        PortCallManager manager = new PortCallManager();
+        PortCall call = manager.getActiveCall();
+        List<ProcessStep> steps = call.getProcessSteps();
+        for (ProcessStep step : steps) {
+            //System.out.println("Step: " + step.getDefinitionName());
+            List<SubProcess> substeps = step.getSubProcesses();
+            for (SubProcess substep : substeps){
+                //System.out.println("\tSubstep: " + substep.getDefinitionName());
+                List<Event> events = substep.getEvents();
+                for (Event event : events){
+                    //System.out.println("\t\tEvent: " + event.getDefinitionName());
+                    List<State> states = event.getStates();
+                    for (State state : states) {
+                        //System.out.println("\t\t\tState: " + state.getDefinitionName() + ", id: " + state.getStateDefinitionId());
+                        if (state.getStateDefinitionId().equals("Arrival_Vessel_PilotBA")){
+                            List<Statement> statements = state.getStatements();
+                            Statement statement = statements.get(statements.size()-1);
+                            return statement;
+                        }
+
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
