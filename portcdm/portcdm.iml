@@ -7,20 +7,29 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="java" level="project" />
+    <orderEntry type="library" name="Maven: eu.portcdm:message-broker-dto:1.5-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.3" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okhttp:okhttp:2.4.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.4.0" level="project" />
     <orderEntry type="library" name="Maven: se.viktoria.stm.portcdm.demonstrator-connector:common:1.5-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: io.swagger:swagger-annotations:1.5.0" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okhttp:logging-interceptor:2.7.5" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okhttp:okhttp:2.7.5" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.6.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.3.1" level="project" />
     <orderEntry type="library" name="Maven: eu.portcdm:port-call-message-format:1.5-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.xerial:sqlite-jdbc:3.8.11.2" level="project" />
     <orderEntry type="library" name="Maven: eu.portcdm:client-api:1.5-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.brsanthu:migbase64:2.2" level="project" />
+    <orderEntry type="library" name="Maven: eu.portcdm:portcdm-specification:1.5-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.5" level="project" />
     <orderEntry type="library" name="Maven: eu.portcdm:amss-client:1.6-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" name="Maven: se.viktoria:util:1.5-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.testng:testng:6.8.8" level="project" />
     <orderEntry type="library" name="Maven: org.beanshell:bsh:2.0b4" level="project" />
@@ -70,13 +79,5 @@
     <orderEntry type="library" name="Maven: org.jboss.stdio:jboss-stdio:1.0.2.GA" level="project" />
     <orderEntry type="library" name="Maven: org.wildfly:wildfly-build-config:8.2.1.Final" level="project" />
     <orderEntry type="library" name="Maven: javax:javaee-web-api:7.0" level="project" />
-    <orderEntry type="library" name="Maven: eu.portcdm:message-broker-dto:1.5-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: eu.portcdm:portcdm-specification:1.5-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
-    <orderEntry type="library" name="Maven: joda-time:joda-time:2.3" level="project" />
-    <orderEntry type="library" name="Maven: com.brsanthu:migbase64:2.2" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.okhttp:okhttp:2.4.0" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: junit:junit:4.5" level="project" />
   </component>
 </module>
