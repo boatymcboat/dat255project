@@ -32,7 +32,8 @@ public class MessageReader {
         StateupdateApi stateupdateApi = new StateupdateApi( apiClient );
 
         try {
-            return stateupdateApi.getPortCallMessages(100);
+            return stateupdateApi.getMessagesBetween("2017-05-03T06:30:00Z","2017-05-05T06:50:00Z");
+            //return stateupdateApi.getPortCallMessages(100);
         } catch (ApiException e) {
             e.printStackTrace();
         }
