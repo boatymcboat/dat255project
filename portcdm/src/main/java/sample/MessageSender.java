@@ -20,8 +20,8 @@ public class MessageSender {
 
     }
 
+    // Skapar ett meddelande. Exempelkod från PortCDM-utvecklarna
     public PortCallMessage createMessage(){
-
 
         StateWrapper stateWrapper = new StateWrapper(
                 LocationReferenceObject.VESSEL, //referenceObject
@@ -51,17 +51,19 @@ public class MessageSender {
         return portCallMessage;
     }
 
+    // Skickar ett givet meddelande till Assisted Message Submission Service
     public void sendMessage(PortCallMessage message){
 
-        // * 1. Setup ApiClient and connection to PortCDM
-        ApiClient apiClient;
-        apiClient = new ApiClient();
-        apiClient.setBasePath( "http://192.168.56.101:8080/amss");
-        //apiClient.setBasePath( "http://dev.portcdm.eu/amss" );
+        ApiClient apiClient = new ApiClient();
 
-        //Authenticate with headers
+        // Adress till backendens Assisted Message Submission Service
+        apiClient.setBasePath( "http://192.168.56.101:8080/amss");
+
+        // Inlogg till backenden
         apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );
         apiClient.addDefaultHeader( "X-PortCDM-Password", "porter" );
+
+        // API-key som ej används men krävs
         apiClient.addDefaultHeader( "X-PortCDM-ApiKey", "Fenix-SMA" );
 
         StateupdateApi stateupdateApi = new StateupdateApi( apiClient );

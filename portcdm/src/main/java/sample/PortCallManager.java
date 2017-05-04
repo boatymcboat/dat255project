@@ -24,28 +24,30 @@ public class PortCallManager {
         activeCall = getLatestPortCall();
     }
 
-    // Slänger
+    // Hämtar den aktuella callen
     public PortCall getActiveCall(){
         return activeCall;
     }
 
+    // Ansluter till backenden
     private void setupApi(){
-        // * 1. Setup ApiClient and connection to PortCDM
-        ApiClient apiClient;
 
-        apiClient = new ApiClient();
-        //Base path = URL to PortCDM (i.e. http://192.168.56.101:8080/amss)
+        ApiClient apiClient = new ApiClient();
+
+        // Adress till virtualboxens PortCDM Services
         apiClient.setBasePath( "http://192.168.56.101:8080/dmp");
-        //apiClient.setBasePath( "http://dev.portcdm.eu/amss" );
 
-        //Authenticate with headers
+        // Inlogg till servern
         apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );
         apiClient.addDefaultHeader( "X-PortCDM-Password", "porter" );
+
+        // API-key, används inte idag men måste finnas
         apiClient.addDefaultHeader( "X-PortCDM-ApiKey", "Fenix-SMA" );
 
         portcallsApi = new PortcallsApi(apiClient);
     }
 
+    // Hämtar ett givet antal PortCallSummaries
     private List<PortCallSummary> getSummaries(){
         try {
             return portcallsApi.getAllPortCalls(30);
@@ -55,6 +57,7 @@ public class PortCallManager {
         return null;
     }
 
+    // Hämtar ett givet PortCall - just nu den tredje senast uppdaterade sådana
     private PortCall getLatestPortCall(){
         List<PortCallSummary> summaries = getSummaries();
         PortCallSummary summary = summaries.get(2);
