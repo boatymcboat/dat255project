@@ -133,7 +133,8 @@ public class AppController {
         PortCallOverview portcalloverview = new PortCallOverview(150);
         portcalloverview.setup();
 
-        grid.add(portcalloverview,40, 40);
+        grid.add(portcalloverview,20, 40);
+        portcalloverview.update();
     }
     //Creates the drop-down menu
     public  ComboBox Create_Drop_Down_Menu(String[] optionsArray){

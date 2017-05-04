@@ -13,14 +13,18 @@ import java.util.List;
  * Created by arono on 2017-05-04.
  */
 public class PortCallManager {
+
+    // Här lagras APIn och callen.
     PortcallsApi portcallsApi;
     PortCall activeCall;
 
+    // Konstruktor, skapar ett api och hämtar senaste callen.
     public PortCallManager(){
         setupApi();
         activeCall = getLatestPortCall();
     }
 
+    // Slänger
     public PortCall getActiveCall(){
         return activeCall;
     }
