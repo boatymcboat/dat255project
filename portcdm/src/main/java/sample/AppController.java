@@ -44,7 +44,7 @@ public class AppController {
         mainStage.setScene(defaultView);
         mainStage.setResizable(true);
     }
-
+    //Creates the view visible to user upon starting the application
     private void CreateDefaultView(){
         GridPane grid = new GridPane();
         Button btn = new Button("Start Agent Application");
@@ -62,7 +62,7 @@ public class AppController {
         grid.add(choiceBox, getChoiceBoxColumn(), getChoiceBoxRow());
         grid.add(sceneTitle, getSceneTitleColumn(), getSceneTitleRow());
         grid.add(hBoxButton, gethBoxButtonColumn(), gethBoxButtonRow());
-
+        //Logic for connecting the button to the choice made in the drop-down menu.
         btn.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e){
@@ -88,7 +88,7 @@ public class AppController {
         defaultView = CreateEmptyView(grid);
 
     }
-
+    //Creates the GridPane/Scrollpane combination that is the basis for all views in the application
     private Scene CreateEmptyView(GridPane grid){
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
@@ -101,12 +101,12 @@ public class AppController {
         scrollPane.setContent(grid);
         return new Scene(scrollPane,1200,768);
     }
-
+    //Shows the application in the window
     public void initiate(){
         mainStage.show();
     }
 
-
+    //Creates a back button to be used to bring the user back to the default view
     public HBox Back_Button(){
         HBox button = new HBox(10);
         Button btn = new Button("Back");
@@ -120,7 +120,7 @@ public class AppController {
         button.setAlignment(Pos.BOTTOM_LEFT);
         return button;
     }
-
+    //Creates one of the views used by the application
     private void CreateView_1(){
         GridPane grid = new GridPane();
         view1 = CreateEmptyView(grid);
@@ -132,7 +132,7 @@ public class AppController {
         grid.add(sceneTitle, SizeAndGrid.getSceneTitleColumn(), SizeAndGrid.getSceneTitleRow());
 
     }
-
+    //Creates the drop-down menu
     public  ComboBox Create_Drop_Down_Menu(String[] optionsArray){
         ObservableList<String> choices = FXCollections.observableArrayList();
         choices.addAll(optionsArray);
