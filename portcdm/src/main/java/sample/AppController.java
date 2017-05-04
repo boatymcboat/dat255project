@@ -130,7 +130,10 @@ public class AppController {
         HBox text = new HBox(10);
         text.getChildren().add(sceneTitle);
         grid.add(sceneTitle, SizeAndGrid.getSceneTitleColumn(), SizeAndGrid.getSceneTitleRow());
+        PortCallOverview portcalloverview = new PortCallOverview(150);
+        portcalloverview.setup();
 
+        grid.add(portcalloverview,40, 40);
     }
     //Creates the drop-down menu
     public  ComboBox Create_Drop_Down_Menu(String[] optionsArray){
