@@ -33,9 +33,10 @@ public class Main extends Application {
         // readMessages();
 
         // För att skriva ut senaste Statement för Arrival_Vessel_PilotBA (hårdkodad vilken portcall det är)
-        /* PortCallManager manager = new PortCallManager();
+        /*PortCallManager manager = new PortCallManager();
         PortCall call = manager.getActiveCall();
-        StatementReader sreader = new StatementReader(call);
+        System.out.println(call.getVessel());*/
+        /*StatementReader sreader = new StatementReader(call);
         System.out.println(sreader.getStatement("Arrival_Vessel_PilotBA")); */
 
         launch(args);
