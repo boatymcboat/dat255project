@@ -41,16 +41,35 @@ public class PortCallOverview extends HBox {
     private Text departuret2;
     private Text departuret3;
 
+    PortCallManager manager;
+    PortCall call;
+    StatementReader sreader;
 
     public PortCallOverview(double spacing) {
         super(spacing);
+
+        manager = new PortCallManager();
+        call = manager.getActiveCall();
+        sreader = new StatementReader(call);
+
     } //Constructor
 
     public void update() {
-        /* PortCallManager manager = new PortCallManager();
-        PortCall call = manager.getActiveCall();
-        StatementReader sreader = new StatementReader(call);
-        System.out.println(sreader.getStatement("Arrival_Vessel_PilotBA")); */
+
+        arrivalt1.setText(sreader.getStatement("Arrival_Vessel_TrafficArea"));
+        arrivalt2.setText(sreader.getStatement("Arrival_Vessel_PilotBA"));
+        arrivalt3.setText(sreader.getStatement("Arrival_Vessel_TugZone"));
+        arrivalt4.setText(sreader.getStatement("Arrival_Vessel_Berth"));
+
+        visitt1.setText(sreader.getStatement("CargoOp_Commenced"));
+        visitt2.setText(sreader.getStatement("CargoOp_Completed"));
+        //visitt1.setText(sreader.getStatement("CargoOp_Commenced")); // vet ej
+
+        departuret1.setText(sreader.getStatement("Departure_Vessel_Berth"));
+        departuret2.setText(sreader.getStatement("Departure_Tug_Vessel")); // osäker
+        departuret3.setText(sreader.getStatement("Departure_Pilot_Vessel")); // osäker
+
+        //System.out.println(sreader.getStatement("Arrival_Vessel_PilotBA")); */
     }
 
     public void setup() {
