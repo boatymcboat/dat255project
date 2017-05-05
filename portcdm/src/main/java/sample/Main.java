@@ -1,5 +1,6 @@
 package sample;
 
+import eu.portcdm.dto.*;
 import eu.portcdm.messaging.PortCallMessage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Main extends Application {
@@ -30,6 +32,12 @@ public class Main extends Application {
         // För att hämta 100 meddelanden:
         // readMessages();
 
+        // För att skriva ut senaste Statement för Arrival_Vessel_PilotBA (hårdkodad vilken portcall det är)
+        /* PortCallManager manager = new PortCallManager();
+        PortCall call = manager.getActiveCall();
+        StatementReader sreader = new StatementReader(call);
+        System.out.println(sreader.getStatement("Arrival_Vessel_PilotBA")); */
+
         launch(args);
 
     }
@@ -47,4 +55,6 @@ public class Main extends Application {
             System.out.println(message.getComment());
         }
     }
+
+
 }
