@@ -1,16 +1,10 @@
 package sample;
 
-/**
- * Created by arono on 2017-05-04.
- */
 import eu.portcdm.amss.client.ApiClient;
 import eu.portcdm.amss.client.ApiException;
 import eu.portcdm.amss.client.StateupdateApi;
 import eu.portcdm.dto.LocationTimeSequence;
-import eu.portcdm.messaging.LocationReferenceObject;
-import eu.portcdm.messaging.LogicalLocation;
-import eu.portcdm.messaging.PortCallMessage;
-import eu.portcdm.messaging.TimeType;
+import eu.portcdm.messaging.*;
 import se.viktoria.stm.portcdm.connector.common.util.PortCallMessageBuilder;
 import se.viktoria.stm.portcdm.connector.common.util.StateWrapper;
 
@@ -20,8 +14,20 @@ public class MessageSender {
 
     }
 
+    // Skapar ett meddelande. Exempelkod från PortCDM-utvecklarna
     public PortCallMessage createMessage(){
 
+        //StateWrapper xd = new StateWrapper()
+
+        StateWrapper wrapper = new StateWrapper(
+                ServiceObject.CARGO_OPERATION,
+                "Aron",
+                ServiceTimeSequence.COMMENCED,
+                LogicalLocation.ANCHORING_AREA, //Type of optional location
+                52.50, //Latitude of optional location
+                52.50, //Longitude of optional location
+                "Dana Fjord D1"
+                );
 
         StateWrapper stateWrapper = new StateWrapper(
                 LocationReferenceObject.VESSEL, //referenceObject
@@ -38,7 +44,7 @@ public class MessageSender {
         PortCallMessage portCallMessage = PortCallMessageBuilder.build(
                 "urn:x-mrn:stm:portcdm:local_port_call:SEGOT:DHC:52723", //localPortCallId
                 "urn:x-mrn:stm:portcdm:local_job:FENIX_SMA:990198125", //localJobId
-                stateWrapper, //StateWrapper created above
+                wrapper, //StateWrapper created above
                 "2017-03-23T06:40:00Z", //Message's time
                 TimeType.ESTIMATED, //Message's timeType
                 "urn:x-mrn:stm:vessel:IMO:9259501", //vesselId
@@ -51,17 +57,19 @@ public class MessageSender {
         return portCallMessage;
     }
 
+    // Skickar ett givet meddelande till Assisted Message Submission Service
     public void sendMessage(PortCallMessage message){
 
-        // * 1. Setup ApiClient and connection to PortCDM
-        ApiClient apiClient;
-        apiClient = new ApiClient();
-        apiClient.setBasePath( "http://192.168.56.101:8080/amss");
-        //apiClient.setBasePath( "http://dev.portcdm.eu/amss" );
+        ApiClient apiClient = new ApiClient();
 
-        //Authenticate with headers
+        // Adress till backendens Assisted Message Submission Service
+        apiClient.setBasePath( "http://192.168.56.101:8080/amss");
+
+        // Inlogg till backenden
         apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );
         apiClient.addDefaultHeader( "X-PortCDM-Password", "porter" );
+
+        // API-key som ej används men krävs
         apiClient.addDefaultHeader( "X-PortCDM-ApiKey", "Fenix-SMA" );
 
         StateupdateApi stateupdateApi = new StateupdateApi( apiClient );

@@ -26,16 +26,17 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        // För att skicka ett meddelande: (Fungerar ej)
+        // För att skicka ett meddelande: (Fungerar ish)
         // sendMessage();
 
-        // För att hämta 100 meddelanden:
+        // För att hämta 30 meddelanden:
         // readMessages();
 
         // För att skriva ut senaste Statement för Arrival_Vessel_PilotBA (hårdkodad vilken portcall det är)
-        /* PortCallManager manager = new PortCallManager();
+        /*PortCallManager manager = new PortCallManager();
         PortCall call = manager.getActiveCall();
-        StatementReader sreader = new StatementReader(call);
+        System.out.println(call.getVessel());*/
+        /*StatementReader sreader = new StatementReader(call);
         System.out.println(sreader.getStatement("Arrival_Vessel_PilotBA")); */
 
         launch(args);
