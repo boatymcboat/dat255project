@@ -12,8 +12,8 @@ public class SizeAndGrid {
     private static int choiceBoxRow = 30;
     private static int hBoxButtonColumn = 30;
     private static int hBoxButtonRow = 35;
-    private static int backButtonColumn = 30;
-    private static int backButtonRow = 65;
+    private static int backButtonColumn = 1;
+    private static int backButtonRow = 3;
 
 
     public static int getSceneHeight() {

@@ -73,18 +73,18 @@ public class PortCallOverview extends HBox {
     }
 
     public void setup() {
-        Insets columnInsets = new Insets(25,25,25,25);
+        Insets columnInsets = new Insets(25,75,25,75);
 
         //HBox stages_HBox = new HBox(150);
-        this.setStyle("-fx-background-color: khaki");
+
         VBox arrival_VBox = new VBox(50);
-        arrival_VBox.setStyle("-fx-background-color: lightsteelblue");
+        arrival_VBox.setStyle("-fx-border-color: black; -fx-border-width: 2");
         arrival_VBox.setPadding(columnInsets);
         VBox visit_VBox = new VBox(50);
-        visit_VBox.setStyle("-fx-background-color: darkorange");
+        visit_VBox.setStyle("-fx-border-color: black; -fx-border-width: 2");
         visit_VBox.setPadding(columnInsets);
         VBox departure_VBox = new VBox(50);
-        departure_VBox.setStyle("-fx-background-color: greenyellow");
+        departure_VBox.setStyle("-fx-border-color: black; -fx-border-width: 2");
         departure_VBox.setPadding(columnInsets);
 
         VBox arrivalboxh = new VBox(10);
@@ -180,6 +180,8 @@ public class PortCallOverview extends HBox {
         this.getChildren().add(arrival_VBox);
         this.getChildren().add(visit_VBox);
         this.getChildren().add(departure_VBox);
+        this.setStyle("-fx-background-color: lightblue; -fx-border-color: black; -fx-border-width: 2");
+
 
     }//setup
 
