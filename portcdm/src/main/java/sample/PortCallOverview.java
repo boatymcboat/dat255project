@@ -185,4 +185,9 @@ public class PortCallOverview extends HBox {
 
     }//setup
 
+    public void changePortcall(String portcall){
+        sreader = new StatementReader(manager.getPortCall(Integer.parseInt(portcall)));
+        this.update();
+    }
+
 }
