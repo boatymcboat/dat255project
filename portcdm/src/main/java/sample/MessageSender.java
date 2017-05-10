@@ -8,6 +8,8 @@ import eu.portcdm.messaging.*;
 import se.viktoria.stm.portcdm.connector.common.util.PortCallMessageBuilder;
 import se.viktoria.stm.portcdm.connector.common.util.StateWrapper;
 
+import java.time.LocalDateTime;
+
 public class MessageSender {
 
     public MessageSender() {
@@ -41,11 +43,11 @@ public class MessageSender {
                 52.50, //Longitude of optional location
                 "Dana Fjord D1" );//Name of optional location
         //Change dates from 2017-03-23 06:40:00 to 2017-03-23T06:40:00Z
-        PortCallMessage portCallMessage = PortCallMessageBuilder.build(
+        @SuppressWarnings("Since15") PortCallMessage portCallMessage = PortCallMessageBuilder.build(
                 "urn:x-mrn:stm:portcdm:local_port_call:SEGOT:DHC:52723", //localPortCallId
                 "urn:x-mrn:stm:portcdm:local_job:FENIX_SMA:990198125", //localJobId
                 wrapper, //StateWrapper created above
-                "2017-03-23T06:40:00Z", //Message's time
+                LocalDateTime.now().toString(), //Message's time
                 TimeType.ESTIMATED, //Message's timeType
                 "urn:x-mrn:stm:vessel:IMO:9259501", //vesselId
                 null, //reportedAt (optional)

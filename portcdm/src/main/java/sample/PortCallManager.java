@@ -17,11 +17,18 @@ public class PortCallManager {
     // Här lagras APIn och callen.
     PortcallsApi portcallsApi;
     PortCall activeCall;
+    List<PortCallSummary> summaries;
 
     // Konstruktor, skapar ett api och hämtar senaste callen.
     public PortCallManager(){
         setupApi();
-        activeCall = getLatestPortCall();
+        summaries = getSummaries();
+        activeCall = getPortCall(0);
+    }
+
+    // Uppdaterar listan med PortCalls
+    public void refreshCalls(){
+        summaries = getSummaries();
     }
 
     // Hämtar den aktuella callen
@@ -57,10 +64,9 @@ public class PortCallManager {
         return null;
     }
 
-    // Hämtar ett givet PortCall - just nu den tredje senast uppdaterade sådana
-    private PortCall getLatestPortCall(){
-        List<PortCallSummary> summaries = getSummaries();
-        PortCallSummary summary = summaries.get(4);
+    // Hämtar ett givet PortCall
+    public PortCall getPortCall(int id){
+        PortCallSummary summary = summaries.get(id);
         try {
             return portcallsApi.getPortCall(summary.getId());
         } catch (ApiException e) {
