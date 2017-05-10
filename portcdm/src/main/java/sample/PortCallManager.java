@@ -60,7 +60,7 @@ public class PortCallManager {
     // Hämtar ett givet PortCall - just nu den tredje senast uppdaterade sådana
     private PortCall getLatestPortCall(){
         List<PortCallSummary> summaries = getSummaries();
-        PortCallSummary summary = summaries.get(2);
+        PortCallSummary summary = summaries.get(4);
         try {
             return portcallsApi.getPortCall(summary.getId());
         } catch (ApiException e) {

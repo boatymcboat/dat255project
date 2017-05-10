@@ -129,11 +129,11 @@ public class AppController {
         sceneTitle.setFont(Font.font(26));
         HBox text = new HBox(10);
         text.getChildren().add(sceneTitle);
-        grid.add(sceneTitle, SizeAndGrid.getSceneTitleColumn(), SizeAndGrid.getSceneTitleRow());
-        PortCallOverview portcalloverview = new PortCallOverview(150);
+        grid.add(sceneTitle, getBackButtonColumn(), getBackButtonRow()-2);
+        PortCallOverview portcalloverview = new PortCallOverview(0);
         portcalloverview.setup();
 
-        grid.add(portcalloverview,20, 40);
+        grid.add(portcalloverview,getBackButtonColumn(), getBackButtonRow()-1);
         portcalloverview.update();
     }
     //Creates the drop-down menu
