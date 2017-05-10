@@ -9,6 +9,8 @@ import se.viktoria.stm.portcdm.connector.common.util.PortCallMessageBuilder;
 import se.viktoria.stm.portcdm.connector.common.util.StateWrapper;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class MessageSender {
 
@@ -47,7 +49,7 @@ public class MessageSender {
                 "urn:x-mrn:stm:portcdm:local_port_call:SEGOT:DHC:52723", //localPortCallId
                 "urn:x-mrn:stm:portcdm:local_job:FENIX_SMA:990198125", //localJobId
                 wrapper, //StateWrapper created above
-                LocalDateTime.now().toString(), //Message's time
+                ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT), //Message's time
                 TimeType.ESTIMATED, //Message's timeType
                 "urn:x-mrn:stm:vessel:IMO:9259501", //vesselId
                 null, //reportedAt (optional)

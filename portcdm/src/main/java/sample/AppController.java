@@ -1,5 +1,8 @@
 package sample;
 
+import eu.portcdm.messaging.PortCallMessage;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.*;
@@ -76,10 +79,12 @@ public class AppController {
 
                     }
                     else if (choices.getValue().toString().equals("option2")){
-                        sceneTitle.setText("You have chosen option2");
+                        CreateView_1();
+                        mainStage.setScene(view1);
                     }
                     else if (choices.getValue().toString().equals("option3")){
-                        sceneTitle.setText("You have chosen option3");
+                        CreateView_1();
+                        mainStage.setScene(view1);
                     }
                 }
             }
@@ -130,9 +135,31 @@ public class AppController {
         HBox text = new HBox(10);
         text.getChildren().add(sceneTitle);
         grid.add(sceneTitle, getBackButtonColumn(), getBackButtonRow()-2);
-        PortCallOverview portcalloverview = new PortCallOverview(0);
+        final PortCallOverview portcalloverview = new PortCallOverview(0);
         portcalloverview.setup();
+        HBox portcalls = new HBox();
+        ComboBox availablePortcalls = Create_Drop_Down_Menu(new String[]{"0","1","2","3","4"});
+        portcalls.getChildren().add(availablePortcalls);
+        availablePortcalls.valueProperty().addListener(new ChangeListener<String>() {
 
+            public void changed(ObservableValue observable, String oldValue, String newValue) {
+                portcalloverview.changePortcall(newValue);
+            }
+        });
+        HBox button = new HBox();
+        Button message = new Button ("Send a sample message");
+        message.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                MessageSender sender = new MessageSender();
+                PortCallMessage message = sender.createMessage();
+                sender.sendMessage(message);
+                portcalloverview.update();
+            }
+        });
+        button.getChildren().add(message);
+        grid.add(button,    getBackButtonColumn()+1,getBackButtonRow()+1);
+        grid.add(portcalls, getBackButtonColumn(),getBackButtonRow()+1);
         grid.add(portcalloverview,getBackButtonColumn(), getBackButtonRow()-1);
         portcalloverview.update();
     }
