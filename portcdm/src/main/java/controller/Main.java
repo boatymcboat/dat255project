@@ -5,6 +5,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import model.MessageReader;
 import model.MessageSender;
+import view.MainView;
+import view.MainViewImpl;
 
 import java.util.List;
 
@@ -12,9 +14,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        AppController controller = new AppController(primaryStage);
-        controller.initiate();
 
+        MainView MainView = new MainViewImpl(primaryStage);
+
+        MainController controller = new MainController(primaryStage);
     }
 
 
