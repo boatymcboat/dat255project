@@ -1,17 +1,11 @@
-package sample;
+package controller;
 
-import eu.portcdm.dto.*;
 import eu.portcdm.messaging.PortCallMessage;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.geometry.*;
+import model.MessageReader;
+import model.MessageSender;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Main extends Application {
