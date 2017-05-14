@@ -1,22 +1,5 @@
-package controller;
+package presenters;
 
-
-import com.sun.org.apache.xpath.internal.SourceTree;
-import eu.portcdm.amss.client.ApiClient;
-import eu.portcdm.amss.client.ApiException;
-import eu.portcdm.amss.client.StateupdateApi;
-import eu.portcdm.client.service.PortcallsApi;
-import eu.portcdm.dto.LocationTimeSequence;
-import eu.portcdm.dto.PortCallSummary;
-import eu.portcdm.messaging.LocationReferenceObject;
-import eu.portcdm.messaging.LogicalLocation;
-import eu.portcdm.messaging.PortCallMessage;
-import eu.portcdm.messaging.TimeType;
-import se.viktoria.stm.portcdm.connector.common.util.PortCallMessageBuilder;
-import se.viktoria.stm.portcdm.connector.common.util.StateWrapper;
-
-
-import java.util.List;
 
 public class Controller {
 

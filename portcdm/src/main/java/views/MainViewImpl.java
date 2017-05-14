@@ -1,4 +1,4 @@
-package view;
+package views;
 
 import eu.portcdm.messaging.PortCallMessage;
 import javafx.beans.value.ChangeListener;
@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import model.MessageSender;
 import model.PortCallOverview;
 
-import static view.SizeAndGrid.*;
+import static views.SizeAndGrid.*;
 
 public class MainViewImpl implements MainView{
     private boolean view1_isCreated = false;
@@ -43,10 +43,10 @@ public class MainViewImpl implements MainView{
         mainStage.setScene(defaultView);
         mainStage.setResizable(true);
     }
-    //Creates the view visible to user upon starting the application
+    //Creates the views visible to user upon starting the application
     private void CreateDefaultView(){
         GridPane grid = new GridPane();
-        Button btn = new Button("Start Agent Application");
+        final Button startAgentButton = new Button("Start Agent Application");
 
         final Text sceneTitle = new Text("Welcome to the portCDM agent application");
         sceneTitle.setFont(Font.font(26));
@@ -57,15 +57,16 @@ public class MainViewImpl implements MainView{
         choiceBox.getChildren().add(choices);
         HBox hBoxButton =  new HBox (10);
         hBoxButton.setAlignment(Pos.BOTTOM_CENTER);
-        hBoxButton.getChildren().add(btn);
+        hBoxButton.getChildren().add(startAgentButton);
         grid.add(choiceBox, getChoiceBoxColumn(), getChoiceBoxRow());
         grid.add(sceneTitle, getSceneTitleColumn(), getSceneTitleRow());
         grid.add(hBoxButton, gethBoxButtonColumn(), gethBoxButtonRow());
+
         //Logic for connecting the button to the choice made in the drop-down menu.
-        btn.setOnAction(new EventHandler<ActionEvent>(){
+        startAgentButton.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e){
-                if(choices.getValue() != null && !choices.getValue().toString().isEmpty()){
+                if(e.getSource() == startAgentButton){
                     if (choices.getValue().toString().equals("option1")){
                         if(!view1_isCreated){
                             CreateView_1();
@@ -107,7 +108,7 @@ public class MainViewImpl implements MainView{
         mainStage.show();
     }
 
-    //Creates a back button to be used to bring the user back to the default view
+    //Creates a back button to be used to bring the user back to the default views
     public HBox Back_Button(){
         HBox button = new HBox(10);
         Button btn = new Button("Back");
@@ -126,7 +127,7 @@ public class MainViewImpl implements MainView{
         GridPane grid = new GridPane();
         view1 = CreateEmptyView(grid);
         grid.add(Back_Button(), getBackButtonColumn(),getBackButtonRow());
-        final Text sceneTitle = new Text("Welcome to view 1");
+        final Text sceneTitle = new Text("Welcome to views 1");
         sceneTitle.setFont(Font.font(26));
         HBox text = new HBox(10);
         text.getChildren().add(sceneTitle);

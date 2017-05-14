@@ -9,7 +9,7 @@
 <?import javafx.scene.control.Label?>
 
 
-<fx:root alignment="center" hgap="10" type="GridPane" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.Controller">
+<fx:root alignment="center" hgap="10" type="GridPane" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="presenters.Controller">
    <children>
       <Pane prefHeight="398.0" prefWidth="380.0">
          <children>

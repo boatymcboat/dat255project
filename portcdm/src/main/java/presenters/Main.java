@@ -1,12 +1,12 @@
-package controller;
+package presenters;
 
 import eu.portcdm.messaging.PortCallMessage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.MessageReader;
 import model.MessageSender;
-import view.MainView;
-import view.MainViewImpl;
+import views.MainView;
+import views.MainViewImpl;
 
 import java.util.List;
 
@@ -16,8 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         MainView MainView = new MainViewImpl(primaryStage);
-
-        MainController controller = new MainController(primaryStage);
+        MainPresenter controller = new MainPresenter(primaryStage);
     }
 
 
