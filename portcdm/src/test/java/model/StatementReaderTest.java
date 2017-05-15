@@ -1,5 +1,6 @@
 package model;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class StatementReaderTest {
     StatementReader reader;
     PortCallManager manager;
+
+    @BeforeAll
+    static void checkConnection() {
+        assertTrue(ApiConfig.isOnline(),"Server is unreachable!");
+    }
 
     @BeforeEach
     void setUp() {
@@ -24,8 +30,8 @@ class StatementReaderTest {
     }
 
     @Test
-    void getStatement() { // Kvar att fixa xd
-        assertNotNull(reader.getStatement("Arrival_Vessel_TrafficArea"),"no statements found");
+    void getStatement() { // TODO: Ej hållbart, kan vara bra att koda om
+        assertNotNull(reader.getStatement("Arrival_Vessel_Berth"),"no statements found");
     }
 
 }

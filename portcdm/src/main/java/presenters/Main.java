@@ -25,12 +25,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        // För att skicka ett meddelande: (Fungerar ish)
-        // sendMessage();
-
-        // För att hämta 30 meddelanden:
-        // readMessages();
-
         // För att skriva ut senaste Statement för Arrival_Vessel_PilotBA (hårdkodad vilken portcall det är)
         /*PortCallManager manager = new PortCallManager();
         PortCall call = manager.getActiveCall();
@@ -41,20 +35,4 @@ public class Main extends Application {
         launch(args);
 
     }
-/*
-    public static void sendMessage(){
-        MessageSender sender = new MessageSender();
-        PortCallMessage message = sender.createMessage();
-        sender.sendMessage(message);
-    }
-
-    public static void readMessages(){
-        MessageReader reader = new MessageReader();
-        List<PortCallMessage> messages = reader.getMessages();
-        for (PortCallMessage message : messages){
-            System.out.println(message.getComment());
-        }
-    }*/
-
-
 }

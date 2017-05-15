@@ -1,5 +1,6 @@
 package model;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class PortCallManagerTest {
     PortCallManager manager;
+
+    @BeforeAll
+    static void checkConnection() {
+        assertTrue(ApiConfig.isOnline(),"Server is unreachable!");
+    }
 
     @BeforeEach
     void setUp() {
