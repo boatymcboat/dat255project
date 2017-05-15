@@ -27,8 +27,14 @@ public class PortCallManager {
     }
 
     // Uppdaterar listan med PortCalls
-    public void refreshCalls(){
+    public boolean refreshCalls(){
         summaries = getSummaries();
+        if (summaries == null){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     // Hämtar den aktuella callen

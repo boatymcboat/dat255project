@@ -13,9 +13,12 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MessageSender {
+    ApiClient apiClient;
+    StateupdateApi stateupdateApi;
+
 
     public MessageSender() {
-
+        setupApi();
     }
 
     // Skapar ett meddelande. Exempelkod från PortCDM-utvecklarna
@@ -62,9 +65,18 @@ public class MessageSender {
     }
 
     // Skickar ett givet meddelande till Assisted Message Submission Service
-    public void sendMessage(PortCallMessage message){
+    public boolean sendMessage(PortCallMessage message){
+        try {
+            stateupdateApi.sendMessage( message );
+            return true;
+        } catch (ApiException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
-        ApiClient apiClient = new ApiClient();
+    private void setupApi(){
+        apiClient = new ApiClient();
 
         // Adress till backendens Assisted Message Submission Service
         apiClient.setBasePath( "http://192.168.56.101:8080/amss");
@@ -76,12 +88,7 @@ public class MessageSender {
         // API-key som ej används men krävs
         apiClient.addDefaultHeader( "X-PortCDM-ApiKey", "Fenix-SMA" );
 
-        StateupdateApi stateupdateApi = new StateupdateApi( apiClient );
+        stateupdateApi = new StateupdateApi( apiClient );
 
-        try {
-            stateupdateApi.sendMessage( message );
-        } catch (ApiException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -7,9 +7,6 @@
     <artifactId>portcdm</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>../locationregistry</module>
-    </modules>
     <name>portcdm</name>
     <description>test</description>
     <repositories>
@@ -79,7 +76,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>eu.portcdm</groupId>
             <artifactId>message-broker-dto</artifactId>
             <version>LATEST</version>
@@ -88,6 +85,11 @@
             <groupId>eu.portcdm</groupId>
             <artifactId>message-broker-client</artifactId>
             <version>LATEST</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>RELEASE</version>
         </dependency>
     </dependencies>
 </project>
