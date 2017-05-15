@@ -72,16 +72,16 @@ public class MainViewImpl implements MainView{
                             CreateView_1();
                             view1_isCreated = true;
                         }
-                        mainStage.setScene(view1);
+                        presenter.openShipAgentView(1);
 
                     }
                     else if (choices.getValue().toString().equals("option2")){
                         CreateView_1();
-                        mainStage.setScene(view1);
+                        presenter.openShipAgentView(2);
                     }
                     else if (choices.getValue().toString().equals("option3")){
                         CreateView_1();
-                        mainStage.setScene(view1);
+                        presenter.openShipAgentView(3);
                     }
                 }
             }
@@ -111,6 +111,18 @@ public class MainViewImpl implements MainView{
     public void setPresenter(MainPresenter presenter) {
         this.presenter = presenter;
 
+    }
+
+    public void setShipAgentView(int view_id) {
+        if (view_id == 1){
+            mainStage.setScene(view1);
+        }
+        else if (view_id == 2){
+            mainStage.setScene(view1);
+        }
+        else if (view_id == 3){
+            mainStage.setScene(view1);
+        }
     }
 
     //Creates a back button to be used to bring the user back to the default views

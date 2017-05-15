@@ -16,8 +16,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         MainView mainView = new MainViewImpl(primaryStage);
-        MainPresenter presenter = new MainPresenterImpl(mainView);
+        MainPresenter presenter = new MainPresenterImpl();
         mainView.setPresenter(presenter);
+        presenter.setView(mainView);
+
     }
 
 

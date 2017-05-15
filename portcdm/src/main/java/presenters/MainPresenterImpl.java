@@ -10,12 +10,15 @@ public class MainPresenterImpl implements MainPresenter{
 
 
 
-    public MainPresenterImpl(MainView mainView){
-        this.mainView = mainView;
+    public MainPresenterImpl(){
     }
 
     public void setView(MainView view) {
+        this.mainView = view;
+    }
 
+    public void openShipAgentView(int view_id) {
+        mainView.setShipAgentView(view_id);
     }
 
     /*private class ButtonHandler implements EventHandler {

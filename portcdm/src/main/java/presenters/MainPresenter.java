@@ -8,4 +8,6 @@ import views.MainView;
 public interface MainPresenter {
 
     void setView(MainView view);
+
+    void openShipAgentView(int view_id);
 }
