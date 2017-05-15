@@ -14,7 +14,6 @@ public class MainPresenterImpl implements MainPresenter, EventHandler<ActionEven
     public MainPresenterImpl(MainView mainView){
         this.mainView = mainView;
         mainView.setListener(this);
-        mainView.initialize();
     }
 
     public void setView(MainView view) {
@@ -26,7 +25,16 @@ public class MainPresenterImpl implements MainPresenter, EventHandler<ActionEven
     }
 
     public void handle(ActionEvent e) {
-        mainView.setShipAgentView(1);
+
+
+        if (e.getSource().toString().contains("Start Agent Application")){ //TODO make this more reliable
+            mainView.setShipAgentView(1);
+        }
+        else if (e.getSource().toString().contains("Back")){
+            mainView.goBack();
+        }
+
+        e.consume();
     }
 
     /*private class ButtonHandler implements EventHandler {

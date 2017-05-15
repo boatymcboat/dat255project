@@ -33,10 +33,12 @@ public class MainViewImpl implements MainView{
     private Scene view3;
     private Stage mainStage;
     private EventHandler<ActionEvent> listener;
-    Button startAgentButton;
+    private Button startAgentButton;
+    private Button backButton;
 
     public MainViewImpl(Stage primaryStage){
         mainStage = primaryStage;
+        initialize();
     }
 
     public void initialize(){
@@ -47,10 +49,15 @@ public class MainViewImpl implements MainView{
         mainStage.setResizable(true);
     }
 
+    public void goBack() {
+        mainStage.setScene(defaultView);
+    }
+
     //Creates the views visible to user upon starting the application
     private void CreateDefaultView(){
         GridPane grid = new GridPane();
         startAgentButton = new Button("Start Agent Application");
+        backButton = new Button("Back");
 
         final Text sceneTitle = new Text("Welcome to the portCDM agent application");
         sceneTitle.setFont(Font.font(26));
@@ -115,6 +122,8 @@ public class MainViewImpl implements MainView{
 
     public void setListener(EventHandler<ActionEvent> listener) {
         this.listener = listener;
+        backButton.setOnAction(listener);
+        startAgentButton.setOnAction(listener);
     }
 
     public void setTitle(String title) {
@@ -138,9 +147,8 @@ public class MainViewImpl implements MainView{
     //Creates a back button to be used to bring the user back to the default views
     public HBox Back_Button(){
         HBox button = new HBox(10);
-        Button btn = new Button("Back");
-        button.getChildren().add(btn);
-        btn.setOnAction(listener);
+        button.getChildren().add(backButton);
+        backButton.setOnAction(listener);
 
         /*btn.setOnAction(new EventHandler<ActionEvent>(){
             @Override

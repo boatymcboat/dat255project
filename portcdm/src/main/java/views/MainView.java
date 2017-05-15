@@ -19,4 +19,5 @@ public interface MainView {
 
     void initialize();
 
+    void goBack();
 }
