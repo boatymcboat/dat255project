@@ -24,8 +24,8 @@ class StatementReaderTest {
     }
 
     @Test
-    void getStatement() { // Kvar att fixa xd
-        assertNotNull(reader.getStatement("Arrival_Vessel_TrafficArea"),"no statements found");
+    void getStatement() { // Ej hållbart, kan vara bra att koda om
+        assertNotNull(reader.getStatement("Arrival_Vessel_Berth"),"no statements found");
     }
 
 }
