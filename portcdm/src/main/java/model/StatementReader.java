@@ -21,9 +21,13 @@ public class StatementReader {
     }
 
     // Ändrar vilket call vi hämtar samt uppdaterar senaste statements
-    public void setActiveCall(PortCall call) {
+    public boolean setActiveCall(PortCall call) {
+        if (call == null){
+            return false;
+        }
         activeCall = call;
         latestStatements = getAllLatestStatements(activeCall);
+        return true;
     }
 
     // Hämtar en statement utefter sitt ID. Fullständig lista är ej sammanställd.

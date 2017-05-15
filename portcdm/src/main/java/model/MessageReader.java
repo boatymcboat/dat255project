@@ -11,15 +11,15 @@ import java.util.List;
  * Created by arono on 2017-05-04.
  */
 public class MessageReader {
-    public MessageReader() {
+    private ApiClient apiClient;
+    private StateupdateApi stateupdateApi;
 
+    public MessageReader() {
+        setupApi();
     }
 
-    // Hämtar och returnerar en lista med ett givet antal PortCallMessages
-    public List<PortCallMessage> getMessages(){
-
-        ApiClient apiClient = new ApiClient();
-
+    private void setupApi(){
+        apiClient = new ApiClient();
         // Adress till backendens PortCDM Services
         apiClient.setBasePath( "http://192.168.56.101:8080/dmp");
 
@@ -30,12 +30,13 @@ public class MessageReader {
         // API-key som ej används men krävs
         apiClient.addDefaultHeader( "X-PortCDM-ApiKey", "Fenix-SMA" );
 
-        StateupdateApi stateupdateApi = new StateupdateApi( apiClient );
+        stateupdateApi = new StateupdateApi( apiClient );
+    }
 
+    // Hämtar och returnerar en lista med ett givet antal PortCallMessages
+    public List<PortCallMessage> getMessages(){
         try {
             //return stateupdateApi.getMessagesBetween("2017-05-03T06:30:00Z","2017-05-05T06:50:00Z");
-
-            // Hämtar 10 PortCallMessages
             return stateupdateApi.getPortCallMessages(10);
         } catch (ApiException e) {
             e.printStackTrace();
