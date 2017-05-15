@@ -32,21 +32,32 @@ public class MainViewImpl implements MainView{
     private Scene view2;
     private Scene view3;
     private Stage mainStage;
-    private MainPresenter presenter;
-
+    private EventHandler<ActionEvent> listener;
+    private Button startAgentButton;
+    private Button backButton;
 
     public MainViewImpl(Stage primaryStage){
         mainStage = primaryStage;
-        initiate();
-        mainStage.setTitle("Professional Ship Agent Software 2018");
+        initialize();
+    }
+
+    public void initialize(){
+        mainStage.show();
+        setTitle("Professional Ship Agent Software 2018");
         CreateDefaultView();
         mainStage.setScene(defaultView);
         mainStage.setResizable(true);
     }
+
+    public void goBack() {
+        mainStage.setScene(defaultView);
+    }
+
     //Creates the views visible to user upon starting the application
     private void CreateDefaultView(){
         GridPane grid = new GridPane();
-        final Button startAgentButton = new Button("Start Agent Application");
+        startAgentButton = new Button("Start Agent Application");
+        backButton = new Button("Back");
 
         final Text sceneTitle = new Text("Welcome to the portCDM agent application");
         sceneTitle.setFont(Font.font(26));
@@ -63,6 +74,10 @@ public class MainViewImpl implements MainView{
         grid.add(hBoxButton, gethBoxButtonColumn(), gethBoxButtonRow());
 
         //Logic for connecting the button to the choice made in the drop-down menu.
+        startAgentButton.setOnAction(listener);
+
+
+        /*
         startAgentButton.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e){
@@ -85,7 +100,7 @@ public class MainViewImpl implements MainView{
                     }
                 }
             }
-        });
+        });*/
 
         defaultView = CreateEmptyView(grid);
 
@@ -103,18 +118,22 @@ public class MainViewImpl implements MainView{
         scrollPane.setContent(grid);
         return new Scene(scrollPane,1200,768);
     }
-    //Shows the application in the window
-    public void initiate(){
-        mainStage.show();
+
+
+    public void setListener(EventHandler<ActionEvent> listener) {
+        this.listener = listener;
+        backButton.setOnAction(listener);
+        startAgentButton.setOnAction(listener);
     }
 
-    public void setPresenter(MainPresenter presenter) {
-        this.presenter = presenter;
+    public void setTitle(String title) {
+        mainStage.setTitle(title);
 
     }
 
     public void setShipAgentView(int view_id) {
         if (view_id == 1){
+            CreateView_1();
             mainStage.setScene(view1);
         }
         else if (view_id == 2){
@@ -128,14 +147,15 @@ public class MainViewImpl implements MainView{
     //Creates a back button to be used to bring the user back to the default views
     public HBox Back_Button(){
         HBox button = new HBox(10);
-        Button btn = new Button("Back");
-        button.getChildren().add(btn);
-        btn.setOnAction(new EventHandler<ActionEvent>(){
+        button.getChildren().add(backButton);
+        backButton.setOnAction(listener);
+
+        /*btn.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e){
                 mainStage.setScene(defaultView);
             }
-        });
+        });*/
         button.setAlignment(Pos.BOTTOM_LEFT);
         return button;
     }
@@ -183,6 +203,4 @@ public class MainViewImpl implements MainView{
         choices.addAll(optionsArray);
         return new ComboBox(choices);
     }
-
-
 }
