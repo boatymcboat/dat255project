@@ -30,7 +30,7 @@ class StatementReaderTest {
     }
 
     @Test
-    void getStatement() { // Ej hållbart, kan vara bra att koda om
+    void getStatement() { // TODO: Ej hållbart, kan vara bra att koda om
         assertNotNull(reader.getStatement("Arrival_Vessel_Berth"),"no statements found");
     }
 

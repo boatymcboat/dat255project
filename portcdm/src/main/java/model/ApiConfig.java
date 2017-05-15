@@ -6,7 +6,7 @@ import java.net.InetAddress;
 /**
  * Created by Aron on 2017-05-15.
  */
-public class ApiConfig { // Lägga in konstanter för server-ip och inlogg här
+public class ApiConfig { // TODO: Lägga in konstanter för server-ip och inlogg här
 
     public static boolean isOnline(){
         String ip = "192.168.56.101";
