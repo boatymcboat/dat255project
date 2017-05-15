@@ -1,4 +1,4 @@
-package sample;
+package model;
 
 import eu.portcdm.client.ApiClient;
 import eu.portcdm.client.ApiException;

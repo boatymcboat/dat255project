@@ -1,25 +1,24 @@
-package sample;
+package presenters;
 
-import eu.portcdm.dto.*;
 import eu.portcdm.messaging.PortCallMessage;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.geometry.*;
+import model.MessageReader;
+import model.MessageSender;
+import views.MainView;
+import views.MainViewImpl;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        AppController controller = new AppController(primaryStage);
-        controller.initiate();
+
+        MainView mainView = new MainViewImpl(primaryStage);
+        MainPresenter presenter = new MainPresenterImpl();
+        mainView.setPresenter(presenter);
+        presenter.setView(mainView);
 
     }
 

@@ -1,4 +1,4 @@
-package sample;
+package views;
 
 /**
  * Created by Oskar on 2017-05-03.

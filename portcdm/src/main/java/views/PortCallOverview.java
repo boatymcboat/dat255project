@@ -1,31 +1,16 @@
-package sample;
+package views;
 
 
 import eu.portcdm.dto.PortCall;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.*;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.geometry.*;
 import javafx.scene.text.*;
-import java.lang.*;
-import java.awt.event.*;
-import javafx.scene.control.ScrollPane;
+import model.PortCallManager;
+import model.StatementReader;
 
-import static sample.SizeAndGrid.*;
+import java.lang.*;
+
 public class PortCallOverview extends HBox {
 
     private Text arrivalt1;
