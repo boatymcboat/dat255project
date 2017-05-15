@@ -19,7 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.MessageSender;
-import model.PortCallOverview;
+import presenters.MainPresenter;
 
 import static views.SizeAndGrid.*;
 
@@ -32,7 +32,7 @@ public class MainViewImpl implements MainView{
     private Scene view2;
     private Scene view3;
     private Stage mainStage;
-
+    private MainPresenter presenter;
 
 
     public MainViewImpl(Stage primaryStage){
@@ -108,6 +108,11 @@ public class MainViewImpl implements MainView{
         mainStage.show();
     }
 
+    public void setPresenter(MainPresenter presenter) {
+        this.presenter = presenter;
+
+    }
+
     //Creates a back button to be used to bring the user back to the default views
     public HBox Back_Button(){
         HBox button = new HBox(10);
@@ -166,4 +171,6 @@ public class MainViewImpl implements MainView{
         choices.addAll(optionsArray);
         return new ComboBox(choices);
     }
+
+
 }

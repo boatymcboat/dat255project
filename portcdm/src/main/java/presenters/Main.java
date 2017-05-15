@@ -15,8 +15,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        MainView MainView = new MainViewImpl(primaryStage);
-        MainPresenter controller = new MainPresenter(primaryStage);
+        MainView mainView = new MainViewImpl(primaryStage);
+        MainPresenter presenter = new MainPresenterImpl(mainView);
+        mainView.setPresenter(presenter);
     }
 
 

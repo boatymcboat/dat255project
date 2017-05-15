@@ -1,4 +1,4 @@
-package model;
+package views;
 
 
 import eu.portcdm.dto.PortCall;
@@ -6,6 +6,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
+import model.PortCallManager;
+import model.StatementReader;
+
 import java.lang.*;
 
 public class PortCallOverview extends HBox {
