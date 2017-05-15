@@ -1,16 +1,20 @@
 package presenters;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import views.MainView;
 
-public class MainPresenterImpl implements MainPresenter{
+public class MainPresenterImpl implements MainPresenter, EventHandler<ActionEvent>{
 
     private MainView mainView;
 
 
-
-    public MainPresenterImpl(){
+    public MainPresenterImpl(MainView mainView){
+        this.mainView = mainView;
+        mainView.setListener(this);
+        mainView.initialize();
     }
 
     public void setView(MainView view) {
@@ -19,6 +23,10 @@ public class MainPresenterImpl implements MainPresenter{
 
     public void openShipAgentView(int view_id) {
         mainView.setShipAgentView(view_id);
+    }
+
+    public void handle(ActionEvent e) {
+        mainView.setShipAgentView(1);
     }
 
     /*private class ButtonHandler implements EventHandler {

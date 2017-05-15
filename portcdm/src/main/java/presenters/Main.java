@@ -2,6 +2,7 @@ package presenters;
 
 import eu.portcdm.messaging.PortCallMessage;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import model.MessageReader;
 import model.MessageSender;
@@ -16,9 +17,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         MainView mainView = new MainViewImpl(primaryStage);
-        MainPresenter presenter = new MainPresenterImpl();
-        mainView.setPresenter(presenter);
-        presenter.setView(mainView);
+        MainPresenter presenter = new MainPresenterImpl(mainView);
+
 
     }
 
@@ -41,7 +41,7 @@ public class Main extends Application {
         launch(args);
 
     }
-
+/*
     public static void sendMessage(){
         MessageSender sender = new MessageSender();
         PortCallMessage message = sender.createMessage();
@@ -54,7 +54,7 @@ public class Main extends Application {
         for (PortCallMessage message : messages){
             System.out.println(message.getComment());
         }
-    }
+    }*/
 
 
 }
