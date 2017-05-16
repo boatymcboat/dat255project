@@ -79,7 +79,7 @@ public class MessageSender {
         apiClient = new ApiClient();
 
         // Adress till backendens Assisted Message Submission Service
-        apiClient.setBasePath( "http://192.168.56.101:8080/amss");
+        apiClient.setBasePath( "http://46.239.98.79:8080/amss");
 
         // Inlogg till backenden
         apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );

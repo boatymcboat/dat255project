@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import model.MessageReader;
 import model.MessageSender;
+import views.ExampleView;
 import views.MainView;
 import views.MainViewImpl;
 
@@ -16,8 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        MainView mainView = new MainViewImpl(primaryStage);
-        MainPresenter presenter = new MainPresenterImpl(mainView);
+        ExampleView view = new ExampleView(primaryStage);
 
 
     }
