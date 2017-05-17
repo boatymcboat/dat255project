@@ -128,9 +128,14 @@ public class MainViewImpl implements MainView{
     //Creates one of the views used by the application
     //TODO: Move to a separate class
     private void CreateView_1(){
+
         GridPane grid = new GridPane();
         view1 = CreateEmptyView(grid);
         grid.add(Back_Button(), getBackButtonColumn(),getBackButtonRow());
+
+        new ShipAgentView1(grid);
+       /*§
+
         final Text sceneTitle = new Text("Welcome to views 1");
         sceneTitle.setFont(Font.font(26));
         HBox text = new HBox(10);
@@ -163,13 +168,14 @@ public class MainViewImpl implements MainView{
         grid.add(portcalls, getBackButtonColumn(),getBackButtonRow()+1);
         grid.add(portcalloverview,getBackButtonColumn(), getBackButtonRow()-1);
         //TODO: Move the loading of the FXML file to a more suitable location
+
         try {
             AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/presenters/messagesender.fxml"));
             grid.add(pane, getBackButtonColumn(),getBackButtonRow()+2);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        portcalloverview.update();
+        portcalloverview.update();*/
     }
     //Creates the drop-down menu
     public  ComboBox Create_Drop_Down_Menu(String[] optionsArray){
