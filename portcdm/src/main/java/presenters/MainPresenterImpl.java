@@ -37,6 +37,8 @@ public class MainPresenterImpl implements MainPresenter, EventHandler<ActionEven
         e.consume();
     }
 
+
+
     /*private class ButtonHandler implements EventHandler {
         public void handle(Event event) {
             if(choices.getValue() != null && !choices.getValue().toString().isEmpty()){
