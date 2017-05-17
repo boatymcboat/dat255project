@@ -3,8 +3,10 @@ package model;
 import eu.portcdm.amss.client.ApiClient;
 import eu.portcdm.amss.client.ApiException;
 import eu.portcdm.amss.client.StateupdateApi;
-import eu.portcdm.dto.LocationTimeSequence;
+import eu.portcdm.dto.*;
 import eu.portcdm.messaging.*;
+import eu.portcdm.messaging.ServiceObject;
+import eu.portcdm.messaging.ServiceTimeSequence;
 import se.viktoria.stm.portcdm.connector.common.util.PortCallMessageBuilder;
 import se.viktoria.stm.portcdm.connector.common.util.StateWrapper;
 
@@ -62,6 +64,104 @@ public class MessageSender {
         );
 
         return portCallMessage;
+    }
+
+    /*
+        Skickar locationStates med följande input,
+            portCall - Det port call som behandlas
+            locationTimeSequence - Arrival to or Departure from etc
+            originLocationType - Typ av plats som skeppet åker från, ex Anchorage_Area
+            destinationLocationType - Typ av plats som skeppet åker till, ex Berth
+            time - Tid då händelsen skedde/sker
+            timeType - Typ av tid: Estimated, Actual etc.
+
+        Följande delar är ej implementerade,
+            latitude - För både origin och destination
+            longitude - Fär både origin och destination
+            Name - För både origin och destination,  ex Dana Fjord D1
+            localPortCallId - lokalt id
+            localJobId - lokalat id
+            reportedAt - **Current Time**
+            reportedBy - Agenten som är "inloggad"
+            groupWith - Oklart om det behövs
+            comment - Skulle vara nice
+     */
+    public void sendLocationState(PortCall portCall, LocationTimeSequence locationTimeSequence,
+                                  LogicalLocation originLocationType, LogicalLocation destinationLocationType,
+                                  String time, TimeType timeType){
+        StateWrapper wrapper = new StateWrapper(
+                LocationReferenceObject.VESSEL, //referenceObject
+                locationTimeSequence , //ARRIVAL_TO or DEPARTURE_FROM
+                destinationLocationType, //Type of required location
+                53.50, //Latitude of required location
+                53.50, //Longitude of required location
+                "Skarvik Harbour 518", //Name of required location
+                originLocationType, //Type of optional location
+                52.50, //Latitude of optional location
+                52.50, //Longitude of optional location
+                "Dana Fjord D1" );
+
+        PortCallMessage message = PortCallMessageBuilder.build(
+                null,
+                null,
+                wrapper,
+                time,
+                timeType,
+                portCall.getVessel().getId(),
+                null,
+                null,
+                null,
+                null
+        );
+        sendMessage(message);
+    }
+
+
+    /*
+    Skickar serviceState med följande input,
+        portCall - Det port call som behandlas
+        servicetype - Typ av service, ex Cargo_Operation
+        serviceTimeSequence - Vilken sekvens servicen befinner sig i, ex Commenced
+        locationType - Typ av location, ex Ancoring_Area
+        time - Tid då händelsen skedde/sker
+        timeType - Typ av tid: Estimated, Actual etc.
+
+    Följande delar är ej implementerade,
+        latitude - Ska kollas med PortCDM
+        longitude - som latitude
+        Name - ex Dana Fjord D1
+        localPortCallId - lokalt id
+        localJobId - lokalat id
+        reportedAt - **Current Time**
+        reportedBy - Agenten som är "inloggad"
+        groupWith - Oklart om det behövs
+        comment - Skulle vara nice
+    */
+    public void sendServiceState(PortCall portCall, ServiceObject serviceType, ServiceTimeSequence serviceSequence,
+                                 LogicalLocation locationType,String time, TimeType timeType){
+        StateWrapper wrapper = new StateWrapper(
+                serviceType,
+                "Aron",
+                serviceSequence,
+                locationType, //Type of optional location
+                52.50, //Latitude of optional location
+                52.50, //Longitude of optional location
+                "Dana Fjord D1"
+        );
+
+        PortCallMessage message = PortCallMessageBuilder.build(
+                null,
+                null,
+                wrapper,
+                time,
+                timeType,
+                portCall.getVessel().getId(),
+                null,
+                null,
+                null,
+                null
+        );
+        sendMessage(message);
     }
 
     // Skickar ett givet meddelande till Assisted Message Submission Service
