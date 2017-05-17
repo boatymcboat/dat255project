@@ -7,12 +7,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -20,6 +22,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.MessageSender;
 import presenters.MainPresenter;
+
+import java.io.IOException;
 
 import static views.SizeAndGrid.*;
 
@@ -195,6 +199,13 @@ public class MainViewImpl implements MainView{
         grid.add(button,    getBackButtonColumn()+1,getBackButtonRow()+1);
         grid.add(portcalls, getBackButtonColumn(),getBackButtonRow()+1);
         grid.add(portcalloverview,getBackButtonColumn(), getBackButtonRow()-1);
+
+        try {
+            AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/presenters/messagesender.fxml"));
+            grid.add(pane, getBackButtonColumn(),getBackButtonRow()+2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         portcalloverview.update();
     }
     //Creates the drop-down menu
