@@ -45,13 +45,14 @@ public class MessageSenderPresenter {
     public MessageSenderPresenter(){
         //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring","b"));
     }
+    //Method to create the options for the drop down menus used in the view.
     public void initialize(){
         servicetypebox.setItems(FXCollections.observableArrayList("Cargo Operation"));
         servicesequencebox.setItems(FXCollections.observableArrayList("Commenced", "Completed"));
         servicetimetypebox.setItems(FXCollections.observableArrayList("Estimated"));
         locationtypebox.setItems(FXCollections.observableArrayList("Berth"));
     }
-
+    // Method for creating a message when pressing the send location state button.
     public void sendlocationstate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
         //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring", "b"));
@@ -60,7 +61,7 @@ public class MessageSenderPresenter {
                 LogicalLocation.ANCHORING_AREA, LogicalLocation.BERTH,
                 ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT), TimeType.ESTIMATED);
     }
-
+    //Method for creating a message when pressing the send service state button
     public void sendservicestate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
         PortCallManager manager = new PortCallManager();

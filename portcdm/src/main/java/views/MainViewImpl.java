@@ -164,6 +164,7 @@ public class MainViewImpl implements MainView{
         return button;
     }
     //Creates one of the views used by the application
+    //TODO: Move to a separate class
     private void CreateView_1(){
         GridPane grid = new GridPane();
         view1 = CreateEmptyView(grid);
@@ -199,7 +200,7 @@ public class MainViewImpl implements MainView{
         grid.add(button,    getBackButtonColumn()+1,getBackButtonRow()+1);
         grid.add(portcalls, getBackButtonColumn(),getBackButtonRow()+1);
         grid.add(portcalloverview,getBackButtonColumn(), getBackButtonRow()-1);
-
+        //TODO: Move the loading of the FXML file to a more suitable location
         try {
             AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/presenters/messagesender.fxml"));
             grid.add(pane, getBackButtonColumn(),getBackButtonRow()+2);
