@@ -9,7 +9,7 @@ import java.net.InetAddress;
 public class ApiConfig { // TODO: Lägga in konstanter för server-ip och inlogg här
 
     public static boolean isOnline(){
-        String ip = "46.239.98.79";
+        String ip = "192.168.56.101";
         int timeout = 7000;
         try {
             return InetAddress.getByName(ip).isReachable(timeout);

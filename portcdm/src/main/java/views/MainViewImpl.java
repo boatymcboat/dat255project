@@ -36,7 +36,6 @@ public class MainViewImpl implements MainView{
     private Scene view2;
     private Scene view3;
     private Stage mainStage;
-    private EventHandler<ActionEvent> listener;
     private Button startAgentButton;
     private Button backButton;
 
@@ -77,34 +76,6 @@ public class MainViewImpl implements MainView{
         grid.add(sceneTitle, getSceneTitleColumn(), getSceneTitleRow());
         grid.add(hBoxButton, gethBoxButtonColumn(), gethBoxButtonRow());
 
-        //Logic for connecting the button to the choice made in the drop-down menu.
-        startAgentButton.setOnAction(listener);
-
-
-        /*
-        startAgentButton.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent e){
-                if(e.getSource() == startAgentButton){
-                    if (choices.getValue().toString().equals("option1")){
-                        if(!view1_isCreated){
-                            CreateView_1();
-                            view1_isCreated = true;
-                        }
-                        presenter.openShipAgentView(1);
-
-                    }
-                    else if (choices.getValue().toString().equals("option2")){
-                        CreateView_1();
-                        presenter.openShipAgentView(2);
-                    }
-                    else if (choices.getValue().toString().equals("option3")){
-                        CreateView_1();
-                        presenter.openShipAgentView(3);
-                    }
-                }
-            }
-        });*/
 
         defaultView = CreateEmptyView(grid);
 
@@ -125,7 +96,6 @@ public class MainViewImpl implements MainView{
 
 
     public void setListener(EventHandler<ActionEvent> listener) {
-        this.listener = listener;
         backButton.setOnAction(listener);
         startAgentButton.setOnAction(listener);
     }
@@ -152,14 +122,6 @@ public class MainViewImpl implements MainView{
     public HBox Back_Button(){
         HBox button = new HBox(10);
         button.getChildren().add(backButton);
-        backButton.setOnAction(listener);
-
-        /*btn.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent e){
-                mainStage.setScene(defaultView);
-            }
-        });*/
         button.setAlignment(Pos.BOTTOM_LEFT);
         return button;
     }

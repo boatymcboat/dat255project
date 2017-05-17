@@ -48,7 +48,7 @@ public class PortCallManager {
         ApiClient apiClient = new ApiClient();
 
         // Adress till virtualboxens PortCDM Services
-        apiClient.setBasePath( "http://46.239.98.79:8080/dmp");
+        apiClient.setBasePath( "http://192.168.56.101:8080/dmp");
 
         // Inlogg till servern
         apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );
