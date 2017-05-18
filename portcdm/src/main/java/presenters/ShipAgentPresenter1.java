@@ -2,6 +2,8 @@ package presenters;
 
 import eu.portcdm.dto.PortCall;
 import eu.portcdm.messaging.PortCallMessage;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.MessageSender;
@@ -11,10 +13,13 @@ import views.PortCallOverview;
 import views.PortCallText;
 import views.ShipAgentView;
 
+import javax.swing.event.ChangeEvent;
+
+
 /**
  * Created by hanneslagerroth on 2017-05-18.
  */
-public class ShipAgentPresenter1 implements ShipAgentPresenter, EventHandler<ActionEvent> {
+public class ShipAgentPresenter1 implements ShipAgentPresenter, ChangeListener<String> {
 
     private PortCallManager manager;
     private PortCall call;
@@ -25,7 +30,6 @@ public class ShipAgentPresenter1 implements ShipAgentPresenter, EventHandler<Act
           manager = new PortCallManager();
           call = manager.getActiveCall();
           sreader = new StatementReader(call);
-
     }
 
 
@@ -34,7 +38,6 @@ public class ShipAgentPresenter1 implements ShipAgentPresenter, EventHandler<Act
     }
 
     public void updatePortCall() {
-
 
         PortCallText portCallText = new PortCallText();
 
@@ -50,17 +53,22 @@ public class ShipAgentPresenter1 implements ShipAgentPresenter, EventHandler<Act
         portCallText.setDeparture_Tug_Vessel(sreader.getStatement("Departure_Tug_Vessel")); // osäker
         portCallText.setDeparture_Pilot_Vessel(sreader.getStatement("Departure_Pilot_Vessel")); // osäker
 
-        view.updatePortCall();
+        view.updatePortCall(portCallText);
     }
 
-    public void changePortCall() {
 
+    public void changePortCall(String newPortCall) {
+        sreader = new StatementReader(manager.getPortCall(Integer.parseInt(newPortCall)));
+        updatePortCall();
     }
 
     public void handle(ActionEvent event) {
-
         MessageSender sender = new MessageSender();
         PortCallMessage message = sender.createMessage();
         sender.sendMessage(message);
+    }
+
+    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        changePortCall(newValue);
     }
 }

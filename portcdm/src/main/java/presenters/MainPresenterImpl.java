@@ -1,8 +1,11 @@
 package presenters;
 
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import views.MainView;
+import views.ShipAgentView;
+import views.ShipAgentView1;
 
 public class MainPresenterImpl implements MainPresenter, EventHandler<ActionEvent> {
 
@@ -20,8 +23,21 @@ public class MainPresenterImpl implements MainPresenter, EventHandler<ActionEven
 
     public void openShipAgentView(int view_id) {
 
+        ShipAgentView shipAgentView = null;
+
+        if (view_id == 1){
+            shipAgentView = new ShipAgentView1();
+        }
+
         ShipAgentPresenter shipAgentPresenter = new ShipAgentPresenter1();
-        mainView.setShipAgentView(view_id, shipAgentPresenter);
+        shipAgentPresenter.setView(shipAgentView);
+        shipAgentView.setButtonListener(shipAgentPresenter);
+        shipAgentView.setDropDownListener((ChangeListener<String>) shipAgentPresenter);
+
+
+        mainView.setShipAgentView(view_id, shipAgentView);
+
+
     }
 
     public void handle(ActionEvent e) {

@@ -1,5 +1,9 @@
 package views;
 
+import javafx.beans.value.ChangeListener;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.layout.GridPane;
 import presenters.ShipAgentPresenter;
 
 /**
@@ -7,7 +11,11 @@ import presenters.ShipAgentPresenter;
  */
 public interface ShipAgentView  {
 
-    void setListener(ShipAgentPresenter listener);
+    void setButtonListener(EventHandler<ActionEvent> listener);
 
-    void updatePortCall();
+    void updatePortCall(PortCallText portCallText);
+
+    void setDropDownListener(ChangeListener<String> listener);
+
+    void setup(GridPane grid);
 }

@@ -1,5 +1,6 @@
 package views;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -98,14 +99,13 @@ public class MainViewImpl implements MainView{
     }
 
     //Creates one of the views used by the application
-    public void setShipAgentView(int view_id, ShipAgentPresenter shipAgentPresenter) {
+    public void setShipAgentView(int view_id, ShipAgentView view) {
         if (view_id == 1){
 
             GridPane grid = new GridPane();
             view1 = CreateEmptyView(grid);
             grid.add(Back_Button(), getBackButtonColumn(),getBackButtonRow());
-            ShipAgentView shipAgentView = new ShipAgentView1(grid);
-            shipAgentView.setListener(shipAgentPresenter);
+            view.setup(grid);
 
             mainStage.setScene(view1);
         }

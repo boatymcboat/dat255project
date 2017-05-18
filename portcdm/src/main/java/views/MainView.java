@@ -15,7 +15,8 @@ public interface MainView {
 
     void setTitle(String title);
 
-    void setShipAgentView(int view_id, ShipAgentPresenter listener);
+    //TODO change so that you don't need both view_ied and ShipAgentView
+    void setShipAgentView(int view_id, ShipAgentView view);
 
     void initialize();
 
