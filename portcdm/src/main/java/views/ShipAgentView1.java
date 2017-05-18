@@ -8,9 +8,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -29,6 +32,8 @@ import static views.SizeAndGrid.getBackButtonRow;
  */
 public class ShipAgentView1 implements ShipAgentView {
 
+    private Button message;
+
     public ShipAgentView1(GridPane grid){
 
         final Text sceneTitle = new Text("Welcome to views 1");
@@ -36,6 +41,8 @@ public class ShipAgentView1 implements ShipAgentView {
         HBox text = new HBox(10);
         text.getChildren().add(sceneTitle);
         grid.add(sceneTitle, getBackButtonColumn(), getBackButtonRow()-2);
+
+
         final PortCallOverview portcalloverview = new PortCallOverview(0);
         portcalloverview.setup();
         HBox portcalls = new HBox();
@@ -47,21 +54,16 @@ public class ShipAgentView1 implements ShipAgentView {
                 portcalloverview.changePortcall(newValue);
             }
         });
+
+
         HBox button = new HBox();
-        Button message = new Button ("Send a sample message");
-        message.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                MessageSender sender = new MessageSender();
-                PortCallMessage message = sender.createMessage();
-                sender.sendMessage(message);
-                portcalloverview.update();
-            }
-        });
+        message = new Button ("Send a sample message");
+
         button.getChildren().add(message);
         grid.add(button,    getBackButtonColumn()+1,getBackButtonRow()+1);
         grid.add(portcalls, getBackButtonColumn(),getBackButtonRow()+1);
         grid.add(portcalloverview,getBackButtonColumn(), getBackButtonRow()-1);
+
         //TODO: Move the loading of the FXML file to a more suitable location
         try {
             AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/presenters/messagesender.fxml"));
@@ -73,10 +75,30 @@ public class ShipAgentView1 implements ShipAgentView {
 
     }
 
+
+    //TODO create helper classes for these, to reduce code duplication
+    private Scene CreateEmptyView(GridPane grid){
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setContent(grid);
+        return new Scene(scrollPane,1200,768);
+    }
+
     //Creates the drop-down menu
     public  ComboBox Create_Drop_Down_Menu(String[] optionsArray){
         ObservableList<String> choices = FXCollections.observableArrayList();
         choices.addAll(optionsArray);
         return new ComboBox(choices);
+    }
+
+    public void setListener(EventHandler<ActionEvent> listener) {
+        System.out.printf("asdkjhnm");
+        message.setOnAction(listener);
     }
 }

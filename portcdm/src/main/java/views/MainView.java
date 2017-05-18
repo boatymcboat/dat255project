@@ -3,7 +3,7 @@ package views;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
+import presenters.ShipAgentPresenter;
 
 
 /**
@@ -15,7 +15,7 @@ public interface MainView {
 
     void setTitle(String title);
 
-    void setShipAgentView(int view_id);
+    void setShipAgentView(int view_id, EventHandler<ActionEvent> listener);
 
     void initialize();
 

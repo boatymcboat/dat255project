@@ -1,29 +1,23 @@
 package views;
 
-import eu.portcdm.messaging.PortCallMessage;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.MessageSender;
-import presenters.MainPresenter;
+import presenters.ShipAgentPresenter;
 
-import java.io.IOException;
+import java.util.EventListener;
 
 import static views.SizeAndGrid.*;
 
@@ -106,13 +100,14 @@ public class MainViewImpl implements MainView{
     }
 
     //Creates one of the views used by the application
-    public void setShipAgentView(int view_id) {
+    public void setShipAgentView(int view_id,  EventHandler<ActionEvent> shipAgentPresenter) {
         if (view_id == 1){
 
             GridPane grid = new GridPane();
             view1 = CreateEmptyView(grid);
             grid.add(Back_Button(), getBackButtonColumn(),getBackButtonRow());
-            new ShipAgentView1(grid);
+            ShipAgentView shipAgentView = new ShipAgentView1(grid);
+            shipAgentView.setListener(shipAgentPresenter);
 
             mainStage.setScene(view1);
         }
