@@ -33,6 +33,8 @@ import static views.SizeAndGrid.getBackButtonRow;
 public class ShipAgentView1 implements ShipAgentView {
 
     private Button message;
+    private PortCallOverview portcalloverview;
+
 
     public ShipAgentView1(GridPane grid){
 
@@ -42,8 +44,7 @@ public class ShipAgentView1 implements ShipAgentView {
         text.getChildren().add(sceneTitle);
         grid.add(sceneTitle, getBackButtonColumn(), getBackButtonRow()-2);
 
-
-        final PortCallOverview portcalloverview = new PortCallOverview(0);
+        portcalloverview = new PortCallOverview(0);
         portcalloverview.setup();
         HBox portcalls = new HBox();
         ComboBox availablePortcalls = Create_Drop_Down_Menu(new String[]{"0","1","2","3","4"});
@@ -71,9 +72,10 @@ public class ShipAgentView1 implements ShipAgentView {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        portcalloverview.update();
-
+        updatePortCall();
     }
+
+
 
 
     //TODO create helper classes for these, to reduce code duplication
@@ -100,5 +102,9 @@ public class ShipAgentView1 implements ShipAgentView {
     public void setListener(EventHandler<ActionEvent> listener) {
         System.out.printf("asdkjhnm");
         message.setOnAction(listener);
+    }
+
+    public void updatePortCall() {
+        portcalloverview.update();
     }
 }

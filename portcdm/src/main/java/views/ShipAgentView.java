@@ -9,4 +9,6 @@ import javafx.event.EventHandler;
 public interface ShipAgentView  {
 
     void setListener(EventHandler<ActionEvent> listener);
+
+    void updatePortCall();
 }
