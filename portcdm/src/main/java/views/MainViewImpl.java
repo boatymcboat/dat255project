@@ -17,8 +17,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import presenters.ShipAgentPresenter;
 
-import java.util.EventListener;
-
 import static views.SizeAndGrid.*;
 
 public class MainViewImpl implements MainView{
@@ -100,7 +98,7 @@ public class MainViewImpl implements MainView{
     }
 
     //Creates one of the views used by the application
-    public void setShipAgentView(int view_id,  EventHandler<ActionEvent> shipAgentPresenter) {
+    public void setShipAgentView(int view_id, ShipAgentPresenter shipAgentPresenter) {
         if (view_id == 1){
 
             GridPane grid = new GridPane();

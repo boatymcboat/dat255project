@@ -1,12 +1,9 @@
 package views;
 
-import eu.portcdm.messaging.PortCallMessage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,7 +16,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import model.MessageSender;
 import presenters.ShipAgentPresenter;
 
 import java.io.IOException;
@@ -99,7 +95,7 @@ public class ShipAgentView1 implements ShipAgentView {
         return new ComboBox(choices);
     }
 
-    public void setListener(EventHandler<ActionEvent> listener) {
+    public void setListener(ShipAgentPresenter listener) {
         System.out.printf("asdkjhnm");
         message.setOnAction(listener);
     }

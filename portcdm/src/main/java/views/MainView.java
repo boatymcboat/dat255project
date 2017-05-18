@@ -15,7 +15,7 @@ public interface MainView {
 
     void setTitle(String title);
 
-    void setShipAgentView(int view_id, EventHandler<ActionEvent> listener);
+    void setShipAgentView(int view_id, ShipAgentPresenter listener);
 
     void initialize();
 

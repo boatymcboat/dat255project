@@ -20,7 +20,7 @@ public class MainPresenterImpl implements MainPresenter, EventHandler<ActionEven
 
     public void openShipAgentView(int view_id) {
 
-        EventHandler<ActionEvent> shipAgentPresenter = new ShipAgentPresenter1();
+        ShipAgentPresenter shipAgentPresenter = new ShipAgentPresenter1();
         mainView.setShipAgentView(view_id, shipAgentPresenter);
     }
 

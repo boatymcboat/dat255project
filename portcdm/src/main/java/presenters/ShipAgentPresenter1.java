@@ -50,8 +50,7 @@ public class ShipAgentPresenter1 implements ShipAgentPresenter, EventHandler<Act
         portCallText.setDeparture_Tug_Vessel(sreader.getStatement("Departure_Tug_Vessel")); // osäker
         portCallText.setDeparture_Pilot_Vessel(sreader.getStatement("Departure_Pilot_Vessel")); // osäker
 
-
-
+        view.updatePortCall();
     }
 
     public void changePortCall() {

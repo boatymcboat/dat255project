@@ -1,14 +1,13 @@
 package views;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import presenters.ShipAgentPresenter;
 
 /**
  * Created by hanneslagerroth on 2017-05-15.
  */
 public interface ShipAgentView  {
 
-    void setListener(EventHandler<ActionEvent> listener);
+    void setListener(ShipAgentPresenter listener);
 
     void updatePortCall();
 }
