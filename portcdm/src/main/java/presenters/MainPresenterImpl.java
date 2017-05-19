@@ -33,9 +33,9 @@ public class MainPresenterImpl implements MainPresenter, EventHandler<ActionEven
         shipAgentPresenter.setView(shipAgentView);
         shipAgentView.setButtonListener(shipAgentPresenter);
         shipAgentView.setDropDownListener((ChangeListener<String>) shipAgentPresenter);
-
-
         mainView.setShipAgentView(view_id, shipAgentView);
+
+        shipAgentPresenter.updatePortCall();
 
 
     }
