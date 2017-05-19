@@ -26,20 +26,13 @@ public class PortCallOverview extends HBox {
     private Text departuret2;
     private Text departuret3;
 
-    PortCallManager manager;
-    PortCall call;
-    StatementReader sreader;
 
     public PortCallOverview(double spacing) {
         super(spacing);
 
-        manager = new PortCallManager();
-        call = manager.getActiveCall();
-        sreader = new StatementReader(call);
-
     } //Constructor
 
-    public void update() {
+    /*public void update() {
 
         arrivalt1.setText(sreader.getStatement("Arrival_Vessel_TrafficArea"));
         arrivalt2.setText(sreader.getStatement("Arrival_Vessel_PilotBA"));
@@ -54,7 +47,23 @@ public class PortCallOverview extends HBox {
         departuret2.setText(sreader.getStatement("Departure_Tug_Vessel")); // osäker
         departuret3.setText(sreader.getStatement("Departure_Pilot_Vessel")); // osäker
 
-        //System.out.println(sreader.getStatement("Arrival_Vessel_PilotBA")); */
+        //System.out.println(sreader.getStatement("Arrival_Vessel_PilotBA"));
+    }*/
+
+    public void update(PortCallText portCallTextView){
+
+        arrivalt1.setText(portCallTextView.getArrivalVessel_TrafficArea());
+        arrivalt2.setText(portCallTextView.getArrivalVessel_PilotBA());
+        arrivalt3.setText(portCallTextView.getArrivalVessel_TugZone());
+        arrivalt4.setText(portCallTextView.getArrivalVessel_Berth());
+
+        visitt1.setText(portCallTextView.getCargoOp_Commenced());
+        visitt2.setText(portCallTextView.getCargoOp_Completed());
+
+        departuret1.setText(portCallTextView.getDeparture_Vessel_Berth());
+        departuret2.setText(portCallTextView.getDeparture_Tug_Vessel()); // osäker
+        departuret3.setText(portCallTextView.getDeparture_Pilot_Vessel()); // osäker
+
     }
 
     public void setup() {
@@ -169,10 +178,5 @@ public class PortCallOverview extends HBox {
 
 
     }//setup
-
-    public void changePortcall(String portcall){
-        sreader = new StatementReader(manager.getPortCall(Integer.parseInt(portcall)));
-        this.update();
-    }
 
 }
