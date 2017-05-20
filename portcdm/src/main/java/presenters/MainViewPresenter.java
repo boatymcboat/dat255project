@@ -6,28 +6,20 @@ import eu.portcdm.messaging.LogicalLocation;
 import eu.portcdm.messaging.ServiceObject;
 import eu.portcdm.messaging.ServiceTimeSequence;
 import eu.portcdm.messaging.TimeType;
-import eu.portcdm.messaging.*;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import model.MessageSender;
 import model.PortCallManager;
-import se.viktoria.stm.portcdm.connector.common.util.PortCallMessageBuilder;
 
-import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
- * Created by Oskar on 2017-05-17.
+ * Created by Aron on 2017-05-20.
  */
-public class MessageSenderPresenter {
+public class MainViewPresenter {
     public ChoiceBox servicetypebox;
     public ChoiceBox servicesequencebox;
     public ChoiceBox locationtypebox;
@@ -44,8 +36,12 @@ public class MessageSenderPresenter {
     public TextField locationminutesbox;
     public ChoiceBox locationtimetypebox;
     public Button sendlocationbox;
+    public ComboBox portcallpicker;
+    public Text CurrentIdDisplay;
+    private PortCallManager manager;
+    private PortCall call;
 
-    public MessageSenderPresenter(){
+    public MainViewPresenter(){
         //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring","b"));
     }
     //Method to create the options for the drop down menus used in the view.
@@ -59,6 +55,18 @@ public class MessageSenderPresenter {
         tolocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
         fromlocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
         locationtimetypebox.setItems((FXCollections.observableArrayList(TimeType.values())));
+
+
+        manager = new PortCallManager();
+        setCall(manager.getActiveCall());
+
+        portcallpicker.setItems((FXCollections.observableArrayList(manager.getIds())));
+        portcallpicker.setValue(call.getId());
+    }
+
+    public void setCall(PortCall call){
+        this.call = call;
+        CurrentIdDisplay.setText(call.getId());
     }
     // Method for creating a message when pressing the send location state button.
     public void sendlocationstate(ActionEvent actionEvent) {
@@ -83,7 +91,7 @@ public class MessageSenderPresenter {
         System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
         //Send the message
         //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
-        sender.sendLocationState(manager.getActiveCall(), timeSequence,
+        sender.sendLocationState(call, timeSequence,
                 fromlocation, tolocation, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT), locationtimetype);
     }
     //Method for creating a message when pressing the send service state button
@@ -109,17 +117,14 @@ public class MessageSenderPresenter {
 
         //Send the message
         //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
-        sender.sendServiceState(manager.getPortCall(0), servicetype, servicesequence,
+        sender.sendServiceState(call, servicetype, servicesequence,
                 location, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
                 servicetimetype);
 
 
     }
-    /*public getView(){
-        try {
-            FXMLLoader.load(getClass().getResource("messagesender.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
+
+    public void changecall(ActionEvent actionEvent) {
+        setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
+    }
 }

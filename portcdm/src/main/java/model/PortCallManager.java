@@ -7,6 +7,7 @@ import eu.portcdm.dto.Port;
 import eu.portcdm.dto.PortCall;
 import eu.portcdm.dto.PortCallSummary;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -22,19 +23,28 @@ public class PortCallManager {
     // Konstruktor, skapar ett api och hämtar senaste callen.
     public PortCallManager(){
         setupApi();
-        summaries = getSummaries();
+        summaries = refreshSummaries();
         activeCall = getPortCall(0);
     }
 
     // Uppdaterar listan med PortCalls
     public boolean refreshCalls(){
-        summaries = getSummaries();
+        summaries = refreshSummaries();
         if (summaries == null){
             return false;
         }
         else {
             return true;
         }
+    }
+
+    public List<String> getIds(){
+        List<String> ids = new LinkedList<String>();
+        for (PortCallSummary summary :
+                summaries) {
+            ids.add(summary.getId());
+        }
+        return ids;
     }
 
     // Hämtar den aktuella callen
@@ -61,7 +71,7 @@ public class PortCallManager {
     }
 
     // Hämtar ett givet antal PortCallSummaries
-    private List<PortCallSummary> getSummaries(){
+    private List<PortCallSummary> refreshSummaries(){
         try {
             return portcallsApi.getAllPortCalls(30);
         } catch (ApiException e) {
@@ -75,6 +85,15 @@ public class PortCallManager {
         PortCallSummary summary = summaries.get(id);
         try {
             return portcallsApi.getPortCall(summary.getId());
+        } catch (ApiException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public PortCall getPortCall(String id){
+        try {
+            return portcallsApi.getPortCall(id);
         } catch (ApiException e) {
             e.printStackTrace();
         }

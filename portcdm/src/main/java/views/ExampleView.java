@@ -19,7 +19,7 @@ public class ExampleView {
     }
 
     private void setupView() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ExampleView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
