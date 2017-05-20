@@ -91,7 +91,7 @@ public class MainViewPresenter {
         System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
         //Send the message
         //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
-        sender.sendLocationState(manager.getActiveCall(), timeSequence,
+        sender.sendLocationState(call, timeSequence,
                 fromlocation, tolocation, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT), locationtimetype);
     }
     //Method for creating a message when pressing the send service state button
@@ -117,7 +117,7 @@ public class MainViewPresenter {
 
         //Send the message
         //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
-        sender.sendServiceState(manager.getPortCall(0), servicetype, servicesequence,
+        sender.sendServiceState(call, servicetype, servicesequence,
                 location, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
                 servicetimetype);
 
