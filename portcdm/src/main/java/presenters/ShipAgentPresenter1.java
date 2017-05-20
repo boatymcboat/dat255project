@@ -44,7 +44,7 @@ public class ShipAgentPresenter1 implements ShipAgentPresenter, ChangeListener<S
         portCallText.setArrivalVessel_TrafficArea(sreader.getStatement("Arrival_Vessel_TrafficArea"));
         portCallText.setArrivalVessel_PilotBA(sreader.getStatement("Arrival_Vessel_PilotBA"));
         portCallText.setArrivalVessel_TugZone(sreader.getStatement("Arrival_Vessel_TugZone"));
-        portCallText.setArrivalVessel_Berth("Arrival_Vessel_Berth");
+        portCallText.setArrivalVessel_Berth(sreader.getStatement("Arrival_Vessel_Berth"));
 
         portCallText.setCargoOp_Commenced(sreader.getStatement("CargoOp_Commenced"));
         portCallText.setCargoOp_Completed(sreader.getStatement("CargoOp_Completed"));

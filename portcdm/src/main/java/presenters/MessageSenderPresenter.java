@@ -1,6 +1,7 @@
 package presenters;
 
 import eu.portcdm.dto.LocationTimeSequence;
+import eu.portcdm.dto.PortCall;
 import eu.portcdm.messaging.LogicalLocation;
 import eu.portcdm.messaging.ServiceObject;
 import eu.portcdm.messaging.ServiceTimeSequence;
@@ -16,10 +17,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import model.MessageSender;
 import model.PortCallManager;
+import se.viktoria.stm.portcdm.connector.common.util.PortCallMessageBuilder;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Created by Oskar on 2017-05-17.
@@ -47,35 +50,70 @@ public class MessageSenderPresenter {
     }
     //Method to create the options for the drop down menus used in the view.
     public void initialize(){
-        servicetypebox.setItems(FXCollections.observableArrayList("Cargo Operation"));
-        servicesequencebox.setItems(FXCollections.observableArrayList("Commenced", "Completed"));
-        servicetimetypebox.setItems(FXCollections.observableArrayList("Estimated"));
-        locationtypebox.setItems(FXCollections.observableArrayList("Berth"));
+
+        servicetypebox.setItems(FXCollections.observableArrayList(ServiceObject.values()));
+        servicesequencebox.setItems(FXCollections.observableArrayList(ServiceTimeSequence.values()));
+        servicetimetypebox.setItems(FXCollections.observableArrayList(TimeType.values()));
+        locationtypebox.setItems(FXCollections.observableArrayList(LogicalLocation.values()));
+        locationtimesqeuencebox.setItems((FXCollections.observableArrayList(LocationTimeSequence.values())));
+        tolocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
+        fromlocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
+        locationtimetypebox.setItems((FXCollections.observableArrayList(TimeType.values())));
     }
     // Method for creating a message when pressing the send location state button.
     public void sendlocationstate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
         //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring", "b"));
         PortCallManager manager = new PortCallManager();
-        sender.sendLocationState(manager.getActiveCall(), LocationTimeSequence.ARRIVAL_TO,
-                LogicalLocation.ANCHORING_AREA, LogicalLocation.BERTH,
-                ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT), TimeType.ESTIMATED);
+
+        //Retrieve the enums and use them in the menus
+        //TODO: See if explicit type conversion can be removed. Should be impossible for object to be of wrong class,
+        //TODO  but still looks weird.
+        LocationTimeSequence timeSequence = (LocationTimeSequence) locationtimesqeuencebox.getValue();
+        LogicalLocation tolocation = (LogicalLocation) tolocationbox.getValue();
+        LogicalLocation fromlocation = (LogicalLocation) fromlocationbox.getValue();
+        TimeType locationtimetype = (TimeType) locationtimetypebox.getValue();
+
+        //Create the time string
+        String time = locationdatebox.getValue().toString();
+        time = time + "T" + locationhoursbox.getText() + ":" + locationminutesbox.getText() + ":00.000Z";
+
+        //Compare the manually generated string to the timestamp
+        System.out.println("Manually generated: " +time);
+        System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
+        //Send the message
+        //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
+        sender.sendLocationState(manager.getActiveCall(), timeSequence,
+                fromlocation, tolocation, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT), locationtimetype);
     }
     //Method for creating a message when pressing the send service state button
     public void sendservicestate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
+
+        //Retrieve the enums and use them in the menus
+        //TODO: See if explicit type conversion can be removed. Should be impossible for object to be of wrong class,
+        //TODO  but still looks weird.
+        ServiceObject servicetype = (ServiceObject) servicetypebox.getValue();
+        ServiceTimeSequence servicesequence = (ServiceTimeSequence) servicesequencebox.getValue();
+        TimeType servicetimetype = (TimeType) servicetimetypebox.getValue();
+        LogicalLocation location = (LogicalLocation) locationtypebox.getValue();
         PortCallManager manager = new PortCallManager();
-        //System.out.println(servicedatebox.getValue().toString());
-        if(servicesequencebox.getValue().equals("Commenced")) {
-            sender.sendServiceState(manager.getPortCall(0), ServiceObject.CARGO_OPERATION, ServiceTimeSequence.COMMENCED,
-                    LogicalLocation.ANCHORING_AREA, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
-                    TimeType.ESTIMATED);
-        }
-        else{
-            sender.sendServiceState(manager.getPortCall(0), ServiceObject.CARGO_OPERATION, ServiceTimeSequence.COMPLETED,
-                    LogicalLocation.ANCHORING_AREA, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
-                    TimeType.ESTIMATED);
-        }
+
+        //Create the time string
+        String time = servicedatebox.getValue().toString();
+        time = time + "T" + servicehoursbox.getText() + ":" + serviceminutesbox.getText() + ":00.000Z";
+
+        //Compare the manually generated string to the timestamp
+        System.out.println("Manually generated: " +time);
+        System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
+
+        //Send the message
+        //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
+        sender.sendServiceState(manager.getPortCall(0), servicetype, servicesequence,
+                location, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
+                servicetimetype);
+
+
     }
     /*public getView(){
         try {
