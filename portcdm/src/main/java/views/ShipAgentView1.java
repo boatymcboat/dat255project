@@ -80,13 +80,6 @@ public class ShipAgentView1 implements ShipAgentView {
         grid.add(portcalls, getBackButtonColumn(),getBackButtonRow()+1);
         grid.add(portcalloverview,getBackButtonColumn(), getBackButtonRow()-1);
 
-        //TODO: Move the loading of the FXML file to a more suitable location
-        try {
-            AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("/presenters/messagesender.fxml"));
-            grid.add(pane, getBackButtonColumn(),getBackButtonRow()+2);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void updatePortCall(PortCallText portCallText) {
