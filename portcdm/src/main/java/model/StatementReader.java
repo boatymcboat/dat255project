@@ -1,8 +1,10 @@
 package model;
 
 import eu.portcdm.dto.*;
+import eu.portcdm.messaging.TimeType;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -33,6 +35,31 @@ public class StatementReader {
     // Hämtar en statement utefter sitt ID. Fullständig lista är ej sammanställd.
     public String getStatement(String id) {
         return latestStatements.get(id);
+    }
+
+    public HashMap<String, List<Statement>> getAllStatements(){
+        return getAllStatements(activeCall);
+    }
+
+    public HashMap<String, List<Statement>> getAllStatements(PortCall call){
+        HashMap<String, List<Statement>> output = new HashMap<String, List<Statement>>();
+
+        for (ProcessStep processStep :
+                call.getProcessSteps()) {
+            for (SubProcess subProcess :
+                    processStep.getSubProcesses()) {
+                for (Event event :
+                        subProcess.getEvents()) {
+                    for (State state :
+                            event.getStates()) {
+                        List<Statement> statements = state.getStatements();
+                        output.put(state.getStateDefinitionId(),statements);
+                    }
+                }
+            }
+        }
+
+        return output;
     }
 
     // Lägger in alla senaste statements i en HashMap med statens ID som key och timeType + timeStatement som value.

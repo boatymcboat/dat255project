@@ -9,10 +9,10 @@ import eu.portcdm.messaging.TimeType;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import model.MessageSender;
-import model.PortCallManager;
+import model.*;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -69,6 +69,8 @@ public class MainViewPresenter {
     public Circle warningcircle;
     private PortCallManager manager;
     private PortCall call;
+    private TimeStampManager tsmanager;
+    private StatementReader reader;
 
     public MainViewPresenter(){
         //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring","b"));
@@ -87,16 +89,41 @@ public class MainViewPresenter {
 
 
         manager = new PortCallManager();
-        setCall(manager.getActiveCall());
+        this.call = manager.getActiveCall();
+        reader = new StatementReader(call);
+        tsmanager = new TimeStampManager(reader.getAllStatements());
+        CurrentIdDisplay.setText(call.getId());
 
         portcallpicker.setItems((FXCollections.observableArrayList(manager.getIds())));
         portcallpicker.setValue(call.getId());
+
+        updateColors();
     }
 
     public void setCall(PortCall call){
         this.call = call;
         CurrentIdDisplay.setText(call.getId());
+        reader.setActiveCall(call);
+        tsmanager.setStatements(reader.getAllStatements());
     }
+
+    public void updateColors(){
+        step1indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_TrafficArea").getColor());
+        step2indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_AnchorageArea").getColor());
+        step3indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_PilotBA").getColor());
+        step4indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_TugZone").getColor());
+        step5indicator.setFill(tsmanager.checkStatements("").getColor());
+        step6indicator.setFill(tsmanager.checkStatements("").getColor());
+
+        step7indicator.setFill(tsmanager.checkStatements("").getColor());
+        step8indicator.setFill(tsmanager.checkStatements("").getColor());
+        step9indicator.setFill(tsmanager.checkStatements("").getColor());
+        step10indicator.setFill(tsmanager.checkStatements("").getColor());
+        step11indicator.setFill(tsmanager.checkStatements("").getColor());
+        step12indicator.setFill(tsmanager.checkStatements("").getColor());
+
+    }
+
     // Method for creating a message when pressing the send location state button.
     public void sendlocationstate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
