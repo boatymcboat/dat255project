@@ -67,6 +67,18 @@ public class MainViewPresenter {
     public Circle actualacquiredcircle;
     public Circle estimatesokcircle;
     public Circle warningcircle;
+    public Text step1time;
+    public Text step2time;
+    public Text step3time;
+    public Text step4time;
+    public Text step5time;
+    public Text step6time;
+    public Text step7time;
+    public Text step8time;
+    public Text step9time;
+    public Text step10time;
+    public Text step11time;
+    public Text step12time;
     private PortCallManager manager;
     private PortCall call;
     private TimeStampManager tsmanager;
@@ -92,7 +104,7 @@ public class MainViewPresenter {
         this.call = manager.getActiveCall();
         reader = new StatementReader(call);
         tsmanager = new TimeStampManager(reader.getAllStatements());
-        CurrentIdDisplay.setText(call.getId());
+        CurrentIdDisplay.setText(call.getVessel().getName());
 
         portcallpicker.setItems((FXCollections.observableArrayList(manager.getIds())));
         portcallpicker.setValue(call.getId());
@@ -102,7 +114,7 @@ public class MainViewPresenter {
 
     public void setCall(PortCall call){
         this.call = call;
-        CurrentIdDisplay.setText(call.getId());
+        CurrentIdDisplay.setText(call.getVessel().getName());
         reader.setActiveCall(call);
         tsmanager.setStatements(reader.getAllStatements());
     }
