@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presenters.MainViewPresenter">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presenters.MainViewPresenter">
    <content>
       <GridPane prefHeight="974.0" prefWidth="1280.0">
          <columnConstraints>
@@ -35,6 +35,7 @@
                   <content>
                       <GridPane>
                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
@@ -58,7 +59,7 @@
                                           <children>
                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose PortCallID">
                                                   <font>
-                                                      <Font size="24.0" />
+                                                      <Font size="18.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -72,14 +73,14 @@
                                           <children>
                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current PortCallID">
                                                   <font>
-                                                      <Font size="24.0" />
+                                                      <Font size="18.0" />
                                                   </font>
                                               </Text>
                                           </children>
                                       </HBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                           <children>
-                                              <Text fx:id="CurrentIdDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="USE METHOD TO SHOW CURRENT ID">
+                                              <Text fx:id="CurrentIdDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="CURRENT ID">
                                                   <font>
                                                       <Font size="18.0" />
                                                   </font>
@@ -98,35 +99,45 @@
                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                   <children>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                           <children>
-                                              <Text fill="#0d0d0d" stroke="#1512cc" strokeType="INSIDE" strokeWidth="0.0" text="(1) Pilot Station">
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(1) Traffic Area">
                                                   <font>
                                                       <Font size="18.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step1statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
-                              </HBox>
+                                      </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                                           <children>
                                               <Circle fx:id="step1indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
                                           </children>
-                              </HBox>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                          <children>
-                                              <Text fill="#0d0d0d" stroke="#1512cc" strokeType="INSIDE" strokeWidth="0.0" text="(2) Tug Zone">
-                                                  <font>
-                                                      <Font size="18.0" />
-                                                  </font>
-                                              </Text>
-                                          </children>
-                              </HBox>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                          <children>
-                                              <Circle fx:id="step2indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                          </children>
-                              </HBox>
+                                      </HBox>
+                                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                      <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(2) Anchorage Area">
+                                              <font>
+                                                  <Font size="18.0" />
+                                              </font>
+                                          </Text>
+                                          <Text fx:id="step2statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                              <font>
+                                                  <Font size="14.0" />
+                                              </font>
+                                          </Text>
+                                      </children>
+                                  </VBox>
                                   </children>
+                                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <children>
+                                          <Circle fx:id="step2indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                      </children>
+                                  </HBox>
                               </GridPane>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                                   <columnConstraints>
@@ -138,35 +149,95 @@
                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                   <children>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                           <children>
-                                              <Text fill="#0d0d0d" stroke="#1512cc" strokeType="INSIDE" strokeWidth="0.0" text="(3) Terminal 1">
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(3) Pilot Station">
                                                   <font>
                                                       <Font size="18.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step3statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
-                              </HBox>
+                                      </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                                           <children>
                                               <Circle fx:id="step3indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
                                           </children>
-                              </HBox>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                      </HBox>
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                           <children>
-                                              <Text fill="#0d0d0d" stroke="#1512cc" strokeType="INSIDE" strokeWidth="0.0" text="(4) Pilot">
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(4) Tug">
                                                   <font>
                                                       <Font size="18.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step4statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
-                              </HBox>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                          <children>
-                                              <Circle fx:id="step4indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                          </children>
-                              </HBox>
+                                      </VBox>
                                   </children>
+                                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <children>
+                                          <Circle fx:id="step4indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                      </children>
+                                  </HBox>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                  <columnConstraints>
+                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                  <children>
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                          <children>
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(5) Discharge Terminal">
+                                                  <font>
+                                                      <Font size="18.0" />
+                                                  </font>
+                                              </Text>
+                                              <Text fx:id="step5statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type and terminal nr">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
+                                          </children>
+                                      </VBox>
+                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                          <children>
+                                              <Circle fx:id="step5indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                          </children>
+                                      </HBox>
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                          <children>
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(6) Pilot">
+                                                  <font>
+                                                      <Font size="18.0" />
+                                                  </font>
+                                              </Text>
+                                              <Text fx:id="step6statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
+                                          </children>
+                                      </VBox>
+                                  </children>
+                                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <children>
+                                          <Circle fx:id="step6indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                      </children>
+                                  </HBox>
                               </GridPane>
                               <GridPane GridPane.rowIndex="2">
                                   <columnConstraints>
@@ -177,36 +248,47 @@
                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
+
                                   <children>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                           <children>
-                                              <Text fill="#0d0d0d" stroke="#1512cc" strokeType="INSIDE" strokeWidth="0.0" text="(5) Tug">
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(7) Tug">
                                                   <font>
                                                       <Font size="18.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step7statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
-                              </HBox>
+                                      </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                                           <children>
-                                              <Circle fx:id="step5indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                              <Circle fx:id="step7indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
                                           </children>
-                              </HBox>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                      </HBox>
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                           <children>
-                                              <Text fill="#0d0d0d" stroke="#1512cc" strokeType="INSIDE" strokeWidth="0.0" text="(6) Terminal 2">
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(8) Loading Terminal">
                                                   <font>
                                                       <Font size="18.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step8statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type and terminal nr">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
-                              </HBox>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                          <children>
-                                              <Circle fx:id="step6indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                          </children>
-                              </HBox>
+                                      </VBox>
                                   </children>
+                                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <children>
+                                          <Circle fx:id="step8indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                      </children>
+                                  </HBox>
                               </GridPane>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                                   <columnConstraints>
@@ -217,51 +299,175 @@
                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
+
                                   <children>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                           <children>
-                                              <Text fill="#0d0d0d" stroke="#1512cc" strokeType="INSIDE" strokeWidth="0.0" text="(7) Tug">
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(9) Pilot">
                                                   <font>
                                                       <Font size="18.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step9statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
-                              </HBox>
+                                      </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                                           <children>
-                                              <Circle fx:id="step7indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                              <Circle fx:id="step9indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
                                           </children>
-                              </HBox>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                      </HBox>
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                           <children>
-                                              <Text fill="#0d0d0d" stroke="#1512cc" strokeType="INSIDE" strokeWidth="0.0" text="(8) Pilot">
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(10) Tug">
                                                   <font>
                                                       <Font size="18.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step10statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
-                              </HBox>
-                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                          <children>
-                                              <Circle fx:id="step8indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                                          </children>
-                              </HBox>
+                                      </VBox>
                                   </children>
+                                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <children>
+                                          <Circle fx:id="step10indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                      </children>
+                                  </HBox>
+
                               </GridPane>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                  <columnConstraints>
+                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+
                                   <children>
-                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="WHAT TO PUT HERE?">
-                                          <font>
-                                              <Font size="24.0" />
-                                          </font>
-                                      </Text>
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                          <children>
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(11) Anchorage Area">
+                                                  <font>
+                                                      <Font size="18.0" />
+                                                  </font>
+                                              </Text>
+                                              <Text fx:id="step11statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
+                                          </children>
+                                      </VBox>
+                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                          <children>
+                                              <Circle fx:id="step11indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                          </children>
+                                      </HBox>
+                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                          <children>
+                                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="(12) Traffic Area">
+                                                  <font>
+                                                      <Font size="18.0" />
+                                                  </font>
+                                              </Text>
+                                              <Text fx:id="step12statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Text>
+                                          </children>
+                                      </VBox>
                                   </children>
+                                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <children>
+                                          <Circle fx:id="step12indicator" fill="#1fff2a" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                                      </children>
+                                  </HBox>
+                              </GridPane>
+                        <GridPane GridPane.columnIndex="2">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Color Coding">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
                               </HBox>
+                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                   <children>
+                                       <GridPane GridPane.rowIndex="1">
+                                       <columnConstraints>
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No estimates" />
+                                                <Circle fx:id="noestimatescircle" fill="#aeb2b5" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                           <children>
+                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Actual acquired" />
+                                               <Circle fx:id="actualacquiredcircle" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                           </children>
+                                       </VBox>
+                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                           <children>
+                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estimates ok" />
+                                               <Circle fx:id="estimatesokcircle" fill="#1fff4c" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                           </children>
+                                       </VBox>
+                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+                                               <children>
+                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Warning" />
+                                                   <Circle fx:id="warningcircle" fill="#ff1f1f" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                               </children>
+                                           </VBox>
+                                       </children>
+                                       </GridPane>
+                                   </children>
+                               </HBox>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overview">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
                           </children>
                       </GridPane>
                   </content>
             </TitledPane>
-              <TitledPane alignment="CENTER" collapsible="false" prefHeight="780.0" prefWidth="1200.0" text="Send PortCallMessage" GridPane.rowIndex="1">
+              <TitledPane alignment="CENTER" prefHeight="780.0" prefWidth="1200.0" text="Send PortCallMessage" GridPane.rowIndex="1">
                   <font>
                       <Font size="24.0" />
                   </font>
