@@ -43,6 +43,9 @@ public class TimeStampManager {
                 list) {
             uniqueStatements.put(statement.getReportedBy(),statement);
         }
+        if (uniqueStatements.size() == 1) {
+            return Status.OK;
+        }
         int difftimes = 0;
         String timestamp = "";
         for (Actor actor :
