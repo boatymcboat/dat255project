@@ -2,10 +2,7 @@ package presenters;
 
 import eu.portcdm.dto.LocationTimeSequence;
 import eu.portcdm.dto.PortCall;
-import eu.portcdm.messaging.LogicalLocation;
-import eu.portcdm.messaging.ServiceObject;
-import eu.portcdm.messaging.ServiceTimeSequence;
-import eu.portcdm.messaging.TimeType;
+import eu.portcdm.messaging.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -86,6 +83,7 @@ public class MainViewPresenter {
     public ChoiceBox servicestatelocationnamechoicebox;
     public ChoiceBox locationstatetolocationnamechoicebox;
     public ChoiceBox locationstatefromlocationnamecoicebox;
+    public Button refreshbutton;
     private PortCallManager manager;
     private PortCall call;
     private TimeStampManager tsmanager;
@@ -217,6 +215,7 @@ public class MainViewPresenter {
         reader.setActiveCall(call);
         tsmanager.setStatements(reader.getAllStatements());
         updateTimes();
+        updateColors();
     }
     
     public void updateTimes(){
@@ -276,11 +275,12 @@ public class MainViewPresenter {
         //Send the message
         //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
         sender.sendLocationState(call, timeSequence,
-                fromlocation, fromlocationName, tolocation, tolocationName, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT) , locationtimetype);
+                fromlocation, fromlocationName, tolocation, tolocationName, time, locationtimetype, call.getId());
     }
     //Method for creating a message when pressing the send service state button
     public void sendservicestate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
+
 
         //Retrieve the enums and use them in the menus
         //TODO: See if explicit type conversion can be removed. Should be impossible for object to be of wrong class,
@@ -298,17 +298,26 @@ public class MainViewPresenter {
         //Compare the manually generated string to the timestamp
         System.out.println("Manually generated: " +time);
         System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
-
-        //Send the message
-        //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
-        sender.sendServiceState(call, servicetype, servicesequence,
-                location, locationName, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
-                servicetimetype);
-
+        if(servicetype.toString().equals("PILOTAGE")){
+            LogicalLocation target = (LogicalLocation) tolocationbox.getValue();
+            String tolocationname = (String) locationstatetolocationnamechoicebox.getValue();
+            sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype, call.getId());
+        }
+        else {
+            //Send the message
+            //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
+            sender.sendServiceState(call, servicetype, servicesequence,
+                    location, locationName, time,
+                    servicetimetype, call.getId());
+        }
 
     }
 
     public void changecall(ActionEvent actionEvent) {
+        setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
+    }
+
+    public void refreshview(ActionEvent actionEvent) {
         setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
     }
 }

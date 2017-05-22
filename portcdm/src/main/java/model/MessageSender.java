@@ -89,7 +89,7 @@ public class MessageSender {
     public void sendLocationState(PortCall portCall, LocationTimeSequence locationTimeSequence,
                                   LogicalLocation originLocationType, String originLocationName, LogicalLocation destinationLocationType,
                                   String destinationLocationName,
-                                  String time, TimeType timeType){
+                                  String time, TimeType timeType, String portCallId){
         StateWrapper wrapper = new StateWrapper(
                 LocationReferenceObject.VESSEL, //referenceObject
                 locationTimeSequence , //ARRIVAL_TO or DEPARTURE_FROM
@@ -114,10 +114,9 @@ public class MessageSender {
                 null,
                 null
         );
+        message.setPortCallId(portCallId);
         sendMessage(message);
     }
-
-
     /*
     Skickar serviceState med följande input,
         portCall - Det port call som behandlas
@@ -139,7 +138,7 @@ public class MessageSender {
         comment - Skulle vara nice
     */
     public void sendServiceState(PortCall portCall, ServiceObject serviceType, ServiceTimeSequence serviceSequence,
-                                 LogicalLocation locationType,String locationName, String time, TimeType timeType){
+                                 LogicalLocation locationType,String locationName, String time, TimeType timeType, String portCallId){
         StateWrapper wrapper = new StateWrapper(
                 serviceType,
                 "Aron",
@@ -162,13 +161,13 @@ public class MessageSender {
                 null,
                 null
         );
-
+        message.setPortCallId(portCallId);
         sendMessage(message);
     }
 
     public void sendServiceState(PortCall portCall, ServiceObject serviceType, ServiceTimeSequence serviceSequence,
                                  LogicalLocation fromLocationType,String fromLocationName, LogicalLocation toLocationType,
-                                 String toLocationName, String time, TimeType timeType){
+                                 String toLocationName, String time, TimeType timeType, String portCallId){
         StateWrapper wrapper = new StateWrapper(
                 serviceType,
                 "Aron",
@@ -195,7 +194,7 @@ public class MessageSender {
                 null,
                 null
         );
-
+        message.setPortCallId(portCallId);
         sendMessage(message);
     }
 
@@ -214,11 +213,14 @@ public class MessageSender {
         apiClient = new ApiClient();
 
         // Adress till backendens Assisted Message Submission Service
-        apiClient.setBasePath( "http://46.239.98.79:8080/amss");
-
+        //apiClient.setBasePath( "http://46.239.98.79:8080/amss");
+        apiClient.setBasePath("http://sandbox-5.portcdm.eu:8080/amss");
         // Inlogg till backenden
-        apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );
-        apiClient.addDefaultHeader( "X-PortCDM-Password", "porter" );
+        //apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );
+        //apiClient.addDefaultHeader( "X-PortCDM-Password", "porter" );
+
+        apiClient.addDefaultHeader( "X-PortCDM-UserId", "test1" );
+        apiClient.addDefaultHeader( "X-PortCDM-Password", "test123" );
 
         // API-key som ej används men krävs
         apiClient.addDefaultHeader( "X-PortCDM-ApiKey", "Fenix-SMA" );
