@@ -132,7 +132,7 @@
                                 <ChoiceBox fx:id="locationtypebox" prefWidth="150.0" />
                             </children>
                         </VBox>
-                        <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="4">
+                        <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.rowIndex="4">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                     <font>
@@ -209,7 +209,7 @@
                                 <ChoiceBox fx:id="fromlocationbox" prefWidth="150.0" />
                             </children>
                         </VBox>
-                        <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                     <font>
