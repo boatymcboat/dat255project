@@ -55,9 +55,11 @@ public class TimeStampManager {
         }
         if ( difftimes > 1 ){
             return Status.WARNING;
+        } else {
+            return Status.OK;
         }
 
-        return Status.WARNING;
+        //return Status.WARNING;
     }
 
 
