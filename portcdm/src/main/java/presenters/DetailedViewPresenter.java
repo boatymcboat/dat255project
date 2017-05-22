@@ -6,6 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import model.PortCallManager;
 import model.StatementReader;
@@ -16,10 +20,10 @@ import model.StatementReader;
 public class DetailedViewPresenter {
 
     public Text detailedviewtext;
-    public ComboBox detailedviewchoicebox1;
-    public ComboBox detailedviewchoicebox2;
-    public Button detailedviewrefreshbutton;
     public Text vesselName;
+    public ListView pclist;
+    public ListView stateList;
+    public Text latestUpdate;
 
     private PortCallManager pcmanager;
     private StatementReader reader;
@@ -29,25 +33,23 @@ public class DetailedViewPresenter {
         pcmanager = new PortCallManager();
         call = pcmanager.getActiveCall();
         reader = new StatementReader(call);
-
-        detailedviewchoicebox1.setItems(FXCollections.observableArrayList(pcmanager.getIds()));
-        detailedviewchoicebox1.setValue(pcmanager.getIds().get(0));
-        detailedviewchoicebox2.setItems(FXCollections.observableArrayList(reader.getStateDefinitions()));
-        detailedviewchoicebox2.setValue((reader.getStateDefinitions().get(0)));
         vesselName.setText(call.getVessel().getName());
-        refresh(new ActionEvent());
+        latestUpdate.setText(call.getLastUpdate());
+        pclist.setItems(FXCollections.observableArrayList(pcmanager.getIds()));
+        stateList.setItems(FXCollections.observableArrayList(reader.getStateDefinitions()));
     }
 
-    public void refresh(ActionEvent actionEvent) {
-        detailedviewtext.setText(reader.getStatements((String) detailedviewchoicebox2.getValue()));
+    public void refresh(MouseEvent mouseEvent) {
+        detailedviewtext.setText(reader.getStatements((String) stateList.getSelectionModel().getSelectedItem()));
         vesselName.setText(call.getVessel().getName());
     }
 
-    public void changeCall(ActionEvent actionEvent) {
-        call = pcmanager.getPortCall((String) detailedviewchoicebox1.getSelectionModel().getSelectedItem());
+    public void changeCall(MouseEvent mouseEvent) {
+        call = pcmanager.getPortCall((String) pclist.getSelectionModel().getSelectedItem());
+        vesselName.setText(call.getVessel().getName());
+        latestUpdate.setText(call.getLastUpdate());
         reader.setActiveCall(call);
-        detailedviewchoicebox2.setItems(FXCollections.observableArrayList(reader.getStateDefinitions()));
-        detailedviewchoicebox2.setValue(reader.getStateDefinitions().get(0));
+        stateList.setItems(FXCollections.observableArrayList(reader.getStateDefinitions()));
     }
 
     public void sendservicestate(ActionEvent actionEvent) {
@@ -57,4 +59,8 @@ public class DetailedViewPresenter {
     }
 
 
+    public void refreshpcs(ActionEvent actionEvent) {
+        pcmanager.refreshCalls();
+        pclist.setItems(FXCollections.observableArrayList(pcmanager.getIds()));
+    }
 }
