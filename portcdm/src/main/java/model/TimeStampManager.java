@@ -38,7 +38,7 @@ public class TimeStampManager {
             return Status.OK;
         }
 
-        Map<Actor, Statement> uniqueStatements = new TreeMap<Actor, Statement>();
+        Map<Actor, Statement> uniqueStatements = new HashMap<Actor, Statement>();
         for (Statement statement :
                 list) {
             uniqueStatements.put(statement.getReportedBy(),statement);
