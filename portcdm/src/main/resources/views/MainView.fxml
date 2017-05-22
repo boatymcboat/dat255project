@@ -487,25 +487,25 @@
                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No estimates" />
-                                                <Circle fx:id="noestimatescircle" fill="#aeb2b5" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                                <Circle fx:id="noestimatescircle" fill="GRAY" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
                                              </children>
                                           </VBox>
                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                            <children>
                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Actual acquired" />
-                                               <Circle fx:id="actualacquiredcircle" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                               <Circle fx:id="actualacquiredcircle" fill="BLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
                                            </children>
                                        </VBox>
                                            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                                            <children>
                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estimates ok" />
-                                               <Circle fx:id="estimatesokcircle" fill="#1fff4c" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                               <Circle fx:id="estimatesokcircle" fill="LAWNGREEN" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
                                            </children>
                                        </VBox>
                                            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
                                                <children>
                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Warning" />
-                                                   <Circle fx:id="warningcircle" fill="#ff1f1f" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                                                   <Circle fx:id="warningcircle" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
                                                </children>
                                            </VBox>
                                        </children>
