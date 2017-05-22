@@ -301,7 +301,7 @@ public class MainViewPresenter {
         if(servicetype.toString().equals("PILOTAGE")){
             LogicalLocation target = (LogicalLocation) tolocationbox.getValue();
             String tolocationname = (String) locationstatetolocationnamechoicebox.getValue();
-            sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype);
+            sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype, call.getId());
         }
         else {
             //Send the message
