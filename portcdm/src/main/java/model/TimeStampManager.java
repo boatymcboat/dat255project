@@ -1,9 +1,9 @@
 package model;
 
+import eu.portcdm.dto.Actor;
 import eu.portcdm.dto.Statement;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by arono on 2017-05-21.
@@ -14,12 +14,6 @@ public class TimeStampManager {
 
     public TimeStampManager(HashMap<String, List<Statement>> statements){
         setStatements(statements);
-        /*
-        for (String key :
-                statements.keySet()) {
-            System.out.println(key);
-        }
-        */
     }
 
     public void setStatements(HashMap<String, List<Statement>> statements){
@@ -42,6 +36,25 @@ public class TimeStampManager {
 
         if (list.size() == 1){
             return Status.OK;
+        }
+
+        Map<Actor, Statement> uniqueStatements = new TreeMap<Actor, Statement>();
+        for (Statement statement :
+                list) {
+            uniqueStatements.put(statement.getReportedBy(),statement);
+        }
+        int difftimes = 0;
+        String timestamp = "";
+        for (Actor actor :
+                uniqueStatements.keySet()) {
+            String reportedtime = uniqueStatements.get(actor).getTimeStatement();
+            if ( !timestamp.equals(reportedtime) ){
+                difftimes++;
+                timestamp = reportedtime;
+            }
+        }
+        if ( difftimes > 1 ){
+            return Status.WARNING;
         }
 
         return Status.WARNING;
