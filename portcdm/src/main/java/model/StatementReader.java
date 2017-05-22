@@ -54,6 +54,7 @@ public class StatementReader {
                             event.getStates()) {
                         List<Statement> statements = state.getStatements();
                         output.put(state.getStateDefinitionId(),statements);
+
                     }
                 }
             }

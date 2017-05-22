@@ -113,7 +113,7 @@
                                               </Text>
                                               <Text fx:id="step1time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -137,7 +137,7 @@
                                           </Text>
                                           <Text fx:id="step2time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                               <font>
-                                                  <Font size="14.0" />
+                                                  <Font size="12.0" />
                                               </font>
                                           </Text>
                                       </children>
@@ -173,7 +173,7 @@
                                               </Text>
                                               <Text fx:id="step3time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -197,7 +197,7 @@
                                               </Text>
                                               <Text fx:id="step4time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -233,7 +233,7 @@
                                               </Text>
                                               <Text fx:id="step5time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -257,7 +257,7 @@
                                               </Text>
                                               <Text fx:id="step6time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -294,7 +294,7 @@
                                               </Text>
                                               <Text fx:id="step7time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -318,7 +318,7 @@
                                               </Text>
                                               <Text fx:id="step8time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -355,7 +355,7 @@
                                               </Text>
                                               <Text fx:id="step9time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -379,7 +379,7 @@
                                               </Text>
                                               <Text fx:id="step10time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -417,7 +417,7 @@
                                               </Text>
                                               <Text fx:id="step11time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -441,7 +441,7 @@
                                               </Text>
                                               <Text fx:id="step12time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                                                   <font>
-                                                      <Font size="14.0" />
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>

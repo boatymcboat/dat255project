@@ -6,8 +6,12 @@ import eu.portcdm.messaging.LogicalLocation;
 import eu.portcdm.messaging.ServiceObject;
 import eu.portcdm.messaging.ServiceTimeSequence;
 import eu.portcdm.messaging.TimeType;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -79,6 +83,9 @@ public class MainViewPresenter {
     public Text step10time;
     public Text step11time;
     public Text step12time;
+    public ChoiceBox servicestatelocationnamechoicebox;
+    public ChoiceBox locationstatetolocationnamechoicebox;
+    public ChoiceBox locationstatefromlocationnamecoicebox;
     private PortCallManager manager;
     private PortCall call;
     private TimeStampManager tsmanager;
@@ -99,6 +106,98 @@ public class MainViewPresenter {
         fromlocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
         locationtimetypebox.setItems((FXCollections.observableArrayList(TimeType.values())));
 
+        locationtypebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
+            public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
+                String locationtype = newValue.toString();
+                if(locationtype.equals("BERTH")){
+                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
+                }
+                else if(locationtype.equals("TRAFFIC_AREA")){
+                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
+                }
+                else if(locationtype.equals("ANCHORING_AREA")){
+                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
+                }
+                else if(locationtype.equals("TUG_ZONE")){
+                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
+                }
+                else if(locationtype.equals("PILOT_BOARDING_AREA")){
+                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
+                }
+                else if(locationtype.equals("ETUG_ZONE")){
+                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
+                }
+                else if(locationtype.equals("LOC")){
+                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
+                }
+                else if(locationtype.equals("VESSEL")){
+                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList("VESSEL"));
+
+                }
+            }
+        });
+
+        tolocationbox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
+            public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
+                String locationtype = newValue.toString();
+                if(locationtype.equals("BERTH")){
+                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
+                }
+                else if(locationtype.equals("TRAFFIC_AREA")){
+                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
+                }
+                else if(locationtype.equals("ANCHORING_AREA")){
+                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
+                }
+                else if(locationtype.equals("TUG_ZONE")){
+                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
+                }
+                else if(locationtype.equals("PILOT_BOARDING_AREA")){
+                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
+                }
+                else if(locationtype.equals("ETUG_ZONE")){
+                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
+                }
+                else if(locationtype.equals("LOC")){
+                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
+                }
+                else if(locationtype.equals("VESSEL")){
+                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList("VESSEL"));
+
+                }
+            }
+        });
+
+        fromlocationbox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
+            public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
+                String locationtype = newValue.toString();
+                if(locationtype.equals("BERTH")){
+                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
+                }
+                else if(locationtype.equals("TRAFFIC_AREA")){
+                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
+                }
+                else if(locationtype.equals("ANCHORING_AREA")){
+                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
+                }
+                else if(locationtype.equals("TUG_ZONE")){
+                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
+                }
+                else if(locationtype.equals("PILOT_BOARDING_AREA")){
+                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
+                }
+                else if(locationtype.equals("ETUG_ZONE")){
+                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
+                }
+                else if(locationtype.equals("LOC")){
+                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
+                }
+                else if(locationtype.equals("VESSEL")){
+                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList("VESSEL"));
+
+                }
+            }
+        });
 
         manager = new PortCallManager();
         this.call = manager.getActiveCall();
@@ -108,7 +207,7 @@ public class MainViewPresenter {
 
         portcallpicker.setItems((FXCollections.observableArrayList(manager.getIds())));
         portcallpicker.setValue(call.getId());
-
+        updateTimes();
         updateColors();
     }
 
@@ -117,8 +216,23 @@ public class MainViewPresenter {
         CurrentIdDisplay.setText(call.getVessel().getName());
         reader.setActiveCall(call);
         tsmanager.setStatements(reader.getAllStatements());
+        updateTimes();
     }
-
+    
+    public void updateTimes(){
+        step1time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        step2time.setText((reader.getStatement("Arrival_Vessel_AnchorageArea")));
+        step3time.setText((reader.getStatement("Arrival_Vessel_PilotBA")));
+        step4time.setText((reader.getStatement("Arrival_Vessel_TugZone")));
+        step5time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        step6time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        step7time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        step8time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        step9time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        step10time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        step11time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        step12time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+    }
     public void updateColors(){
         step1indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_TrafficArea").getColor());
         step2indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_AnchorageArea").getColor());
@@ -149,6 +263,8 @@ public class MainViewPresenter {
         LogicalLocation tolocation = (LogicalLocation) tolocationbox.getValue();
         LogicalLocation fromlocation = (LogicalLocation) fromlocationbox.getValue();
         TimeType locationtimetype = (TimeType) locationtimetypebox.getValue();
+        String tolocationName = (String) locationstatetolocationnamechoicebox.getValue();
+        String fromlocationName = (String) locationstatefromlocationnamecoicebox.getValue();
 
         //Create the time string
         String time = locationdatebox.getValue().toString();
@@ -160,7 +276,7 @@ public class MainViewPresenter {
         //Send the message
         //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
         sender.sendLocationState(call, timeSequence,
-                fromlocation, tolocation, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT), locationtimetype);
+                fromlocation, fromlocationName, tolocation, tolocationName, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT) , locationtimetype);
     }
     //Method for creating a message when pressing the send service state button
     public void sendservicestate(ActionEvent actionEvent) {
@@ -174,7 +290,7 @@ public class MainViewPresenter {
         TimeType servicetimetype = (TimeType) servicetimetypebox.getValue();
         LogicalLocation location = (LogicalLocation) locationtypebox.getValue();
         PortCallManager manager = new PortCallManager();
-
+        String locationName = (String) servicestatelocationnamechoicebox.getValue();
         //Create the time string
         String time = servicedatebox.getValue().toString();
         time = time + "T" + servicehoursbox.getText() + ":" + serviceminutesbox.getText() + ":00.000Z";
@@ -186,7 +302,7 @@ public class MainViewPresenter {
         //Send the message
         //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
         sender.sendServiceState(call, servicetype, servicesequence,
-                location, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
+                location, locationName, ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
                 servicetimetype);
 
 
