@@ -33,8 +33,8 @@ public class MessageSender {
                 "Aron",
                 ServiceTimeSequence.COMMENCED,
                 LogicalLocation.ANCHORING_AREA, //Type of optional location
-                52.50, //Latitude of optional location
-                52.50, //Longitude of optional location
+                null, //Latitude of optional location
+                null, //Longitude of optional location
                 "Dana Fjord D1"
                 );
 
@@ -42,8 +42,8 @@ public class MessageSender {
                 LocationReferenceObject.VESSEL, //referenceObject
                 LocationTimeSequence.ARRIVAL_TO, //ARRIVAL_TO or DEPARTURE_FROM
                 LogicalLocation.BERTH, //Type of required location
-                53.50, //Latitude of required location
-                53.50, //Longitude of required location
+                null, //Latitude of required location
+                null, //Longitude of required location
                 "Skarvik Harbour 518", //Name of required location
                 LogicalLocation.ANCHORING_AREA, //Type of optional location
                 52.50, //Latitude of optional location
@@ -87,19 +87,20 @@ public class MessageSender {
             comment - Skulle vara nice
      */
     public void sendLocationState(PortCall portCall, LocationTimeSequence locationTimeSequence,
-                                  LogicalLocation originLocationType, LogicalLocation destinationLocationType,
+                                  LogicalLocation originLocationType, String originLocationName, LogicalLocation destinationLocationType,
+                                  String destinationLocationName,
                                   String time, TimeType timeType){
         StateWrapper wrapper = new StateWrapper(
                 LocationReferenceObject.VESSEL, //referenceObject
                 locationTimeSequence , //ARRIVAL_TO or DEPARTURE_FROM
                 destinationLocationType, //Type of required location
-                53.50, //Latitude of required location
-                53.50, //Longitude of required location
-                "Skarvik Harbour 518", //Name of required location
+                null, //Latitude of required location
+                null, //Longitude of required location
+                destinationLocationName, //Name of required location
                 originLocationType, //Type of optional location
-                52.50, //Latitude of optional location
-                52.50, //Longitude of optional location
-                "Dana Fjord D1" );
+                null, //Latitude of optional location
+                null, //Longitude of optional location
+                originLocationName );
 
         PortCallMessage message = PortCallMessageBuilder.build(
                 null,
@@ -138,7 +139,7 @@ public class MessageSender {
         comment - Skulle vara nice
     */
     public void sendServiceState(PortCall portCall, ServiceObject serviceType, ServiceTimeSequence serviceSequence,
-                                 LogicalLocation locationType,String time, TimeType timeType){
+                                 LogicalLocation locationType,String locationName, String time, TimeType timeType){
         StateWrapper wrapper = new StateWrapper(
                 serviceType,
                 "Aron",
@@ -146,7 +147,7 @@ public class MessageSender {
                 locationType, //Type of optional location
                 52.50, //Latitude of optional location
                 52.50, //Longitude of optional location
-                "Dana Fjord D1"
+                locationName
         );
 
         PortCallMessage message = PortCallMessageBuilder.build(
