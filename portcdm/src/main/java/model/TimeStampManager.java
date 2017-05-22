@@ -20,32 +20,43 @@ public class TimeStampManager {
         this.statements = statements;
     }
 
+
+    /*
+    Kollar statements efter rimlighet. Indata: namnet på State Definition som skall tas fram. Utdata: Status-enums
+     */
     public Status checkStatements(String id){
         List<Statement> list = statements.get(id);
 
+        // Om inga statements finns
         if (list == null){
             return Status.NONE;
         }
-
         if (list.size() == 0)
             return Status.NONE;
 
+        // Om senaste statement är en ACTUAL
         if (list.get(list.size()-1).getTimeType().equals(Statement.TimeTypeEnum.ACTUAL)){
             return Status.ACTUAL;
         }
 
+        // Om det bara finns en statement
         if (list.size() == 1){
             return Status.OK;
         }
 
+        // Tar fram alla statements från unika aktörer
         Map<Actor, Statement> uniqueStatements = new HashMap<Actor, Statement>();
         for (Statement statement :
                 list) {
             uniqueStatements.put(statement.getReportedBy(),statement);
         }
+
+        // Om bara en aktör lämnat statements
         if (uniqueStatements.size() == 1) {
             return Status.OK;
         }
+
+        // Om flera aktörer, finns flera olika statements?
         int difftimes = 0;
         String timestamp = "";
         for (Actor actor :
@@ -61,8 +72,6 @@ public class TimeStampManager {
         } else {
             return Status.OK;
         }
-
-        //return Status.WARNING;
     }
 
 
