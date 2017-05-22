@@ -111,6 +111,11 @@
                                                       <Font size="14.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step1time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
                                       </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -128,6 +133,11 @@
                                           <Text fx:id="step2statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
                                               <font>
                                                   <Font size="14.0" />
+                                              </font>
+                                          </Text>
+                                          <Text fx:id="step2time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                              <font>
+                                                  <Font size="12.0" />
                                               </font>
                                           </Text>
                                       </children>
@@ -161,6 +171,11 @@
                                                       <Font size="14.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step3time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
                                       </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -178,6 +193,11 @@
                                               <Text fx:id="step4statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
                                                   <font>
                                                       <Font size="14.0" />
+                                                  </font>
+                                              </Text>
+                                              <Text fx:id="step4time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -211,6 +231,11 @@
                                                       <Font size="14.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step5time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
                                       </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -228,6 +253,11 @@
                                               <Text fx:id="step6statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
                                                   <font>
                                                       <Font size="14.0" />
+                                                  </font>
+                                              </Text>
+                                              <Text fx:id="step6time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -262,6 +292,11 @@
                                                       <Font size="14.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step7time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
                                       </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -279,6 +314,11 @@
                                               <Text fx:id="step8statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type and terminal nr">
                                                   <font>
                                                       <Font size="14.0" />
+                                                  </font>
+                                              </Text>
+                                              <Text fx:id="step8time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -313,6 +353,11 @@
                                                       <Font size="14.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step9time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
                                       </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -330,6 +375,11 @@
                                               <Text fx:id="step10statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
                                                   <font>
                                                       <Font size="14.0" />
+                                                  </font>
+                                              </Text>
+                                              <Text fx:id="step10time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
@@ -365,6 +415,11 @@
                                                       <Font size="14.0" />
                                                   </font>
                                               </Text>
+                                              <Text fx:id="step11time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
+                                                  </font>
+                                              </Text>
                                           </children>
                                       </VBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -382,6 +437,11 @@
                                               <Text fx:id="step12statetype" strokeType="OUTSIDE" strokeWidth="0.0" text="State Type">
                                                   <font>
                                                       <Font size="14.0" />
+                                                  </font>
+                                              </Text>
+                                              <Text fx:id="step12time" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                                  <font>
+                                                      <Font size="12.0" />
                                                   </font>
                                               </Text>
                                           </children>
