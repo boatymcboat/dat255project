@@ -14,12 +14,6 @@ public class TimeStampManager {
 
     public TimeStampManager(HashMap<String, List<Statement>> statements){
         setStatements(statements);
-
-        for (String key :
-                statements.keySet()) {
-            System.out.println(statements.get(key).toString());
-        }
-
     }
 
     public void setStatements(HashMap<String, List<Statement>> statements){
