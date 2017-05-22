@@ -145,9 +145,42 @@ public class MessageSender {
                 "Aron",
                 serviceSequence,
                 locationType, //Type of optional location
-                52.50, //Latitude of optional location
-                52.50, //Longitude of optional location
+                null, //Latitude of optional location
+                null, //Longitude of optional location
                 locationName
+        );
+
+        PortCallMessage message = PortCallMessageBuilder.build(
+                null,
+                null,
+                wrapper,
+                time,
+                timeType,
+                portCall.getVessel().getId(),
+                null,
+                "Agent BoatyMcBoat",
+                null,
+                null
+        );
+
+        sendMessage(message);
+    }
+
+    public void sendServiceState(PortCall portCall, ServiceObject serviceType, ServiceTimeSequence serviceSequence,
+                                 LogicalLocation fromLocationType,String fromLocationName, LogicalLocation toLocationType,
+                                 String toLocationName, String time, TimeType timeType){
+        StateWrapper wrapper = new StateWrapper(
+                serviceType,
+                "Aron",
+                serviceSequence,
+                fromLocationType, //Type of optional location
+                null, //Latitude of optional location
+                null, //Longitude of optional location
+                fromLocationName,
+                toLocationType,
+                null,
+                null,
+                toLocationName
         );
 
         PortCallMessage message = PortCallMessageBuilder.build(
