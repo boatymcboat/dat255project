@@ -21,11 +21,15 @@ public class MessageReader {
     private void setupApi(){
         apiClient = new ApiClient();
         // Adress till backendens PortCDM Services
-        apiClient.setBasePath( "http://46.239.98.79:8080/dmp");
+        //apiClient.setBasePath( "http://46.239.98.79:8080/dmp");
+        apiClient.setBasePath("http://sandbox-5.portcdm.eu:8080/dmp" );
 
         // Inlogg till backenden
-        apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );
-        apiClient.addDefaultHeader( "X-PortCDM-Password", "porter" );
+        //apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );
+        //apiClient.addDefaultHeader( "X-PortCDM-Password", "porter" );
+
+        apiClient.addDefaultHeader( "X-PortCDM-UserId", "test1" );
+        apiClient.addDefaultHeader( "X-PortCDM-Password", "test123" );
 
         // API-key som ej används men krävs
         apiClient.addDefaultHeader( "X-PortCDM-ApiKey", "Fenix-SMA" );
