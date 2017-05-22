@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="780.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.Main">
+<AnchorPane prefHeight="780.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presenters.DetailedViewPresenter">
     <GridPane prefHeight="974.0" prefWidth="1280.0">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -54,7 +55,7 @@
                      </HBox>
                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                         <children>
-                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Detailed view">
+                           <Text fx:id="vesselName" strokeType="OUTSIDE" strokeWidth="0.0" text="Detailed view">
                               <font>
                                  <Font size="24.0" />
                               </font>
@@ -63,9 +64,9 @@
                      </HBox>
                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
                         <children>
-                           <ChoiceBox fx:id="detailedviewchoicebox1" prefWidth="150.0" />
-                           <ChoiceBox fx:id="detailedviewchoicebox2" prefWidth="150.0" />
-                           <Button fx:id="detailedviewrefreshbutton" mnemonicParsing="false" text="Refresh" />
+                           <ComboBox fx:id="detailedviewchoicebox1" onAction="#changeCall" prefWidth="150.0" />
+                           <ComboBox fx:id="detailedviewchoicebox2" prefWidth="150.0" />
+                           <Button fx:id="detailedviewrefreshbutton" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
                         </children>
                      </HBox>
                   </children>
