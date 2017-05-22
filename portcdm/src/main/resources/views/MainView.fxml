@@ -534,7 +534,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="1">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Refresh" />
+                                    <Button fx:id="refreshbutton" mnemonicParsing="false" onAction="#refreshview" text="Refresh" />
                                  </children>
                               </HBox>
                            </children>
