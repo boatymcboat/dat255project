@@ -37,6 +37,34 @@ public class StatementReader {
         return latestStatements.get(id);
     }
 
+    // Hämtar alla statements för ett visst ID.
+    public String getStatements(String id) {
+        String output = "";
+        for (Statement statement :
+                getAllStatements().get(id)) {
+            output += statement.getTimeType() + ": " + statement.getTimeStatement() + " from " + statement.getReportedBy().getName() + "\n";
+        }
+        return output;
+    }
+
+    public List<String> getStateDefinitions() {
+        List<String> output = new LinkedList<String>();
+        for (ProcessStep processStep :
+                activeCall.getProcessSteps()) {
+            for (SubProcess subProcess :
+                    processStep.getSubProcesses()) {
+                for (Event event :
+                        subProcess.getEvents()) {
+                    for (State state :
+                            event.getStates()) {
+                        output.add(state.getStateDefinitionId());
+                    }
+                }
+            }
+        }
+        return output;
+    }
+
     public HashMap<String, List<Statement>> getAllStatements(){
         return getAllStatements(activeCall);
     }
