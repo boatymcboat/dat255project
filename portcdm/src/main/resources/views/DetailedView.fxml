@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
@@ -17,14 +17,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="780.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presenters.DetailedViewPresenter">
+<AnchorPane prefHeight="780.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presenters.DetailedViewPresenter">
     <GridPane prefHeight="974.0" prefWidth="1280.0">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="475.0" minHeight="10.0" prefHeight="293.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="556.0" minHeight="10.0" prefHeight="507.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="475.0" minHeight="10.0" prefHeight="291.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="796.0" minHeight="10.0" prefHeight="683.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
     <TitledPane alignment="CENTER" collapsible="false" prefHeight="480.0" prefWidth="1200.0" text="Detailed Time Overview">
@@ -34,41 +34,74 @@
     <content>
         <GridPane prefHeight="480.0" prefWidth="1200.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="547.0" minWidth="10.0" prefWidth="300.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="547.0" minWidth="10.0" prefWidth="175.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="620.0" minWidth="10.0" prefWidth="291.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1020.0" minWidth="10.0" prefWidth="494.0" />
         </columnConstraints>
         <rowConstraints>
-                     <RowConstraints maxHeight="475.0" minHeight="10.0" prefHeight="293.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="475.0" minHeight="10.0" prefHeight="293.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="556.0" minHeight="10.0" prefHeight="507.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="475.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="556.0" minHeight="10.0" prefHeight="182.0" vgrow="SOMETIMES" />
         </rowConstraints>
                   <children>
-                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                         <children>
-                           <ScrollPane pannable="true" prefHeight="200.0" prefWidth="1250.0">
-                              <content>
-                                 <VBox alignment="CENTER" prefHeight="260.0" prefWidth="1250.0">
-                                    <children>
-                                       <Text fx:id="detailedviewtext" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    </children></VBox>
-                              </content></ScrollPane>
+                           <Text fx:id="detailedviewtext" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                         </children>
                      </HBox>
-                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="3">
                         <children>
-                           <Text fx:id="vesselName" strokeType="OUTSIDE" strokeWidth="0.0" text="Detailed view">
-                              <font>
-                                 <Font size="24.0" />
-                              </font>
-                           </Text>
+                           <Button fx:id="detailedviewrefreshbutton" mnemonicParsing="false" onMouseClicked="#refresh" text="Refresh" />
                         </children>
                      </HBox>
-                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
+                     <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                       <content>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0">
+                              <children>
+                                 <ListView fx:id="pclist" onMouseClicked="#changeCall" prefHeight="180.0" prefWidth="295.0" />
+                              </children>
+                           </AnchorPane>
+                       </content>
+                     </ScrollPane>
+                     <ScrollPane layoutX="24.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <content>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0">
+                              <children>
+                                 <ListView fx:id="stateList" onMouseClicked="#refresh" prefHeight="180.0" prefWidth="287.0" />
+                              </children>
+                           </AnchorPane>
+                        </content>
+                     </ScrollPane>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select PortCall" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PortCall Info" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                     <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                       <columnConstraints>
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
                         <children>
-                           <ComboBox fx:id="detailedviewchoicebox1" onAction="#changeCall" prefWidth="150.0" />
-                           <ComboBox fx:id="detailedviewchoicebox2" prefWidth="150.0" />
-                           <Button fx:id="detailedviewrefreshbutton" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                           <VBox prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vessel name:" />
+                                 <Text fx:id="vesselName" strokeType="OUTSIDE" strokeWidth="0.0" text="vesselname here" />
+                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Latest update:" />
+                                 <Text fx:id="latestUpdate" strokeType="OUTSIDE" strokeWidth="0.0" text="latest update here" />
+                              </children>
+                              <padding>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              </padding>
+                           </VBox>
                         </children>
-                     </HBox>
+                     </GridPane>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select State" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                     <Button mnemonicParsing="false" onAction="#refreshpcs" text="Refresh" GridPane.halignment="LEFT">
+                        <GridPane.margin>
+                           <Insets left="5.0" />
+                        </GridPane.margin>
+                     </Button>
                   </children>
         </GridPane>
     </content>
