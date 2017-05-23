@@ -155,16 +155,30 @@
                                 <ChoiceBox fx:id="servicesequencebox" prefWidth="150.0" />
                             </children>
                         </VBox>
-                        <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="3">
+                        <HBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0" GridPane.rowIndex="3">
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Type">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Text>
-                                <ChoiceBox fx:id="locationtypebox" prefWidth="150.0" />
+                                <VBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Type">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <ChoiceBox fx:id="locationtypebox" prefWidth="150.0" />
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <ChoiceBox fx:id="servicestatelocationnamechoicebox" prefWidth="150.0" />
+                                    </children>
+                                </VBox>
                             </children>
-                        </VBox>
+                        </HBox>
                         <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.rowIndex="4">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
@@ -222,26 +236,54 @@
                                 <ChoiceBox fx:id="locationtimesqeuencebox" prefWidth="150.0" />
                             </children>
                         </VBox>
-                        <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <HBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To Location">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Text>
-                                <ChoiceBox fx:id="tolocationbox" prefWidth="150.0" />
+                                <VBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To Location">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <ChoiceBox fx:id="tolocationbox" prefWidth="150.0" />
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <ChoiceBox fx:id="locationstatetolocationnamechoicebox" prefWidth="150.0" />
+                                    </children>
+                                </VBox>
                             </children>
-                        </VBox>
-                        <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From Location">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Text>
-                                <ChoiceBox fx:id="fromlocationbox" prefWidth="150.0" />
+                                <VBox alignment="CENTER" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From Location">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <ChoiceBox fx:id="fromlocationbox" prefWidth="150.0" />
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Text>
+                                        <ChoiceBox fx:id="locationstatefromlocationnamecoicebox" prefWidth="150.0" />
+                                    </children>
+                                </VBox>
                             </children>
-                        </VBox>
+                        </HBox>
                         <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
