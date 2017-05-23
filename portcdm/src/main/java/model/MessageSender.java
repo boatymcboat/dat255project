@@ -58,7 +58,7 @@ public class MessageSender {
                 TimeType.ESTIMATED, //Message's timeType
                 "urn:x-mrn:stm:vessel:IMO:9259501", //vesselId
                 null, //reportedAt (optional)
-                "Agent BoatyMcBoat", //reportedBy (optional)
+                null, //reportedBy (optional)
                 null, //groupWith (optional), messageId of the message to group with.
                 "Hello World" //comment (optional)
         );
@@ -110,7 +110,7 @@ public class MessageSender {
                 timeType,
                 portCall.getVessel().getId(),
                 null,
-                "Agent BoatyMcBoat",
+                null,
                 null,
                 null
         );
@@ -157,7 +157,7 @@ public class MessageSender {
                 timeType,
                 portCall.getVessel().getId(),
                 null,
-                "Agent BoatyMcBoat",
+                null,
                 null,
                 null
         );
@@ -190,7 +190,7 @@ public class MessageSender {
                 timeType,
                 portCall.getVessel().getId(),
                 null,
-                "Agent BoatyMcBoat",
+                null,
                 null,
                 null
         );
