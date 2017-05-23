@@ -4,6 +4,7 @@ import eu.portcdm.messaging.PortCallMessage;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import model.LocationManager;
 import model.MessageReader;
 import model.MessageSender;
 import views.ExampleView;
@@ -18,7 +19,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         ExampleView view = new ExampleView(primaryStage);
-
+        LocationManager.setLocations();
 
     }
 
