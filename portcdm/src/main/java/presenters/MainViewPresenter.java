@@ -84,6 +84,9 @@ public class MainViewPresenter {
     public ChoiceBox locationstatetolocationnamechoicebox;
     public ChoiceBox locationstatefromlocationnamecoicebox;
     public Button refreshbutton;
+    public Button gotodetailedviewbutton;
+    public ChoiceBox servicestatetolocationtype;
+    public ChoiceBox servicestatetolocationname;
     private PortCallManager manager;
     private PortCall call;
     private TimeStampManager tsmanager;
