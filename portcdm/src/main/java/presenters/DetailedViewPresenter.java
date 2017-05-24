@@ -272,7 +272,7 @@ public class DetailedViewPresenter {
         //Compare the manually generated string to the timestamp
         System.out.println("Manually generated: " +time);
         System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
-        if(servicetype.toString().equals("PILOTAGE")){
+        if(servicetype.toString().equals("PILOTAGE")|| servicetype.toString().equals("ESCORT_TOWAGE")|| servicetype.toString().equals("TOWAGE")){
             LogicalLocation target = (LogicalLocation) servicestatetolocationtypechoicebox.getValue();
             String tolocationname = (String) servicestatetolocationnamechoicebox.getValue();
             sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype, call.getId());
