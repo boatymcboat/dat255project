@@ -73,6 +73,7 @@ public class DetailedViewPresenter {
         latestUpdate.setText(call.getLastUpdate());
         pclist.setItems(FXCollections.observableArrayList(pcmanager.getIds()));
         stateList.setItems(FXCollections.observableArrayList(reader.getStateDefinitions()));
+        stateList.getSelectionModel().selectFirst();
 
         servicetypebox.setItems(FXCollections.observableArrayList(ServiceObject.values()));
         servicesequencebox.setItems(FXCollections.observableArrayList(ServiceTimeSequence.values()));
@@ -211,8 +212,13 @@ public class DetailedViewPresenter {
 
 
     public void refresh(MouseEvent mouseEvent) {
+        pcmanager.refreshCalls();
+        pclist.setItems(FXCollections.observableArrayList(pcmanager.getIds()));
+        reader.setActiveCall(call);
         detailedviewtext.setText(reader.getStatements((String) stateList.getSelectionModel().getSelectedItem()));
         vesselName.setText(call.getVessel().getName());
+        latestUpdate.setText(call.getLastUpdate());
+        stateList.setItems(FXCollections.observableArrayList(reader.getStateDefinitions()));
     }
 
     public void changeCall(MouseEvent mouseEvent) {
