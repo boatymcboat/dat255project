@@ -9,12 +9,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.*;
 
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -106,6 +111,7 @@ public class MainViewPresenter {
         tolocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
         fromlocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
         locationtimetypebox.setItems((FXCollections.observableArrayList(TimeType.values())));
+        servicestatetolocationtype.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
 
         locationtypebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
             public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
@@ -195,6 +201,36 @@ public class MainViewPresenter {
                 }
                 else if(locationtype.equals("VESSEL")){
                     locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList("VESSEL"));
+
+                }
+            }
+        });
+        servicestatetolocationtype.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
+            public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
+                String locationtype = newValue.toString();
+                if(locationtype.equals("BERTH")){
+                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
+                }
+                else if(locationtype.equals("TRAFFIC_AREA")){
+                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
+                }
+                else if(locationtype.equals("ANCHORING_AREA")){
+                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
+                }
+                else if(locationtype.equals("TUG_ZONE")){
+                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
+                }
+                else if(locationtype.equals("PILOT_BOARDING_AREA")){
+                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
+                }
+                else if(locationtype.equals("ETUG_ZONE")){
+                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
+                }
+                else if(locationtype.equals("LOC")){
+                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
+                }
+                else if(locationtype.equals("VESSEL")){
+                    servicestatetolocationname.setItems(FXCollections.observableArrayList("VESSEL"));
 
                 }
             }
@@ -301,9 +337,9 @@ public class MainViewPresenter {
         //Compare the manually generated string to the timestamp
         System.out.println("Manually generated: " +time);
         System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
-        if(servicetype.toString().equals("PILOTAGE")){
-            LogicalLocation target = (LogicalLocation) tolocationbox.getValue();
-            String tolocationname = (String) locationstatetolocationnamechoicebox.getValue();
+        if(servicetype.toString().equals("PILOTAGE")|| servicetype.toString().equals("ESCORT_TOWAGE")|| servicetype.toString().equals("TOWAGE")){
+            LogicalLocation target = (LogicalLocation) servicestatetolocationtype.getValue();
+            String tolocationname = (String) servicestatetolocationname.getValue();
             sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype, call.getId());
         }
         else {
@@ -322,5 +358,14 @@ public class MainViewPresenter {
 
     public void refreshview(ActionEvent actionEvent) {
         setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
+    }
+
+    public void goToDetailedView(ActionEvent actionEvent) {
+       Stage stage = (Stage) gotodetailedviewbutton.getScene().getWindow();
+        try {
+            stage.setScene(new Scene((AnchorPane)FXMLLoader.load(getClass().getResource("/views/DetailedView.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
