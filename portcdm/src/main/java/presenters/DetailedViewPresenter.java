@@ -58,6 +58,8 @@ public class DetailedViewPresenter {
     public ChoiceBox locationstatetolocationnamechoicebox;
     public ChoiceBox servicestatelocationnamechoicebox;
     public Button gotooverviewbutton;
+    public ChoiceBox servicestatetolocationtypechoicebox;
+    public ChoiceBox servicestatetolocationnamechoicebox;
 
     private PortCallManager pcmanager;
     private StatementReader reader;
@@ -80,7 +82,7 @@ public class DetailedViewPresenter {
         tolocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
         fromlocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
         locationtimetypebox.setItems((FXCollections.observableArrayList(TimeType.values())));
-
+        servicestatetolocationtypechoicebox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
 
         locationtypebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
             public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
@@ -174,6 +176,36 @@ public class DetailedViewPresenter {
                 }
             }
         });
+        servicestatetolocationtypechoicebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
+            public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
+                String locationtype = newValue.toString();
+                if(locationtype.equals("BERTH")){
+                    servicestatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
+                }
+                else if(locationtype.equals("TRAFFIC_AREA")){
+                    servicestatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
+                }
+                else if(locationtype.equals("ANCHORING_AREA")){
+                    servicestatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
+                }
+                else if(locationtype.equals("TUG_ZONE")){
+                    servicestatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
+                }
+                else if(locationtype.equals("PILOT_BOARDING_AREA")){
+                    servicestatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
+                }
+                else if(locationtype.equals("ETUG_ZONE")){
+                    servicestatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
+                }
+                else if(locationtype.equals("LOC")){
+                    servicestatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
+                }
+                else if(locationtype.equals("VESSEL")){
+                    servicestatetolocationnamechoicebox.setItems(FXCollections.observableArrayList("VESSEL"));
+
+                }
+            }
+        });
     }
 
 
@@ -241,8 +273,8 @@ public class DetailedViewPresenter {
         System.out.println("Manually generated: " +time);
         System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
         if(servicetype.toString().equals("PILOTAGE")){
-            LogicalLocation target = (LogicalLocation) tolocationbox.getValue();
-            String tolocationname = (String) locationstatetolocationnamechoicebox.getValue();
+            LogicalLocation target = (LogicalLocation) servicestatetolocationtypechoicebox.getValue();
+            String tolocationname = (String) servicestatetolocationnamechoicebox.getValue();
             sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype, call.getId());
         }
         else {
