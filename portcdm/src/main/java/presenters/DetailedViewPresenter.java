@@ -10,16 +10,21 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.LocationManager;
 import model.MessageSender;
 import model.PortCallManager;
 import model.StatementReader;
 
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -52,6 +57,7 @@ public class DetailedViewPresenter {
     public ChoiceBox locationstatefromlocationnamecoicebox;
     public ChoiceBox locationstatetolocationnamechoicebox;
     public ChoiceBox servicestatelocationnamechoicebox;
+    public Button gotooverviewbutton;
 
     private PortCallManager pcmanager;
     private StatementReader reader;
@@ -74,6 +80,7 @@ public class DetailedViewPresenter {
         tolocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
         fromlocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
         locationtimetypebox.setItems((FXCollections.observableArrayList(TimeType.values())));
+
 
         locationtypebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
             public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
@@ -252,5 +259,14 @@ public class DetailedViewPresenter {
     public void refreshpcs(ActionEvent actionEvent) {
         pcmanager.refreshCalls();
         pclist.setItems(FXCollections.observableArrayList(pcmanager.getIds()));
+    }
+
+    public void goToMainView(ActionEvent actionEvent) {
+        Stage stage = (Stage) gotooverviewbutton.getScene().getWindow();
+        try {
+            stage.setScene(new Scene((ScrollPane) FXMLLoader.load(getClass().getResource("/views/MainView.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

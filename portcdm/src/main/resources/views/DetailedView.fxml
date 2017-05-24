@@ -52,7 +52,7 @@
                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="3">
                         <children>
                            <Button fx:id="detailedviewrefreshbutton" mnemonicParsing="false" onMouseClicked="#refresh" text="Refresh" />
-                           <Button fx:id="gotooverviewbutton" mnemonicParsing="false" text="Go to Overview" />
+                           <Button fx:id="gotooverviewbutton" mnemonicParsing="false" onAction="#goToMainView" text="Go to Overview" />
                         </children>
                      </HBox>
                      <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
