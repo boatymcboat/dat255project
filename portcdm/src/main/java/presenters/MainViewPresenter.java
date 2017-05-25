@@ -113,129 +113,6 @@ public class MainViewPresenter {
         locationtimetypebox.setItems((FXCollections.observableArrayList(TimeType.values())));
         servicestatetolocationtype.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
 
-        locationtypebox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
-            public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
-                String locationtype = newValue.toString();
-                if(locationtype.equals("BERTH")){
-                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
-                }
-                else if(locationtype.equals("TRAFFIC_AREA")){
-                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
-                }
-                else if(locationtype.equals("ANCHORING_AREA")){
-                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
-                }
-                else if(locationtype.equals("TUG_ZONE")){
-                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
-                }
-                else if(locationtype.equals("PILOT_BOARDING_AREA")){
-                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
-                }
-                else if(locationtype.equals("ETUG_ZONE")){
-                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
-                }
-                else if(locationtype.equals("LOC")){
-                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
-                }
-                else if(locationtype.equals("VESSEL")){
-                    servicestatelocationnamechoicebox.setItems(FXCollections.observableArrayList("VESSEL"));
-
-                }
-            }
-        });
-
-        tolocationbox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
-            public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
-                String locationtype = newValue.toString();
-                if(locationtype.equals("BERTH")){
-                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
-                }
-                else if(locationtype.equals("TRAFFIC_AREA")){
-                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
-                }
-                else if(locationtype.equals("ANCHORING_AREA")){
-                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
-                }
-                else if(locationtype.equals("TUG_ZONE")){
-                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
-                }
-                else if(locationtype.equals("PILOT_BOARDING_AREA")){
-                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
-                }
-                else if(locationtype.equals("ETUG_ZONE")){
-                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
-                }
-                else if(locationtype.equals("LOC")){
-                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
-                }
-                else if(locationtype.equals("VESSEL")){
-                    locationstatetolocationnamechoicebox.setItems(FXCollections.observableArrayList("VESSEL"));
-
-                }
-            }
-        });
-
-        fromlocationbox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
-            public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
-                String locationtype = newValue.toString();
-                if(locationtype.equals("BERTH")){
-                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
-                }
-                else if(locationtype.equals("TRAFFIC_AREA")){
-                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
-                }
-                else if(locationtype.equals("ANCHORING_AREA")){
-                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
-                }
-                else if(locationtype.equals("TUG_ZONE")){
-                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
-                }
-                else if(locationtype.equals("PILOT_BOARDING_AREA")){
-                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
-                }
-                else if(locationtype.equals("ETUG_ZONE")){
-                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
-                }
-                else if(locationtype.equals("LOC")){
-                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
-                }
-                else if(locationtype.equals("VESSEL")){
-                    locationstatefromlocationnamecoicebox.setItems(FXCollections.observableArrayList("VESSEL"));
-
-                }
-            }
-        });
-        servicestatetolocationtype.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<LogicalLocation>() {
-            public void changed(ObservableValue<? extends LogicalLocation> observable, LogicalLocation oldValue, LogicalLocation newValue) {
-                String locationtype = newValue.toString();
-                if(locationtype.equals("BERTH")){
-                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
-                }
-                else if(locationtype.equals("TRAFFIC_AREA")){
-                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
-                }
-                else if(locationtype.equals("ANCHORING_AREA")){
-                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
-                }
-                else if(locationtype.equals("TUG_ZONE")){
-                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
-                }
-                else if(locationtype.equals("PILOT_BOARDING_AREA")){
-                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
-                }
-                else if(locationtype.equals("ETUG_ZONE")){
-                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
-                }
-                else if(locationtype.equals("LOC")){
-                    servicestatetolocationname.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
-                }
-                else if(locationtype.equals("VESSEL")){
-                    servicestatetolocationname.setItems(FXCollections.observableArrayList("VESSEL"));
-
-                }
-            }
-        });
-
         manager = new PortCallManager();
         this.call = manager.getActiveCall();
         reader = new StatementReader(call);
@@ -367,5 +244,44 @@ public class MainViewPresenter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void locationTypeChosen(ActionEvent actionEvent) {
+        ChoiceBox tempBox;
+        ChoiceBox source;
+        String locationtype;
+        if (actionEvent.getSource().equals(locationtypebox)){locationtype = locationtypebox.getValue().toString(); tempBox = servicestatelocationnamechoicebox;}
+        else if (actionEvent.getSource().equals(servicestatetolocationtype)){locationtype = servicestatetolocationtype.getValue().toString(); tempBox = servicestatetolocationname;}
+        else if (actionEvent.getSource().equals(tolocationbox)){locationtype = tolocationbox.getValue().toString(); tempBox = locationstatetolocationnamechoicebox;}
+        else if (actionEvent.getSource().equals(fromlocationbox)){locationtype = fromlocationbox.getValue().toString(); tempBox = locationstatefromlocationnamecoicebox;}
+        else{return;}
+        if(locationtype.equals("BERTH")){
+            tempBox.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
+        }
+        else if(locationtype.equals("TRAFFIC_AREA")){
+            tempBox.setItems(FXCollections.observableArrayList(LocationManager.getTrafficAreas()));
+        }
+        else if(locationtype.equals("ANCHORING_AREA")){
+            tempBox.setItems(FXCollections.observableArrayList(LocationManager.getAnchoringAreas()));
+        }
+        else if(locationtype.equals("TUG_ZONE")){
+            tempBox.setItems(FXCollections.observableArrayList(LocationManager.getTugZones()));
+        }
+        else if(locationtype.equals("PILOT_BOARDING_AREA")){
+            tempBox.setItems(FXCollections.observableArrayList(LocationManager.getPilotBAs()));
+        }
+        else if(locationtype.equals("ETUG_ZONE")){
+            tempBox.setItems(FXCollections.observableArrayList(LocationManager.geteTugZones()));
+        }
+        else if(locationtype.equals("LOC")){
+            tempBox.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
+        }
+        else if(locationtype.equals("VESSEL")){
+            tempBox.setItems(FXCollections.observableArrayList("VESSEL"));
+
+        }
+
+
+
     }
 }
