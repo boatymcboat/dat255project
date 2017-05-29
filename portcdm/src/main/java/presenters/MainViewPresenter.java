@@ -18,6 +18,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.*;
+import org.testng.Assert;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
@@ -101,6 +102,7 @@ public class MainViewPresenter {
         //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring","b"));
     }
     //Method to create the options for the drop down menus used in the view.
+    //Also defaults the PortCall to the most recently changed.
     public void initialize(){
 
         servicetypebox.setItems(FXCollections.observableArrayList(ServiceObject.values()));
@@ -124,7 +126,7 @@ public class MainViewPresenter {
         updateTimes();
         updateColors();
     }
-
+    //Method used for changing the call used. Also used for refreshing as a PortCall is a snapshot and not dynamic.
     public void setCall(PortCall call){
         this.call = call;
         CurrentIdDisplay.setText(call.getVessel().getName());
@@ -133,21 +135,24 @@ public class MainViewPresenter {
         updateTimes();
         updateColors();
     }
-    
+
+    //Method for retrieving timestamps for the service states and location states presented in the view.
     public void updateTimes(){
         step1time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
         step2time.setText((reader.getStatement("Arrival_Vessel_AnchorageArea")));
         step3time.setText((reader.getStatement("Arrival_Vessel_PilotBA")));
         step4time.setText((reader.getStatement("Arrival_Vessel_TugZone")));
-        step5time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        /*step5time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
         step6time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
         step7time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
         step8time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
         step9time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
         step10time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
         step11time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
-        step12time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
+        step12time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));*/
     }
+
+    //Method used to call the logic for updating colors for every circle in the view.
     public void updateColors(){
         step1indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_TrafficArea").getColor());
         step2indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_AnchorageArea").getColor());
@@ -168,28 +173,30 @@ public class MainViewPresenter {
     // Method for creating a message when pressing the send location state button.
     public void sendlocationstate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
-        //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring", "b"));
-        PortCallManager manager = new PortCallManager();
 
-        //Retrieve the enums and use them in the menus
-        //TODO: See if explicit type conversion can be removed. Should be impossible for object to be of wrong class,
-        //TODO  but still looks weird.
+
+        //Retrieve the enums and use them in the menus. Uses assertions to check that all required fields are filled.
+        Assert.assertNotNull(locationtimesqeuencebox.getValue(),"Please select a time sequence.");
         LocationTimeSequence timeSequence = (LocationTimeSequence) locationtimesqeuencebox.getValue();
+        Assert.assertNotNull(tolocationbox.getValue(),"Please select the to location.");
         LogicalLocation tolocation = (LogicalLocation) tolocationbox.getValue();
+        //No assertion as this field is allowed to be null.
         LogicalLocation fromlocation = (LogicalLocation) fromlocationbox.getValue();
+        Assert.assertNotNull(locationtimetypebox.getValue(),"Please select the time type.");
         TimeType locationtimetype = (TimeType) locationtimetypebox.getValue();
+        Assert.assertNotNull(locationstatetolocationnamechoicebox.getValue(),"Please select the to location name.");
         String tolocationName = (String) locationstatetolocationnamechoicebox.getValue();
+        //No assertion as this field is allowed to be null.
         String fromlocationName = (String) locationstatefromlocationnamecoicebox.getValue();
 
         //Create the time string
+        Assert.assertNotNull(locationdatebox.getValue(),"Please select a date.");
         String time = locationdatebox.getValue().toString();
+        Assert.assertNotNull(locationhoursbox.getText(),"Please enter the hour.");
+        Assert.assertNotNull(locationminutesbox.getText(),"Please enter the minutes.");
         time = time + "T" + locationhoursbox.getText() + ":" + locationminutesbox.getText() + ":00.000Z";
 
-        //Compare the manually generated string to the timestamp
-        System.out.println("Manually generated: " +time);
-        System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
         //Send the message
-        //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
         sender.sendLocationState(call, timeSequence,
                 fromlocation, fromlocationName, tolocation, tolocationName, time, locationtimetype, call.getId());
     }
@@ -198,45 +205,51 @@ public class MainViewPresenter {
         MessageSender sender = new MessageSender();
 
 
-        //Retrieve the enums and use them in the menus
-        //TODO: See if explicit type conversion can be removed. Should be impossible for object to be of wrong class,
-        //TODO  but still looks weird.
-        ServiceObject servicetype = (ServiceObject) servicetypebox.getValue();
+        //Retrieve the selections from the drop down menus. Uses assertions to check that all required fields are filled.
+        Assert.assertNotNull(servicetypebox.getValue(),"Please select a service state.");
+        ServiceObject servicetype = (ServiceObject)servicetypebox.getValue() ;
+        Assert.assertNotNull(servicesequencebox.getValue(),"Please select a service sequence.");
         ServiceTimeSequence servicesequence = (ServiceTimeSequence) servicesequencebox.getValue();
+        Assert.assertNotNull(servicetimetypebox.getValue(),"Please select a time type.");
         TimeType servicetimetype = (TimeType) servicetimetypebox.getValue();
+        Assert.assertNotNull(locationtypebox.getValue(),"Please select a location type.");
         LogicalLocation location = (LogicalLocation) locationtypebox.getValue();
-        PortCallManager manager = new PortCallManager();
+        Assert.assertNotNull(servicestatelocationnamechoicebox.getValue(),"Please select a location name.");
         String locationName = (String) servicestatelocationnamechoicebox.getValue();
         //Create the time string
+        Assert.assertNotNull(servicedatebox.getValue(),"Please select a date.");
         String time = servicedatebox.getValue().toString();
+        //Builds a string representing time in the format used by portCDM
+        Assert.assertNotNull(servicehoursbox.getText(),"Please enter the hour.");
+        Assert.assertNotNull(serviceminutesbox.getText(),"Please enter the minutes.");
         time = time + "T" + servicehoursbox.getText() + ":" + serviceminutesbox.getText() + ":00.000Z";
 
-        //Compare the manually generated string to the timestamp
-        System.out.println("Manually generated: " +time);
-        System.out.println("Timestamp: " + ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
         if(servicetype.toString().equals("PILOTAGE")|| servicetype.toString().equals("ESCORT_TOWAGE")|| servicetype.toString().equals("TOWAGE")){
+            Assert.assertNotNull(servicestatetolocationtype.getValue(),"Please select to location type.");
             LogicalLocation target = (LogicalLocation) servicestatetolocationtype.getValue();
+            Assert.assertNotNull(servicestatetolocationname.getValue(),"Please select to location name.");
             String tolocationname = (String) servicestatetolocationname.getValue();
             sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype, call.getId());
         }
         else {
             //Send the message
-            //TODO: Solve the issue that the manually generated string don't seem to work when used in this method
             sender.sendServiceState(call, servicetype, servicesequence,
                     location, locationName, time,
                     servicetimetype, call.getId());
         }
 
     }
-
+    //Activated when the user changes portcallID in the drop down menu
     public void changecall(ActionEvent actionEvent) {
         setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
     }
 
+    //Activated when the user clicks the "refresh" button
     public void refreshview(ActionEvent actionEvent) {
         setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
     }
 
+    //Changes the active view to the detailed view when the user clicks the "go to detailed view" button
     public void goToDetailedView(ActionEvent actionEvent) {
        Stage stage = (Stage) gotodetailedviewbutton.getScene().getWindow();
         try {
@@ -245,7 +258,8 @@ public class MainViewPresenter {
             e.printStackTrace();
         }
     }
-
+    //When the user selects a location type in any of the location type menus,
+    //the corresponding location name menu is set to contain the names of all locations of that type in the port
     public void locationTypeChosen(ActionEvent actionEvent) {
         ChoiceBox tempBox;
         ChoiceBox source;
