@@ -66,16 +66,12 @@ public class MainViewPresenter {
     private PortCall call;
     private TimeStampManager tsmanager;
     private StatementReader reader;
-
-    public MainViewPresenter(){
-        //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring","b"));
-    }
+    
 
     /**
      * Method to create the options for the drop down menus used in the view.
      * Also defaults the PortCall to the most recently changed.
      */
-
     public void initialize(){
 
         servicetypebox.setItems(FXCollections.observableArrayList(ServiceObject.values()));
@@ -102,7 +98,7 @@ public class MainViewPresenter {
 
     /**
      * Method used for changing the call used. Also used for refreshing as a PortCall is a snapshot and not dynamic.
-     * @param call
+     * @param call The PortCall to be shown.
      */
 
     public void setCall(PortCall call){
@@ -155,6 +151,7 @@ public class MainViewPresenter {
     /**
      * Method for creating a message when pressing the send location state button.
      * Uses the selected options in the corresponding menus and text fields. Uses assertions to ensure no required field is null.
+     * @param actionEvent sent when the send location state button is pressed.
      */
     public void sendlocationstate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
@@ -237,17 +234,17 @@ public class MainViewPresenter {
     }
 
     /**
-     * Activated when the user clicks the "refresh" button
+     * Activated when the user clicks the "refresh" button, refreshes the view and updates the time and colors for the locations/services
+     * @param actionEvent  send when the refresh button is pressen
      */
-
     public void refreshview(ActionEvent actionEvent) {
         setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
     }
 
     /**
      * Changes the active view to the detailed view when the user clicks the "go to detailed view" button
+     * @param actionEvent  sent when the go to detailed view button is pressed.
      */
-
     public void goToDetailedView(ActionEvent actionEvent) {
        Stage stage = (Stage) gotodetailedviewbutton.getScene().getWindow();
         try {
@@ -258,6 +255,7 @@ public class MainViewPresenter {
     }
     /**When the user selects a location type in any of the location type menus,
      *the corresponding location name menu is set to contain the names of all locations of that type in the port
+     * @param actionEvent sent when a location type is chosen in any of the manus containen location types.
      */
     public void locationTypeChosen(ActionEvent actionEvent) {
         ChoiceBox tempBox;

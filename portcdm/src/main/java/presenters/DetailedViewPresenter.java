@@ -90,7 +90,7 @@ public class DetailedViewPresenter {
     /**
      * Method which catches actionevents sent by any of the menus containing location types.
      * The method resolves which menu sent the actionevent and sets the corresponding location name menu to contain locations of that type.
-     * @param actionEvent
+     * @param actionEvent sent when an option is chosen in any of the location type menus.
      */
     public void locationTypeChosen(ActionEvent actionEvent) {
         ChoiceBox tempBox;
@@ -133,7 +133,7 @@ public class DetailedViewPresenter {
 
     /**
      * Refreshes the view with the latest infomration when the refresh button if pressed.
-     * @param mouseEvent
+     * @param mouseEvent sent when the button is pressed
      */
     public void refresh(MouseEvent mouseEvent) {
         pcmanager.refreshCalls();
@@ -147,7 +147,7 @@ public class DetailedViewPresenter {
 
     /**
      * Changes the PortCall used when the user selects a new PortCall in the menu for portcallID.
-     * @param mouseEvent
+     * @param mouseEvent sent from the menu
      */
     public void changeCall(MouseEvent mouseEvent) {
         call = pcmanager.getPortCall((String) pclist.getSelectionModel().getSelectedItem());
@@ -160,6 +160,7 @@ public class DetailedViewPresenter {
     /**
      * Method for creating a message when pressing the send location state button.
      * Uses the selected options in the corresponding menus and text fields. Uses assertions to ensure no required field is null.
+     * @param actionEvent sent when the send location state button is pressed
      */
     public void sendlocationstate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
@@ -236,7 +237,7 @@ public class DetailedViewPresenter {
 
     /**
      * Retrieves a new list of the most recently updated PortCalls.
-     * @param actionEvent
+     * @param actionEvent sent when the refresh button is pressed
      */
     public void refreshpcs(ActionEvent actionEvent) {
         pcmanager.refreshCalls();
@@ -245,7 +246,7 @@ public class DetailedViewPresenter {
 
     /**
      * Switches the view to the main view.
-     * @param actionEvent
+     * @param actionEvent sent when the go to main view button is pressed.
      */
     public void goToMainView(ActionEvent actionEvent) {
         Stage stage = (Stage) gotooverviewbutton.getScene().getWindow();
