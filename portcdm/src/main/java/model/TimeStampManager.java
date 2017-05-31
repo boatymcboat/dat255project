@@ -8,23 +8,34 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by arono on 2017-05-21.
+ * Analyses Statements.
  */
 public class TimeStampManager {
 
     private HashMap<String, List<Statement>> statements;
 
+    /**
+     * Creates an instance of the manager.
+     *
+     * @param statements a HashMap with the StateDefinitionIDs as keys and lists of Statements as entries
+     */
     public TimeStampManager(HashMap<String, List<Statement>> statements){
         setStatements(statements);
     }
 
+    /**
+     * Updates the active Statements.
+     *
+     * @param statements a HashMap with the StateDefinitionIDs as keys and lists of Statements as entries
+     */
     public void setStatements(HashMap<String, List<Statement>> statements){
         this.statements = statements;
     }
 
-
-    /*
-    Kollar statements efter rimlighet. Indata: namnet på State Definition som skall tas fram. Utdata: Status-enums
+    /**
+     * Analyses all Statements with a given StateDefinitionID.
+     * @param id the requested StateDefinitionID
+     * @return a Status Enum
      */
     public Status checkStatements(String id){
         List<Statement> list = statements.get(id);
@@ -47,7 +58,7 @@ public class TimeStampManager {
         }
 
         // Tar fram alla statements från unika aktörer
-        Map<Actor, Statement> uniqueStatements = new HashMap<Actor, Statement>();
+        Map<Actor, Statement> uniqueStatements = new HashMap<>();
         for (Statement statement :
                 list) {
             uniqueStatements.put(statement.getReportedBy(),statement);
@@ -61,13 +72,12 @@ public class TimeStampManager {
         // Om flera aktörer, finns flera olika statements?
         int difftimes = 0;
         String timestamp = "";
-        for (Actor actor :
-                uniqueStatements.keySet()) {
-            // TODO: Kolla om detta går att lösa på annat sätt. Detta borde vara mest effektivt men tydligen inte enligt FindBugs
-            String reportedtime = uniqueStatements.get(actor).getTimeStatement();
-            if ( !timestamp.equals(reportedtime) ){
+        for (Map.Entry<Actor, Statement> entry :
+                uniqueStatements.entrySet()) {
+            String reportedTime = entry.getValue().getTimeStatement();
+            if (!timestamp.equals(reportedTime) ){
                 difftimes++;
-                timestamp = reportedtime;
+                timestamp = reportedTime;
             }
         }
         if ( difftimes > 1 ){

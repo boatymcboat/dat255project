@@ -5,13 +5,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Created by arono on 2017-05-15.
- */
 class PortCallManagerTest {
-    PortCallManager manager;
+    private PortCallManager manager;
 
     @BeforeAll
     static void checkConnection() {
@@ -36,6 +34,7 @@ class PortCallManagerTest {
     @Test
     void getPortCall() {
         assertNotNull(manager.getPortCall(0), "no messages in list");
+        assertNotNull(manager.getPortCall(manager.getActiveCall().getId()), "No PortCall with this ID");
     }
 
 }

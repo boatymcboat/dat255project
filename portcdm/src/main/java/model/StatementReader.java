@@ -7,21 +7,30 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by arono on 2017-05-04.
+ * Reads Statements and StateDefinitionIDs from PortCalls.
  */
 public class StatementReader {
 
-    // Här lagras statements samt den senaste callen.
-    HashMap<String,String> latestStatements;
-    PortCall activeCall;
+    // Stores the latest Statements and the active PortCall
+    private HashMap<String, String> latestStatements;
+    private PortCall activeCall;
 
-    // Konstruktor, kräver en call och hämtar statements därifrån direkt.
+    /**
+     * Creates an instance of the Reader and refreshes the list of latest statements.
+     *
+     * @param call the PortCall for which statements are to be read.
+     */
     public StatementReader(PortCall call) {
         activeCall = call;
         latestStatements = getAllLatestStatements(activeCall);
     }
 
-    // Ändrar vilket call vi hämtar samt uppdaterar senaste statements
+    /**
+     * Changes the active PortCall and gets the list of latest statements for it.
+     *
+     * @param call the new PortCall
+     * @return False if the new PortCall is null, True otherwise.
+     */
     public boolean setActiveCall(PortCall call) {
         if (call == null){
             return false;
@@ -31,25 +40,38 @@ public class StatementReader {
         return true;
     }
 
-    // Hämtar en statement utefter sitt ID. Fullständig lista är ej sammanställd.
+    /**
+     * Gets the latest Statement for a given StateDefinitionID.
+     *
+     * @param id the requested StateDefinitionID
+     * @return the latest Statement
+     */
     public String getStatement(String id) {
         return latestStatements.get(id);
     }
 
-    // Hämtar alla statements för ett visst ID.
-    public String getStatements(String id) {
-        String output = "";
-        StringBuffer buf = new StringBuffer();
+    /**
+     * Gets all Statements for a given StateDefinitionID.
+     *
+     * @param id the requested StateDefinitionID
+     * @return a String like: 'TimeType: TimeStatement from ReportedBy'
+     */
+    public String getStatements(String id) { // TODO: Make this return a list of Statements and create separate toString method
+        StringBuilder buf = new StringBuilder();
         for (Statement statement :
                 getAllStatements().get(id)) {
-            buf.append(statement.getTimeType() + ": " + statement.getTimeStatement() + " from " + statement.getReportedBy().getName() + "\n");
+            buf.append(new StringBuilder().append(statement.getTimeType()).append(": ").append(statement.getTimeStatement()).append(" from ").append(statement.getReportedBy().getName()).append("\n").toString());
         }
-        output = buf.toString();
-        return output;
+        return buf.toString();
     }
 
+    /**
+     * Gets a list of StateDefinitionIDs for the currently active PortCall
+     *
+     * @return a list of StateDefinitionIDs
+     */
     public List<String> getStateDefinitions() {
-        List<String> output = new LinkedList<String>();
+        List<String> output = new LinkedList<>();
         for (ProcessStep processStep :
                 activeCall.getProcessSteps()) {
             for (SubProcess subProcess :
@@ -66,12 +88,18 @@ public class StatementReader {
         return output;
     }
 
+    /**
+     * Gets all Statements for the currently active PortCall.
+     *
+     * @return a HashMap with the StateDefinitionIDs as keys and a list of Statements for each as entries.
+     */
     public HashMap<String, List<Statement>> getAllStatements(){
         return getAllStatements(activeCall);
     }
 
-    public HashMap<String, List<Statement>> getAllStatements(PortCall call){
-        HashMap<String, List<Statement>> output = new HashMap<String, List<Statement>>();
+    // Gets all Statements for a given PortCall.
+    private HashMap<String, List<Statement>> getAllStatements(PortCall call) {
+        HashMap<String, List<Statement>> output = new HashMap<>();
 
         for (ProcessStep processStep :
                 call.getProcessSteps()) {
@@ -96,7 +124,7 @@ public class StatementReader {
     private HashMap<String, String> getAllLatestStatements(PortCall call){
 
         // Skapar ny hashmap
-        HashMap<String, String> output = new HashMap<String, String>();
+        HashMap<String, String> output = new HashMap<>();
 
         // Tar ut alla ProcessSteps från callen
         List<ProcessStep> steps = call.getProcessSteps();
