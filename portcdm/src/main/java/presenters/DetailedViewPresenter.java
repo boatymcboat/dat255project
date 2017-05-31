@@ -13,10 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.LocationManager;
@@ -45,7 +42,6 @@ public class DetailedViewPresenter {
     public TextField servicehoursbox;
     public TextField serviceminutesbox;
     public ChoiceBox servicetimetypebox;
-    public Button sendservicestatebox;
     public ChoiceBox locationtimesqeuencebox;
     public ChoiceBox tolocationbox;
     public ChoiceBox fromlocationbox;
@@ -53,7 +49,6 @@ public class DetailedViewPresenter {
     public TextField locationhoursbox;
     public TextField locationminutesbox;
     public ChoiceBox locationtimetypebox;
-    public Button sendlocationbox;
     public ChoiceBox locationstatefromlocationnamecoicebox;
     public ChoiceBox locationstatetolocationnamechoicebox;
     public ChoiceBox servicestatelocationnamechoicebox;
@@ -233,7 +228,6 @@ public class DetailedViewPresenter {
     public void sendlocationstate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
         //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring", "b"));
-        PortCallManager manager = new PortCallManager();
 
         //Retrieve the enums and use them in the menus
         //TODO: See if explicit type conversion can be removed. Should be impossible for object to be of wrong class,
@@ -269,7 +263,6 @@ public class DetailedViewPresenter {
         ServiceTimeSequence servicesequence = (ServiceTimeSequence) servicesequencebox.getValue();
         TimeType servicetimetype = (TimeType) servicetimetypebox.getValue();
         LogicalLocation location = (LogicalLocation) locationtypebox.getValue();
-        PortCallManager manager = new PortCallManager();
         String locationName = (String) servicestatelocationnamechoicebox.getValue();
         //Create the time string
         String time = servicedatebox.getValue().toString();

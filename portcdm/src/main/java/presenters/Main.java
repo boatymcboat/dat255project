@@ -1,28 +1,10 @@
 package presenters;
 
-import eu.portcdm.messaging.PortCallMessage;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
-import model.LocationManager;
-import model.MessageReader;
-import model.MessageSender;
 import views.ExampleView;
-import views.MainView;
-import views.MainViewImpl;
-
-import java.util.List;
 
 public class Main extends Application {
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-
-        ExampleView view = new ExampleView(primaryStage);
-        LocationManager.setLocations();
-
-    }
-
 
     public static void main(String[] args) {
 
@@ -34,6 +16,13 @@ public class Main extends Application {
         System.out.println(sreader.getStatement("Arrival_Vessel_PilotBA")); */
 
         launch(args);
+
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+        new ExampleView(primaryStage);
 
     }
 }

@@ -3,7 +3,9 @@ package model;
 import eu.portcdm.dto.Actor;
 import eu.portcdm.dto.Statement;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by arono on 2017-05-21.
@@ -61,6 +63,7 @@ public class TimeStampManager {
         String timestamp = "";
         for (Actor actor :
                 uniqueStatements.keySet()) {
+            // TODO: Kolla om detta går att lösa på annat sätt. Detta borde vara mest effektivt men tydligen inte enligt FindBugs
             String reportedtime = uniqueStatements.get(actor).getTimeStatement();
             if ( !timestamp.equals(reportedtime) ){
                 difftimes++;

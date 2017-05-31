@@ -1,7 +1,6 @@
 package model;
 
 import eu.portcdm.dto.*;
-import eu.portcdm.messaging.TimeType;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -40,10 +39,12 @@ public class StatementReader {
     // Hämtar alla statements för ett visst ID.
     public String getStatements(String id) {
         String output = "";
+        StringBuffer buf = new StringBuffer();
         for (Statement statement :
                 getAllStatements().get(id)) {
-            output += statement.getTimeType() + ": " + statement.getTimeStatement() + " from " + statement.getReportedBy().getName() + "\n";
+            buf.append(statement.getTimeType() + ": " + statement.getTimeStatement() + " from " + statement.getReportedBy().getName() + "\n");
         }
+        output = buf.toString();
         return output;
     }
 

@@ -3,14 +3,12 @@ package model;
 import eu.portcdm.amss.client.ApiClient;
 import eu.portcdm.amss.client.ApiException;
 import eu.portcdm.amss.client.StateupdateApi;
-import eu.portcdm.dto.*;
+import eu.portcdm.dto.LocationTimeSequence;
+import eu.portcdm.dto.PortCall;
 import eu.portcdm.messaging.*;
-import eu.portcdm.messaging.ServiceObject;
-import eu.portcdm.messaging.ServiceTimeSequence;
 import se.viktoria.stm.portcdm.connector.common.util.PortCallMessageBuilder;
 import se.viktoria.stm.portcdm.connector.common.util.StateWrapper;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -38,7 +36,7 @@ public class MessageSender {
                 "Dana Fjord D1"
                 );
 
-        StateWrapper stateWrapper = new StateWrapper(
+        /*StateWrapper stateWrapper = new StateWrapper(
                 LocationReferenceObject.VESSEL, //referenceObject
                 LocationTimeSequence.ARRIVAL_TO, //ARRIVAL_TO or DEPARTURE_FROM
                 LogicalLocation.BERTH, //Type of required location
@@ -46,9 +44,9 @@ public class MessageSender {
                 null, //Longitude of required location
                 "Skarvik Harbour 518", //Name of required location
                 LogicalLocation.ANCHORING_AREA, //Type of optional location
-                52.50, //Latitude of optional location
-                52.50, //Longitude of optional location
-                "Dana Fjord D1" );//Name of optional location
+                null, //Latitude of optional location
+                null, //Longitude of optional location
+                "Dana Fjord D1" );//Name of optional location*/
         //Change dates from 2017-03-23 06:40:00 to 2017-03-23T06:40:00Z
         @SuppressWarnings("Since15") PortCallMessage portCallMessage = PortCallMessageBuilder.build(
                 "urn:x-mrn:stm:portcdm:local_port_call:SEGOT:DHC:52723", //localPortCallId
