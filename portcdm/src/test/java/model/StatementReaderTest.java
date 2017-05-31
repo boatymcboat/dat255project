@@ -1,6 +1,5 @@
 package model;
 
-import eu.portcdm.dto.PortCall;
 import eu.portcdm.dto.Statement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,13 +10,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Created by arono on 2017-05-15.
- */
 class StatementReaderTest {
 
-    StatementReader reader;
-    PortCallManager manager;
+    private StatementReader reader;
+    private PortCallManager manager;
 
     @BeforeAll
     static void checkConnection() {
@@ -42,8 +38,18 @@ class StatementReaderTest {
 
     @Test
     void getAllStatements() {
-        HashMap<String, List<Statement>> statements = reader.getAllStatements(manager.getPortCall(0));
+        HashMap<String, List<Statement>> statements = reader.getAllStatements();
         assertFalse(statements.isEmpty(),"No statements found");
+    }
+
+    @Test
+    void getStatements() {
+        assertNotNull(reader.getStatements("Arrival_Vessel_Berth"), "No Statements found");
+    }
+
+    @Test
+    void getStateDefinitions() {
+        assertNotNull(reader.getStateDefinitions(), "No StateDefinitionIDs found");
     }
 
 }
