@@ -2,7 +2,7 @@ package presenters;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import views.ExampleView;
+import views.View;
 
 public class Main extends Application {
 
@@ -22,7 +22,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        new ExampleView(primaryStage);
+        new View(primaryStage);
 
     }
 }
