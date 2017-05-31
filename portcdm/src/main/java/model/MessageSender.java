@@ -9,80 +9,38 @@ import eu.portcdm.messaging.*;
 import se.viktoria.stm.portcdm.connector.common.util.PortCallMessageBuilder;
 import se.viktoria.stm.portcdm.connector.common.util.StateWrapper;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-
+/**
+ * Creates and sends PortCallMessages (version 0.0.16 only).
+ */
 public class MessageSender {
-    ApiClient apiClient;
-    StateupdateApi stateupdateApi;
-
+    private ApiClient apiClient;
+    private StateupdateApi stateupdateApi;
 
     public MessageSender() {
         setupApi();
     }
 
-    // Skapar ett meddelande. Exempelkod från PortCDM-utvecklarna
-    public PortCallMessage createMessage(){
-
-        //StateWrapper xd = new StateWrapper()
-
-        StateWrapper wrapper = new StateWrapper(
-                ServiceObject.CARGO_OPERATION,
-                "Aron",
-                ServiceTimeSequence.COMMENCED,
-                LogicalLocation.ANCHORING_AREA, //Type of optional location
-                null, //Latitude of optional location
-                null, //Longitude of optional location
-                "Dana Fjord D1"
-                );
-
-        /*StateWrapper stateWrapper = new StateWrapper(
-                LocationReferenceObject.VESSEL, //referenceObject
-                LocationTimeSequence.ARRIVAL_TO, //ARRIVAL_TO or DEPARTURE_FROM
-                LogicalLocation.BERTH, //Type of required location
-                null, //Latitude of required location
-                null, //Longitude of required location
-                "Skarvik Harbour 518", //Name of required location
-                LogicalLocation.ANCHORING_AREA, //Type of optional location
-                null, //Latitude of optional location
-                null, //Longitude of optional location
-                "Dana Fjord D1" );//Name of optional location*/
-        //Change dates from 2017-03-23 06:40:00 to 2017-03-23T06:40:00Z
-        @SuppressWarnings("Since15") PortCallMessage portCallMessage = PortCallMessageBuilder.build(
-                "urn:x-mrn:stm:portcdm:local_port_call:SEGOT:DHC:52723", //localPortCallId
-                "urn:x-mrn:stm:portcdm:local_job:FENIX_SMA:990198125", //localJobId
-                wrapper, //StateWrapper created above
-                ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT), //Message's time
-                TimeType.ESTIMATED, //Message's timeType
-                "urn:x-mrn:stm:vessel:IMO:9259501", //vesselId
-                null, //reportedAt (optional)
-                null, //reportedBy (optional)
-                null, //groupWith (optional), messageId of the message to group with.
-                "Hello World" //comment (optional)
-        );
-
-        return portCallMessage;
-    }
-
-    /*
-        Skickar locationStates med följande input,
-            portCall - Det port call som behandlas
-            locationTimeSequence - Arrival to or Departure from etc
-            originLocationType - Typ av plats som skeppet åker från, ex Anchorage_Area
-            destinationLocationType - Typ av plats som skeppet åker till, ex Berth
-            time - Tid då händelsen skedde/sker
-            timeType - Typ av tid: Estimated, Actual etc.
-
-        Följande delar är ej implementerade,
-            latitude - För både origin och destination
-            longitude - Fär både origin och destination
-            Name - För både origin och destination,  ex Dana Fjord D1
-            localPortCallId - lokalt id
-            localJobId - lokalat id
-            reportedAt - **Current Time**
-            reportedBy - Agenten som är "inloggad"
-            groupWith - Oklart om det behövs
-            comment - Skulle vara nice
+    /**
+     * TODO: Uppdatera detta
+     * Skickar locationStates. Följande delar är ej implementerade:
+     latitude - För både origin och destination.
+     longitude - Fär både origin och destination.
+     Name - För både origin och destination,  ex Dana Fjord D1.
+     localPortCallId - lokalt id.
+     localJobId - lokalat id.
+     reportedAt - **Current Time**.
+     reportedBy - Agenten som är "inloggad".
+     groupWith - Oklart om det behövs.
+     comment - Skulle vara nice.
+     * @param portCall Det port call som behandlas
+     * @param locationTimeSequence Arrival to or Departure from etc
+     * @param originLocationType Typ av plats som skeppet åker från, ex Anchorage_Area
+     * @param originLocationName
+     * @param destinationLocationType Typ av plats som skeppet åker till, ex Berth
+     * @param destinationLocationName
+     * @param time Tid då händelsen skedde/sker
+     * @param timeType Typ av tid: Estimated, Actual etc.
+     * @param portCallId
      */
     public void sendLocationState(PortCall portCall, LocationTimeSequence locationTimeSequence,
                                   LogicalLocation originLocationType, String originLocationName, LogicalLocation destinationLocationType,
@@ -115,28 +73,31 @@ public class MessageSender {
         message.setPortCallId(portCallId);
         sendMessage(message);
     }
-    /*
-    Skickar serviceState med följande input,
-        portCall - Det port call som behandlas
-        servicetype - Typ av service, ex Cargo_Operation
-        serviceTimeSequence - Vilken sekvens servicen befinner sig i, ex Commenced
-        locationType - Typ av location, ex Ancoring_Area
-        time - Tid då händelsen skedde/sker
-        timeType - Typ av tid: Estimated, Actual etc.
 
-    Följande delar är ej implementerade,
-        latitude - Ska kollas med PortCDM
-        longitude - som latitude
-        Name - ex Dana Fjord D1
-        localPortCallId - lokalt id
-        localJobId - lokalat id
-        reportedAt - **Current Time**
-        reportedBy - Agenten som är "inloggad"
-        groupWith - Oklart om det behövs
-        comment - Skulle vara nice
-    */
+    /**
+     * TODO: Uppdatera detta
+     * Skickar serviceStates. Följande delar är ej implementerade,
+     * latitude - Ska kollas med PortCDM.
+     * longitude - som latitude.
+     * Name - ex Dana Fjord D1.
+     * localPortCallId - lokalt id.
+     * localJobId - lokalat id.
+     * reportedAt - **Current Time**.
+     * reportedBy - Agenten som är "inloggad".
+     * groupWith - Oklart om det behövs.
+     * comment - Skulle vara nice.
+     *
+     * @param portCall        Det port call som behandlas
+     * @param serviceType     Typ av service, ex Cargo_Operation
+     * @param serviceSequence Vilken sekvens servicen befinner sig i, ex Commenced
+     * @param locationType    Typ av location, ex Ancoring_Area
+     * @param locationName
+     * @param time            Tid då händelsen skedde/sker
+     * @param timeType        Typ av tid: Estimated, Actual etc.
+     * @param portCallId
+     */
     public void sendServiceState(PortCall portCall, ServiceObject serviceType, ServiceTimeSequence serviceSequence,
-                                 LogicalLocation locationType,String locationName, String time, TimeType timeType, String portCallId){
+                                 LogicalLocation locationType, String locationName, String time, TimeType timeType, String portCallId) {
         StateWrapper wrapper = new StateWrapper(
                 serviceType,
                 "Aron",
@@ -163,8 +124,22 @@ public class MessageSender {
         sendMessage(message);
     }
 
+    /**
+     * TODO: Lägga till information här
+     *
+     * @param portCall
+     * @param serviceType
+     * @param serviceSequence
+     * @param fromLocationType
+     * @param fromLocationName
+     * @param toLocationType
+     * @param toLocationName
+     * @param time
+     * @param timeType
+     * @param portCallId
+     */
     public void sendServiceState(PortCall portCall, ServiceObject serviceType, ServiceTimeSequence serviceSequence,
-                                 LogicalLocation fromLocationType,String fromLocationName, LogicalLocation toLocationType,
+                                 LogicalLocation fromLocationType, String fromLocationName, LogicalLocation toLocationType,
                                  String toLocationName, String time, TimeType timeType, String portCallId){
         StateWrapper wrapper = new StateWrapper(
                 serviceType,
@@ -196,8 +171,13 @@ public class MessageSender {
         sendMessage(message);
     }
 
-    // Skickar ett givet meddelande till Assisted Message Submission Service
-    public boolean sendMessage(PortCallMessage message){
+    /**
+     * Sends a message to the API
+     *
+     * @param message The message to be sent
+     * @return True if the message was sent, False otherwise.
+     */
+    boolean sendMessage(PortCallMessage message){
         try {
             stateupdateApi.sendMessage( message );
             return true;
@@ -207,21 +187,32 @@ public class MessageSender {
         }
     }
 
-    private void setupApi(){
+    // Creates connection to backend
+    private void setupApi() {
         apiClient = new ApiClient();
 
-        // Adress till backendens Assisted Message Submission Service
-        apiClient.setBasePath( "http://46.239.98.79:8080/amss");
-        //apiClient.setBasePath("http://sandbox-5.portcdm.eu:8080/amss");
-        //apiClient.setBasePath("http://192.168.56.101:8080/amss");
-        // Inlogg till backenden
-        apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter" );
-        apiClient.addDefaultHeader( "X-PortCDM-Password", "porter" );
+        // Address to the backend's Assisted Message Submission Service
 
+        // Aron's backend
+        apiClient.setBasePath("http://46.239.98.79:8080/amss");
+
+        // The common sandbox (the application does not work towards the common sandbox):
+        //apiClient.setBasePath("http://sandbox-5.portcdm.eu:8080/amss");
+
+        // The locally hosted Virtualbox:
+        //apiClient.setBasePath("http://192.168.56.101:8080/amss");
+
+        // Logins to the backend
+
+        // To Virtualbox-based backends:
+        apiClient.addDefaultHeader( "X-PortCDM-UserId", "porter");
+        apiClient.addDefaultHeader("X-PortCDM-Password", "porter");
+
+        // To the common sandbox:
         //apiClient.addDefaultHeader( "X-PortCDM-UserId", "test1" );
         //apiClient.addDefaultHeader( "X-PortCDM-Password", "test123" );
 
-        // API-key som ej används men krävs
+        // API-key (not used in practice but needed for connection):
         apiClient.addDefaultHeader( "X-PortCDM-ApiKey", "Fenix-SMA" );
 
         stateupdateApi = new StateupdateApi( apiClient );
