@@ -21,7 +21,7 @@ import org.testng.Assert;
 import java.io.IOException;
 
 /**
- * Created by Aron on 2017-05-20.
+ * Presenter class for the main view of the application
  */
 public class MainViewPresenter {
     public ChoiceBox servicetypebox;
@@ -70,8 +70,12 @@ public class MainViewPresenter {
     public MainViewPresenter(){
         //servicetypebox.setItems(FXCollections.observableArrayList("Anchoring","b"));
     }
-    //Method to create the options for the drop down menus used in the view.
-    //Also defaults the PortCall to the most recently changed.
+
+    /**
+     * Method to create the options for the drop down menus used in the view.
+     * Also defaults the PortCall to the most recently changed.
+     */
+
     public void initialize(){
 
         servicetypebox.setItems(FXCollections.observableArrayList(ServiceObject.values()));
@@ -95,7 +99,12 @@ public class MainViewPresenter {
         updateTimes();
         updateColors();
     }
-    //Method used for changing the call used. Also used for refreshing as a PortCall is a snapshot and not dynamic.
+
+    /**
+     * Method used for changing the call used. Also used for refreshing as a PortCall is a snapshot and not dynamic.
+     * @param call
+     */
+
     public void setCall(PortCall call){
         this.call = call;
         currentIdDisplay.setText(call.getVessel().getName());
@@ -105,7 +114,9 @@ public class MainViewPresenter {
         updateColors();
     }
 
-    //Method for retrieving timestamps for the service states and location states presented in the view.
+    /**
+     * Method for retrieving timestamps for the service states and location states presented in the view.
+     */
     public void updateTimes(){
         step1time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));
         step2time.setText((reader.getStatement("Arrival_Vessel_AnchorageArea")));
@@ -121,7 +132,9 @@ public class MainViewPresenter {
         step12time.setText((reader.getStatement("Arrival_Vessel_TrafficArea")));*/
     }
 
-    //Method used to call the logic for updating colors for every circle in the view.
+    /**
+     * Method used to call the logic for updating colors for every circle in the view.
+     */
     public void updateColors(){
         step1indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_TrafficArea").getColor());
         step2indicator.setFill(tsmanager.checkStatements("Arrival_Vessel_AnchorageArea").getColor());
@@ -139,7 +152,10 @@ public class MainViewPresenter {
 
     }
 
-    // Method for creating a message when pressing the send location state button.
+    /**
+     * Method for creating a message when pressing the send location state button.
+     * Uses the selected options in the corresponding menus and text fields. Uses assertions to ensure no required field is null.
+     */
     public void sendlocationstate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
 
@@ -169,7 +185,11 @@ public class MainViewPresenter {
         sender.sendLocationState(call, timeSequence,
                 fromlocation, fromlocationName, tolocation, tolocationName, time, locationtimetype, call.getId());
     }
-    //Method for creating a message when pressing the send service state button
+    /**
+     * Method for creating a message when pressing the send service state button
+     * Uses the selected options in the corresponding menus and text fields. Uses assertions to ensure no required field is null.
+     * @param actionEvent automatically generated when the user clicks the "send servicestate" button.
+     */
     public void sendservicestate(ActionEvent actionEvent) {
         MessageSender sender = new MessageSender();
 
@@ -208,17 +228,26 @@ public class MainViewPresenter {
         }
 
     }
-    //Activated when the user changes portcallID in the drop down menu
+
+    /**Activated when the user changes portcallID in the drop down menu
+     * @param actionEvent automatically generated when the user selects a different option in the drop down menu for portcallID
+     */
     public void changecall(ActionEvent actionEvent) {
         setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
     }
 
-    //Activated when the user clicks the "refresh" button
+    /**
+     * Activated when the user clicks the "refresh" button
+     */
+
     public void refreshview(ActionEvent actionEvent) {
         setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
     }
 
-    //Changes the active view to the detailed view when the user clicks the "go to detailed view" button
+    /**
+     * Changes the active view to the detailed view when the user clicks the "go to detailed view" button
+     */
+
     public void goToDetailedView(ActionEvent actionEvent) {
        Stage stage = (Stage) gotodetailedviewbutton.getScene().getWindow();
         try {
@@ -227,8 +256,9 @@ public class MainViewPresenter {
             e.printStackTrace();
         }
     }
-    //When the user selects a location type in any of the location type menus,
-    //the corresponding location name menu is set to contain the names of all locations of that type in the port
+    /**When the user selects a location type in any of the location type menus,
+     *the corresponding location name menu is set to contain the names of all locations of that type in the port
+     */
     public void locationTypeChosen(ActionEvent actionEvent) {
         ChoiceBox tempBox;
         ChoiceBox source;
