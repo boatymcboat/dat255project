@@ -602,7 +602,7 @@
                                                 <Font size="14.0" />
                                             </font>
                                         </Text>
-                                        <ChoiceBox fx:id="locationtypebox" prefWidth="150.0" />
+                                        <ChoiceBox fx:id="locationtypebox" onAction="#locationTypeChosen" prefWidth="150.0" />
                                     </children>
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -618,7 +618,7 @@
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To Location Type" />
-                                    <ChoiceBox fx:id="servicestatetolocationtype" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="servicestatetolocationtype" onAction="#locationTypeChosen" prefWidth="150.0" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -695,7 +695,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Text>
-                                      <ChoiceBox fx:id="tolocationbox" prefWidth="150.0" />
+                                      <ChoiceBox fx:id="tolocationbox" onAction="#locationTypeChosen" prefWidth="150.0" />
                                   </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -719,7 +719,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Text>
-                                      <ChoiceBox fx:id="fromlocationbox" prefWidth="150.0" />
+                                      <ChoiceBox fx:id="fromlocationbox" onAction="#locationTypeChosen" prefWidth="150.0" />
                                   </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
