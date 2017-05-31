@@ -3,7 +3,7 @@ package model;
 import javafx.scene.paint.Color;
 
 /**
- * Created by arono on 2017-05-21.
+ * Stores the different Status enums and their color codes.
  */
 public enum Status {
     OK (Color.LAWNGREEN), WARNING (Color.RED), ACTUAL (Color.BLUE), NONE (Color.GRAY);
@@ -11,5 +11,11 @@ public enum Status {
     Status(Color color){
         this.color = color;
     }
+
+    /**
+     * Gets the color for the Status
+     *
+     * @return a javaFX Color object
+     */
     public Color getColor() { return color; }
 }
