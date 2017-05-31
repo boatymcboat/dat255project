@@ -24,7 +24,7 @@ public class PortCallManager {
      */
     public PortCallManager(){
         setupApi();
-        summaries = refreshSummaries();
+        summaries = getNewSummaries();
         activeCall = getPortCall(0);
     }
 
@@ -33,8 +33,8 @@ public class PortCallManager {
      *
      * @return True if refresh was successful, False otherwise.
      */
-    public boolean refreshCalls() { // TODO: Update the name of this method
-        summaries = refreshSummaries();
+    public boolean refreshSummaries() {
+        summaries = getNewSummaries();
         return summaries != null;
     }
 
@@ -92,7 +92,7 @@ public class PortCallManager {
     }
 
     // Gets the 30 latest updated PortCalls from the API
-    private List<PortCallSummary> refreshSummaries(){
+    private List<PortCallSummary> getNewSummaries() {
         try {
             return portcallsApi.getAllPortCalls(30);
         } catch (ApiException e) {

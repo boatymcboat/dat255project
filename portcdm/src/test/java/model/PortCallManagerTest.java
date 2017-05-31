@@ -23,7 +23,7 @@ class PortCallManagerTest {
 
     @Test
     void refreshCalls() {
-        assertTrue(manager.refreshCalls(),"no messages found");
+        assertTrue(manager.refreshSummaries(), "no messages found");
     }
 
     @Test
