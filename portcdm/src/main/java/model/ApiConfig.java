@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.net.InetAddress;
 
 /**
- * Created by Aron on 2017-05-15.
+ * Class for API Configuration. Currently only has functionality to check if the backend is online, but can be used to store constants for API connections in the future.
  */
-public class ApiConfig { // TODO: Lägga in konstanter för server-ip och inlogg här
-
+public class ApiConfig {
+    /**
+     * Checks if the backend is online. Only implemented for Aron's backend.
+     *
+     * @return true if backend is online, false if it is not
+     */
     public static boolean isOnline(){
         String ip = "46.239.98.79";
         int timeout = 7000;

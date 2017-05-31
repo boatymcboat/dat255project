@@ -1,9 +1,11 @@
 package model;
 
 /**
- * Created by arono on 2017-05-22.
+ * Stores and manages the names of the different types of locations in the PCM 0.0.16 system and the backend VirtualBox Application.
  */
 public class LocationManager {
+
+    // Stores the names of all Anchoring Areas
     private static final String[] anchoringAreas = new String[]{
             "Rivö Fjord R (Romeo) 3",
             "Rivö Fjord R (Romeo) 4",
@@ -15,6 +17,7 @@ public class LocationManager {
             "Dana Fjord D1"
     };
 
+    // Stores the names of all Berths
     private static final String[] berths = new String[]{
             "Älvsborg Harbour 700",
             "Masthuggskajen 33",
@@ -89,16 +92,19 @@ public class LocationManager {
             "Majnabbehamnen 48"
     };
 
+    // Stores the names of all ETug Zones
     private static final String[] eTugZones = new String[] {
             "Escort tug station 1",
             "Escort tug station VLCC",
             "Escort tug station 2"
     };
 
+    // Stores the names of all LOCs
     private static final String[] locs = new String[] {
             "LOC"
     };
 
+    // Stores the names of all Pilot Boarding Areas
     private static final String[] pilotBAs = new String[] {
             "Pilot Boarding Position VLCC",
             "Pilot Boarding Position 3",
@@ -108,40 +114,77 @@ public class LocationManager {
             "Pilot Boarding Position 1"
     };
 
+    // Stores the names of all Traffic Areas
     private static final String[] trafficAreas = new String[] {
             "Port of Gothenburg's traffic area"
     };
 
+    // Stores the names of all Tug Zones
     private static final String[] tugZones = new String[]{
             "Dana fjord",
             "Rivö fjord",
             "Fästningen"
     };
 
+    /**
+     * Returns the names of all Anchoring Areas
+     *
+     * @return a String array with the names of all Anchoring Areas
+     */
     public static String[] getAnchoringAreas() {
         return anchoringAreas.clone();
     }
 
+    /**
+     * Returns the names of all Berths
+     *
+     * @return a String array with the names of all Berths
+     */
     public static String[] getBerths() {
         return berths.clone();
     }
 
+    /**
+     * Returns the names of all ETug Zones
+     *
+     * @return a String array with the names of all ETug Zones
+     */
     public static String[] geteTugZones() {
         return eTugZones.clone();
     }
 
+    /**
+     * Returns the names of all LOCs
+     *
+     * @return a String array with the names of all LOCs
+     */
     public static String[] getLocs() {
         return locs.clone();
     }
 
+    /**
+     * Returns the names of all Pilot Boarding Areas
+     *
+     * @return a String array with the names of all Pilot Boarding Areas
+     */
     public static String[] getPilotBAs() {
         return pilotBAs.clone();
     }
 
+    /**
+     * Returns the names of all Traffic Areas
+     *
+     * @return a String array with the names of all Traffic Areas
+     */
     public static String[] getTrafficAreas() {
         return trafficAreas.clone();
     }
 
+    /**
+     * Returns the names of all Tug Zones
+     *
+     * @return a String array with the names of all Tug Zones
+     */
     public static String[] getTugZones() {
         return tugZones.clone();
     }
