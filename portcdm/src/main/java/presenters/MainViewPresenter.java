@@ -2,18 +2,16 @@ package presenters;
 
 import eu.portcdm.dto.LocationTimeSequence;
 import eu.portcdm.dto.PortCall;
-import eu.portcdm.messaging.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import eu.portcdm.messaging.LogicalLocation;
+import eu.portcdm.messaging.ServiceObject;
+import eu.portcdm.messaging.ServiceTimeSequence;
+import eu.portcdm.messaging.TimeType;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -21,8 +19,6 @@ import model.*;
 import org.testng.Assert;
 
 import java.io.IOException;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Aron on 2017-05-20.
@@ -35,7 +31,6 @@ public class MainViewPresenter {
     public TextField servicehoursbox;
     public TextField serviceminutesbox;
     public ChoiceBox servicetimetypebox;
-    public Button sendservicestatebox;
     public ChoiceBox locationtimesqeuencebox;
     public ChoiceBox tolocationbox;
     public ChoiceBox fromlocationbox;
@@ -43,56 +38,30 @@ public class MainViewPresenter {
     public TextField locationhoursbox;
     public TextField locationminutesbox;
     public ChoiceBox locationtimetypebox;
-    public Button sendlocationbox;
     public ComboBox portcallpicker;
-    public Text CurrentIdDisplay;
-    public Text step1statetype;
+    public Text currentIdDisplay;
     public Circle step1indicator;
-    public Text step2statetype;
     public Circle step2indicator;
-    public Text step3statetype;
     public Circle step3indicator;
-    public Text step4statetype;
     public Circle step4indicator;
-    public Text step5statetype;
-    public Circle step5indicator;
-    public Text step6statetype;
-    public Circle step6indicator;
-    public Text step7statetype;
-    public Circle step7indicator;
-    public Text step8statetype;
-    public Circle step8indicator;
-    public Text step9statetype;
-    public Circle step9indicator;
-    public Text step10statetype;
-    public Circle step10indicator;
-    public Text step11statetype;
-    public Circle step11indicator;
-    public Text step12statetype;
-    public Circle step12indicator;
-    public Circle noestimatescircle;
-    public Circle actualacquiredcircle;
-    public Circle estimatesokcircle;
-    public Circle warningcircle;
     public Text step1time;
     public Text step2time;
     public Text step3time;
     public Text step4time;
-    public Text step5time;
-    public Text step6time;
-    public Text step7time;
-    public Text step8time;
-    public Text step9time;
-    public Text step10time;
-    public Text step11time;
-    public Text step12time;
     public ChoiceBox servicestatelocationnamechoicebox;
     public ChoiceBox locationstatetolocationnamechoicebox;
     public ChoiceBox locationstatefromlocationnamecoicebox;
-    public Button refreshbutton;
     public Button gotodetailedviewbutton;
     public ChoiceBox servicestatetolocationtype;
     public ChoiceBox servicestatetolocationname;
+    public Circle step6indicator;
+    public Circle step5indicator;
+    public Circle step7indicator;
+    public Circle step8indicator;
+    public Circle step9indicator;
+    public Circle step10indicator;
+    public Circle step11indicator;
+    public Circle step12indicator;
     private PortCallManager manager;
     private PortCall call;
     private TimeStampManager tsmanager;
@@ -119,7 +88,7 @@ public class MainViewPresenter {
         this.call = manager.getActiveCall();
         reader = new StatementReader(call);
         tsmanager = new TimeStampManager(reader.getAllStatements());
-        CurrentIdDisplay.setText(call.getVessel().getName());
+        currentIdDisplay.setText(call.getVessel().getName());
 
         portcallpicker.setItems((FXCollections.observableArrayList(manager.getIds())));
         portcallpicker.setValue(call.getId());
@@ -129,7 +98,7 @@ public class MainViewPresenter {
     //Method used for changing the call used. Also used for refreshing as a PortCall is a snapshot and not dynamic.
     public void setCall(PortCall call){
         this.call = call;
-        CurrentIdDisplay.setText(call.getVessel().getName());
+        currentIdDisplay.setText(call.getVessel().getName());
         reader.setActiveCall(call);
         tsmanager.setStatements(reader.getAllStatements());
         updateTimes();
