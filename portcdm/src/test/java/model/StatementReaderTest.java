@@ -32,7 +32,7 @@ class StatementReaderTest {
     }
 
     @Test
-    void getStatement() { // TODO: Ej hållbart, kan vara bra att koda om
+    void getStatement() {
         assertNotNull(reader.getStatement("Arrival_Vessel_Berth"),"no statements found");
     }
 
@@ -44,7 +44,7 @@ class StatementReaderTest {
 
     @Test
     void getStatements() {
-        assertNotNull(reader.getStatements("Arrival_Vessel_Berth"), "No Statements found");
+        assertNotNull(reader.printStatements("Arrival_Vessel_Berth"), "No Statements found");
     }
 
     @Test

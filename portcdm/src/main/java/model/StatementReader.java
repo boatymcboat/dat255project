@@ -54,9 +54,9 @@ public class StatementReader {
      * Gets all Statements for a given StateDefinitionID.
      *
      * @param id the requested StateDefinitionID
-     * @return a String like: 'TimeType: TimeStatement from ReportedBy'
+     * @return a String like: 'TimeType: TimeStatement from ReportedBy \n'
      */
-    public String getStatements(String id) { // TODO: Make this return a list of Statements and create separate toString method
+    public String printStatements(String id) {
         StringBuilder buf = new StringBuilder();
         for (Statement statement :
                 getAllStatements().get(id)) {

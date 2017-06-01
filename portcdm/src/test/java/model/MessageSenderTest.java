@@ -1,5 +1,7 @@
 package model;
 
+import eu.portcdm.dto.LocationTimeSequence;
+import eu.portcdm.dto.PortCall;
 import eu.portcdm.messaging.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -24,6 +26,52 @@ class MessageSenderTest {
         MessageSender sender = new MessageSender();
         PortCallMessage pcm = createTestMessage();
         assertTrue(sender.sendMessage(pcm), "Could not send PCM");
+    }
+
+    @Test
+    void sendStates() {
+        MessageSender sender = new MessageSender();
+
+        // Get PortCall to send towards
+        PortCall call = new PortCallManager().getActiveCall();
+
+        sender.sendLocationState( // Sends an Arrival_Vessel_TrafficArea Estimate
+                call,
+                LocationTimeSequence.ARRIVAL_TO,
+                LogicalLocation.TRAFFIC_AREA,
+                LocationManager.getTrafficAreas()[0],
+                LogicalLocation.BERTH,
+                LocationManager.getBerths()[0],
+                ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
+                TimeType.ESTIMATED,
+                call.getId()
+        );
+
+        sender.sendServiceState( // Sends an Anchoring_Commenced Estimate
+                call,
+                ServiceObject.ANCHORING,
+                ServiceTimeSequence.COMMENCED,
+                LogicalLocation.ANCHORING_AREA,
+                LocationManager.getAnchoringAreas()[0],
+                ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
+                TimeType.ESTIMATED,
+                call.getId()
+        );
+
+        sender.sendServiceState( // Sends a Escort Towage Commenced Estimate
+                call,
+                ServiceObject.ESCORT_TOWAGE,
+                ServiceTimeSequence.COMMENCED,
+                LogicalLocation.ETUG_ZONE,
+                LocationManager.geteTugZones()[0],
+                LogicalLocation.BERTH,
+                LocationManager.getBerths()[0],
+                ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT),
+                TimeType.ESTIMATED,
+                call.getId()
+        );
+
+
     }
 
     // Creates a sample message for testing purposes

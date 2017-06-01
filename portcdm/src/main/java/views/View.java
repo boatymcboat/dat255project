@@ -8,16 +8,23 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Created by Aron on 2017-05-16.
+ * Simple class to load the initial FXML file.
  */
-public class ExampleView {
-    Stage primaryStage;
+public class View {
+    private Stage primaryStage;
 
-    public ExampleView(Stage primaryStage) throws IOException {
+    /**
+     * Creates an instance, saves the Stage in the view and loads the default FXML file
+     *
+     * @param primaryStage the Stage for which to load the FXML file
+     * @throws IOException if the file is not found
+     */
+    public View(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
         setupView();
     }
 
+    // Loads the MainView.fxml file and sets the Stage to use it
     private void setupView() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
         primaryStage.setScene(new Scene(root));

@@ -37,7 +37,7 @@ class LocationManagerTest {
 
     @Test
     void getTugZones() {
-        assertTrue(LocationManager.geteTugZones().length > 0, "No Tug Zones found");
+        assertTrue(LocationManager.getTugZones().length > 0, "No Tug Zones found");
     }
 
 }

@@ -6,8 +6,6 @@ import eu.portcdm.messaging.LogicalLocation;
 import eu.portcdm.messaging.ServiceObject;
 import eu.portcdm.messaging.ServiceTimeSequence;
 import eu.portcdm.messaging.TimeType;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +21,6 @@ import model.StatementReader;
 import org.testng.Assert;
 
 import java.io.IOException;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Presenter for the secondary view, displaying unfiltered data in order to make more information about the PortCall accessible.
@@ -33,29 +29,29 @@ public class DetailedViewPresenter {
 
     public Text detailedviewtext;
     public Text vesselName;
-    public ListView pclist;
-    public ListView stateList;
+    public ListView<String> pclist;
+    public ListView<String> stateList;
     public Text latestUpdate;
-    public ChoiceBox servicetypebox;
-    public ChoiceBox servicesequencebox;
-    public ChoiceBox locationtypebox;
+    public ChoiceBox<ServiceObject> servicetypebox;
+    public ChoiceBox<ServiceTimeSequence> servicesequencebox;
+    public ChoiceBox<LogicalLocation> locationtypebox;
     public DatePicker servicedatebox;
     public TextField servicehoursbox;
     public TextField serviceminutesbox;
-    public ChoiceBox servicetimetypebox;
-    public ChoiceBox locationtimesqeuencebox;
-    public ChoiceBox tolocationbox;
-    public ChoiceBox fromlocationbox;
+    public ChoiceBox<TimeType> servicetimetypebox;
+    public ChoiceBox<LocationTimeSequence> locationtimesqeuencebox;
+    public ChoiceBox<LogicalLocation> tolocationbox;
+    public ChoiceBox<LogicalLocation> fromlocationbox;
     public DatePicker locationdatebox;
     public TextField locationhoursbox;
     public TextField locationminutesbox;
-    public ChoiceBox locationtimetypebox;
-    public ChoiceBox locationstatefromlocationnamecoicebox;
-    public ChoiceBox locationstatetolocationnamechoicebox;
-    public ChoiceBox servicestatelocationnamechoicebox;
+    public ChoiceBox<TimeType> locationtimetypebox;
+    public ChoiceBox<String> locationstatefromlocationnamecoicebox;
+    public ChoiceBox<String> locationstatetolocationnamechoicebox;
+    public ChoiceBox<String> servicestatelocationnamechoicebox;
     public Button gotooverviewbutton;
-    public ChoiceBox servicestatetolocationtypechoicebox;
-    public ChoiceBox servicestatetolocationnamechoicebox;
+    public ChoiceBox<LogicalLocation> servicestatetolocationtypechoicebox;
+    public ChoiceBox<String> servicestatetolocationnamechoicebox;
 
     private PortCallManager pcmanager;
     private StatementReader reader;
@@ -93,7 +89,7 @@ public class DetailedViewPresenter {
      * @param actionEvent sent when an option is chosen in any of the location type menus.
      */
     public void locationTypeChosen(ActionEvent actionEvent) {
-        ChoiceBox tempBox;
+        ChoiceBox<String> tempBox;
         ChoiceBox source;
         String locationtype;
         if (actionEvent.getSource().equals(locationtypebox)) {
@@ -127,7 +123,6 @@ public class DetailedViewPresenter {
             tempBox.setItems(FXCollections.observableArrayList(LocationManager.getLocs()));
         } else if (locationtype.equals("VESSEL")) {
             tempBox.setItems(FXCollections.observableArrayList("VESSEL"));
-
         }
     }
 
@@ -136,10 +131,10 @@ public class DetailedViewPresenter {
      * @param mouseEvent sent when the button is pressed
      */
     public void refresh(MouseEvent mouseEvent) {
-        pcmanager.refreshCalls();
+        pcmanager.refreshSummaries();
         pclist.setItems(FXCollections.observableArrayList(pcmanager.getIds()));
         reader.setActiveCall(call);
-        detailedviewtext.setText(reader.getStatements((String) stateList.getSelectionModel().getSelectedItem()));
+        detailedviewtext.setText(reader.printStatements(stateList.getSelectionModel().getSelectedItem()));
         vesselName.setText(call.getVessel().getName());
         latestUpdate.setText(call.getLastUpdate());
         stateList.setItems(FXCollections.observableArrayList(reader.getStateDefinitions()));
@@ -150,7 +145,7 @@ public class DetailedViewPresenter {
      * @param mouseEvent sent from the menu
      */
     public void changeCall(MouseEvent mouseEvent) {
-        call = pcmanager.getPortCall((String) pclist.getSelectionModel().getSelectedItem());
+        call = pcmanager.getPortCall(pclist.getSelectionModel().getSelectedItem());
         vesselName.setText(call.getVessel().getName());
         latestUpdate.setText(call.getLastUpdate());
         reader.setActiveCall(call);
@@ -168,17 +163,17 @@ public class DetailedViewPresenter {
 
         //Retrieve the enums and use them in the menus. Uses assertions to check that all required fields are filled.
         Assert.assertNotNull(locationtimesqeuencebox.getValue(),"Please select a time sequence.");
-        LocationTimeSequence timeSequence = (LocationTimeSequence) locationtimesqeuencebox.getValue();
+        LocationTimeSequence timeSequence = locationtimesqeuencebox.getValue();
         Assert.assertNotNull(tolocationbox.getValue(),"Please select the to location.");
-        LogicalLocation tolocation = (LogicalLocation) tolocationbox.getValue();
+        LogicalLocation tolocation = tolocationbox.getValue();
         //No assertion as this field is allowed to be null.
-        LogicalLocation fromlocation = (LogicalLocation) fromlocationbox.getValue();
+        LogicalLocation fromlocation = fromlocationbox.getValue();
         Assert.assertNotNull(locationtimetypebox.getValue(),"Please select the time type.");
-        TimeType locationtimetype = (TimeType) locationtimetypebox.getValue();
+        TimeType locationtimetype = locationtimetypebox.getValue();
         Assert.assertNotNull(locationstatetolocationnamechoicebox.getValue(),"Please select the to location name.");
-        String tolocationName = (String) locationstatetolocationnamechoicebox.getValue();
+        String tolocationName = locationstatetolocationnamechoicebox.getValue();
         //No assertion as this field is allowed to be null.
-        String fromlocationName = (String) locationstatefromlocationnamecoicebox.getValue();
+        String fromlocationName = locationstatefromlocationnamecoicebox.getValue();
 
         //Create the time string
         Assert.assertNotNull(locationdatebox.getValue(),"Please select a date.");
@@ -202,15 +197,15 @@ public class DetailedViewPresenter {
 
         //Retrieve the selections from the drop down menus. Uses assertions to check that all required fields are filled.
         Assert.assertNotNull(servicetypebox.getValue(),"Please select a service state.");
-        ServiceObject servicetype = (ServiceObject)servicetypebox.getValue() ;
+        ServiceObject servicetype = servicetypebox.getValue();
         Assert.assertNotNull(servicesequencebox.getValue(),"Please select a service sequence.");
-        ServiceTimeSequence servicesequence = (ServiceTimeSequence) servicesequencebox.getValue();
+        ServiceTimeSequence servicesequence = servicesequencebox.getValue();
         Assert.assertNotNull(servicetimetypebox.getValue(),"Please select a time type.");
-        TimeType servicetimetype = (TimeType) servicetimetypebox.getValue();
+        TimeType servicetimetype = servicetimetypebox.getValue();
         Assert.assertNotNull(locationtypebox.getValue(),"Please select a location type.");
-        LogicalLocation location = (LogicalLocation) locationtypebox.getValue();
+        LogicalLocation location = locationtypebox.getValue();
         Assert.assertNotNull(servicestatelocationnamechoicebox.getValue(),"Please select a location name.");
-        String locationName = (String) servicestatelocationnamechoicebox.getValue();
+        String locationName = servicestatelocationnamechoicebox.getValue();
         //Create the time string
         Assert.assertNotNull(servicedatebox.getValue(),"Please select a date.");
         String time = servicedatebox.getValue().toString();
@@ -221,9 +216,9 @@ public class DetailedViewPresenter {
 
         if(servicetype.toString().equals("PILOTAGE")|| servicetype.toString().equals("ESCORT_TOWAGE")|| servicetype.toString().equals("TOWAGE")){
             Assert.assertNotNull(servicestatetolocationtypechoicebox.getValue(),"Please select to location type.");
-            LogicalLocation target = (LogicalLocation) servicestatetolocationtypechoicebox.getValue();
+            LogicalLocation target = servicestatetolocationtypechoicebox.getValue();
             Assert.assertNotNull(servicestatetolocationnamechoicebox.getValue(),"Please select to location name.");
-            String tolocationname = (String) servicestatetolocationnamechoicebox.getValue();
+            String tolocationname = servicestatetolocationnamechoicebox.getValue();
             sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype, call.getId());
         }
         else {
@@ -240,7 +235,7 @@ public class DetailedViewPresenter {
      * @param actionEvent sent when the refresh button is pressed
      */
     public void refreshpcs(ActionEvent actionEvent) {
-        pcmanager.refreshCalls();
+        pcmanager.refreshSummaries();
         pclist.setItems(FXCollections.observableArrayList(pcmanager.getIds()));
     }
 
@@ -251,7 +246,7 @@ public class DetailedViewPresenter {
     public void goToMainView(ActionEvent actionEvent) {
         Stage stage = (Stage) gotooverviewbutton.getScene().getWindow();
         try {
-            stage.setScene(new Scene((ScrollPane) FXMLLoader.load(getClass().getResource("/views/MainView.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/views/MainView.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
