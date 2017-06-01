@@ -22,8 +22,13 @@ class PortCallManagerTest {
     }
 
     @Test
-    void refreshCalls() {
+    void refreshSummaries() {
         assertTrue(manager.refreshSummaries(), "no messages found");
+    }
+
+    @Test
+    void getIds() {
+        assertTrue(manager.getIds().size() > 0, "No State Definition IDs found");
     }
 
     @Test
