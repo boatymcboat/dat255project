@@ -53,7 +53,7 @@ public class MainViewPresenter {
     public ChoiceBox locationStateFromLocationNameChoiceBox;
     public Button goToDetailedViewButton;
     public ChoiceBox serviceStateToLocationTypeBox;
-    public ChoiceBox serviceStateToLocationName;
+    public ChoiceBox serviceStateToLocationNameBox;
     public Circle step6indicator;
     public Circle step5indicator;
     public Circle step7indicator;
@@ -213,8 +213,8 @@ public class MainViewPresenter {
         if(servicetype.toString().equals("PILOTAGE")|| servicetype.toString().equals("ESCORT_TOWAGE")|| servicetype.toString().equals("TOWAGE")){
             Assert.assertNotNull(serviceStateToLocationTypeBox.getValue(),"Please select to location type.");
             LogicalLocation target = (LogicalLocation) serviceStateToLocationTypeBox.getValue();
-            Assert.assertNotNull(serviceStateToLocationName.getValue(),"Please select to location name.");
-            String tolocationname = (String) serviceStateToLocationName.getValue();
+            Assert.assertNotNull(serviceStateToLocationNameBox.getValue(),"Please select to location name.");
+            String tolocationname = (String) serviceStateToLocationNameBox.getValue();
             sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype, call.getId());
         }
         else {
@@ -262,7 +262,7 @@ public class MainViewPresenter {
         ChoiceBox source;
         String locationtype;
         if (actionEvent.getSource().equals(locationTypeBox)){locationtype = locationTypeBox.getValue().toString(); tempBox = serviceStateLocationNameChoiceBox;}
-        else if (actionEvent.getSource().equals(serviceStateToLocationTypeBox)){locationtype = serviceStateToLocationTypeBox.getValue().toString(); tempBox = serviceStateToLocationName;}
+        else if (actionEvent.getSource().equals(serviceStateToLocationTypeBox)){locationtype = serviceStateToLocationTypeBox.getValue().toString(); tempBox = serviceStateToLocationNameBox;}
         else if (actionEvent.getSource().equals(toLocationBox)){locationtype = toLocationBox.getValue().toString(); tempBox = locationStateToLocationNameChoiceBox;}
         else if (actionEvent.getSource().equals(fromLocationBox)){locationtype = fromLocationBox.getValue().toString(); tempBox = locationStateFromLocationNameChoiceBox;}
         else{return;}
