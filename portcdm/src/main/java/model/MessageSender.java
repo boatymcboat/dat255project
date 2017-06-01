@@ -20,27 +20,17 @@ public class MessageSender {
         setupApi();
     }
 
-    /**
-     * TODO: Uppdatera detta
-     * Skickar locationStates. Följande delar är ej implementerade:
-     latitude - För både origin och destination.
-     longitude - Fär både origin och destination.
-     Name - För både origin och destination,  ex Dana Fjord D1.
-     localPortCallId - lokalt id.
-     localJobId - lokalat id.
-     reportedAt - **Current Time**.
-     reportedBy - Agenten som är "inloggad".
-     groupWith - Oklart om det behövs.
-     comment - Skulle vara nice.
-     * @param portCall Det port call som behandlas
-     * @param locationTimeSequence Arrival to or Departure from etc
-     * @param originLocationType Typ av plats som skeppet åker från, ex Anchorage_Area
-     * @param originLocationName
-     * @param destinationLocationType Typ av plats som skeppet åker till, ex Berth
-     * @param destinationLocationName
-     * @param time Tid då händelsen skedde/sker
-     * @param timeType Typ av tid: Estimated, Actual etc.
-     * @param portCallId
+    /** Creates a message detailing a ServiceState within a PortCall, then sends it via the sendMessage method.
+     *
+     * @param portCall The PortCall to be updated
+     * @param locationTimeSequence The logical sequence, arrival or departure.
+     * @param originLocationType Location type of the origin, eg. Anchorage_Area. Nullable.
+     * @param originLocationName Actual name of the origin. Nullable.
+     * @param destinationLocationType Location type of the destination, eg. Berth
+     * @param destinationLocationName Actual name of the destination
+     * @param time String, contains details on the time. Format: yy-mm-dd:'T'hh:mm:xxx'Z'
+     * @param timeType Type of time: Estimated, Actual etc.
+     * @param portCallId The identification String for the PortCall to send the message to.
      */
     public void sendLocationState(PortCall portCall, LocationTimeSequence locationTimeSequence,
                                   LogicalLocation originLocationType, String originLocationName, LogicalLocation destinationLocationType,
@@ -75,26 +65,17 @@ public class MessageSender {
     }
 
     /**
-     * TODO: Uppdatera detta
-     * Skickar serviceStates. Följande delar är ej implementerade,
-     * latitude - Ska kollas med PortCDM.
-     * longitude - som latitude.
-     * Name - ex Dana Fjord D1.
-     * localPortCallId - lokalt id.
-     * localJobId - lokalat id.
-     * reportedAt - **Current Time**.
-     * reportedBy - Agenten som är "inloggad".
-     * groupWith - Oklart om det behövs.
-     * comment - Skulle vara nice.
+     * Creates a message detailing a ServiceState within a PortCall, then sends it via the sendMessage method.
+     * 'This method is used for services performed at a singular location.
      *
-     * @param portCall        Det port call som behandlas
-     * @param serviceType     Typ av service, ex Cargo_Operation
-     * @param serviceSequence Vilken sekvens servicen befinner sig i, ex Commenced
-     * @param locationType    Typ av location, ex Ancoring_Area
-     * @param locationName
-     * @param time            Tid då händelsen skedde/sker
-     * @param timeType        Typ av tid: Estimated, Actual etc.
-     * @param portCallId
+     * @param portCall        The PortCall to send the message to.
+     * @param serviceType     Type of service, eg. Cargo_Operation
+     * @param serviceSequence The logical sequence of the service, eg. commenced, completed etc.
+     * @param locationType    Type of location, eg. Ancoring_Area
+     * @param locationName    The actual name of the location
+     * @param time            String, contains details on the time. Format: yy-mm-dd:'T'hh:mm:xxx'Z'
+     * @param timeType        Type of time: Estimated, Actual etc.
+     * @param portCallId      The identification String for the PortCall to send the message to.
      */
     public void sendServiceState(PortCall portCall, ServiceObject serviceType, ServiceTimeSequence serviceSequence,
                                  LogicalLocation locationType, String locationName, String time, TimeType timeType, String portCallId) {
@@ -125,18 +106,18 @@ public class MessageSender {
     }
 
     /**
-     * TODO: Lägga till information här
-     *
-     * @param portCall
-     * @param serviceType
-     * @param serviceSequence
-     * @param fromLocationType
-     * @param fromLocationName
-     * @param toLocationType
-     * @param toLocationName
-     * @param time
-     * @param timeType
-     * @param portCallId
+     * Creates a message detailing a ServiceState within a PortCall, then sends it via the sendMessage method.
+     * This method is used for services performed between two locations.
+     * @param portCall          The PortCall to send the message to.
+     * @param serviceType       Type of service, eg. Cargo_Operation
+     * @param serviceSequence   The logical sequence of the service, eg. commenced, completed etc.
+     * @param fromLocationType  Location type of the origin, eg. Ancoring_Area.
+     * @param fromLocationName  The actual name of the origin.
+     * @param toLocationType    Location type of the destination, eg. Ancoring_Area.
+     * @param toLocationName    The actual name of the destination.
+     * @param time              String, contains details on the time. Format: yy-mm-dd:'T'hh:mm:xxx'Z'
+     * @param timeType          Type of time: Estimated, Actual etc.
+     * @param portCallId        The identification String for the PortCall to send the message to.
      */
     public void sendServiceState(PortCall portCall, ServiceObject serviceType, ServiceTimeSequence serviceSequence,
                                  LogicalLocation fromLocationType, String fromLocationName, LogicalLocation toLocationType,
