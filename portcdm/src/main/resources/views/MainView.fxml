@@ -55,7 +55,7 @@
                                       </HBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                                           <children>
-                                    <ComboBox fx:id="portcallpicker" onAction="#changecall" prefWidth="150.0" />
+                                    <ComboBox fx:id="portCallPicker" onAction="#changecall" prefWidth="150.0" />
                                           </children>
                                       </HBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -525,7 +525,7 @@
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="1">
                                  <children>
                                     <Button fx:id="refreshbutton" mnemonicParsing="false" onAction="#refreshview" text="Refresh" />
-                                    <Button fx:id="gotodetailedviewbutton" mnemonicParsing="false" onAction="#goToDetailedView" text="Go to Detailed View" />
+                                    <Button fx:id="goToDetailedViewButton" mnemonicParsing="false" onAction="#goToDetailedView" text="Go to Detailed View" />
                                  </children>
                               </HBox>
                            </children>
@@ -570,7 +570,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Text>
-                                      <ChoiceBox fx:id="servicetypebox" prefWidth="150.0" />
+                                      <ChoiceBox fx:id="serviceTypeBox" prefWidth="150.0" />
                                   </children>
                               </VBox>
                               <VBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="2">
@@ -580,7 +580,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Text>
-                                      <ChoiceBox fx:id="servicesequencebox" prefWidth="150.0" />
+                                      <ChoiceBox fx:id="serviceSequenceBox" prefWidth="150.0" />
                                   </children>
                               </VBox>
                               <HBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0" GridPane.rowIndex="3">
@@ -592,7 +592,7 @@
                                                 <Font size="14.0" />
                                             </font>
                                         </Text>
-                                        <ChoiceBox fx:id="locationtypebox" onAction="#locationTypeChosen" prefWidth="150.0" />
+                                        <ChoiceBox fx:id="locationTypeBox" onAction="#locationTypeChosen" prefWidth="150.0" />
                                     </children>
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -602,19 +602,19 @@
                                             <Font size="14.0" />
                                         </font>
                                         </Text>
-                                        <ChoiceBox fx:id="servicestatelocationnamechoicebox" prefWidth="150.0" />
+                                        <ChoiceBox fx:id="serviceStateLocationNameChoiceBox" prefWidth="150.0" />
                                     </children>
                                 </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To Location Type" />
-                                    <ChoiceBox fx:id="servicestatetolocationtype" onAction="#locationTypeChosen" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="serviceStateToLocationTypeBox" onAction="#locationTypeChosen" prefWidth="150.0" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To Location Name" />
-                                    <ChoiceBox fx:id="servicestatetolocationname" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="serviceStateToLocationName" prefWidth="150.0" />
                                  </children>
                               </VBox>
                                   </children>
@@ -629,15 +629,15 @@
                                       <HBox alignment="CENTER" spacing="10.0">
                                           <children>
                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-                                              <DatePicker fx:id="servicedatebox" />
+                                              <DatePicker fx:id="serviceDateBox" />
                                           </children>
                                       </HBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                           <children>
                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hours" />
-                                              <TextField fx:id="servicehoursbox" />
+                                              <TextField fx:id="serviceHoursBox" />
                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minutes" />
-                                              <TextField fx:id="serviceminutesbox" />
+                                              <TextField fx:id="serviceMinutesBox" />
                                           </children>
                               </HBox>
                                   </children>
@@ -649,7 +649,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Text>
-                                      <ChoiceBox fx:id="servicetimetypebox" prefWidth="150.0" />
+                                      <ChoiceBox fx:id="serviceTimeTypeBox" prefWidth="150.0" />
                                   </children>
                               </VBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
@@ -673,7 +673,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Text>
-                                      <ChoiceBox fx:id="locationtimesqeuencebox" prefWidth="150.0" />
+                                      <ChoiceBox fx:id="locationTimeSequenceBox" prefWidth="150.0" />
                                   </children>
                               </VBox>
                               <HBox alignment="CENTER" layoutX="29.0" layoutY="129.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -685,7 +685,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Text>
-                                      <ChoiceBox fx:id="tolocationbox" onAction="#locationTypeChosen" prefWidth="150.0" />
+                                      <ChoiceBox fx:id="toLocationBox" onAction="#locationTypeChosen" prefWidth="150.0" />
                                   </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -695,7 +695,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <ChoiceBox fx:id="locationstatetolocationnamechoicebox" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="locationStateToLocationNameChoiceBox" prefWidth="150.0" />
                                  </children>
                               </VBox>
                               </children>
@@ -709,7 +709,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Text>
-                                      <ChoiceBox fx:id="fromlocationbox" onAction="#locationTypeChosen" prefWidth="150.0" />
+                                      <ChoiceBox fx:id="fromLocationBox" onAction="#locationTypeChosen" prefWidth="150.0" />
                                   </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -719,7 +719,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                    <ChoiceBox fx:id="locationstatefromlocationnamecoicebox" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="locationStateFromLocationNameChoiceBox" prefWidth="150.0" />
                                  </children>
                               </VBox>
                                       </children>
@@ -734,15 +734,15 @@
                                       <HBox alignment="CENTER" spacing="10.0">
                                           <children>
                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-                                              <DatePicker fx:id="locationdatebox" />
+                                              <DatePicker fx:id="locationDateBox" />
                                           </children>
                                       </HBox>
                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                           <children>
                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hours" />
-                                              <TextField fx:id="locationhoursbox" />
+                                              <TextField fx:id="locationHoursBox" />
                                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minutes" />
-                                              <TextField fx:id="locationminutesbox" />
+                                              <TextField fx:id="locationMinutesBox" />
                                           </children>
                               </HBox>
                                   </children>
@@ -754,7 +754,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Text>
-                                      <ChoiceBox fx:id="locationtimetypebox" prefWidth="150.0" />
+                                      <ChoiceBox fx:id="locationTimeTypeBox" prefWidth="150.0" />
                                   </children>
                               </VBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
