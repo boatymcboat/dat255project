@@ -71,7 +71,7 @@ public class MessageSender {
      * @param portCall        The PortCall to send the message to.
      * @param serviceType     Type of service, eg. Cargo_Operation
      * @param serviceSequence The logical sequence of the service, eg. commenced, completed etc.
-     * @param locationType    Type of location, eg. Ancoring_Area
+     * @param locationType    Type of location, eg. Anchoring_Area
      * @param locationName    The actual name of the location
      * @param time            String, contains details on the time. Format: yy-mm-dd:'T'hh:mm:xxx'Z'
      * @param timeType        Type of time: Estimated, Actual etc.

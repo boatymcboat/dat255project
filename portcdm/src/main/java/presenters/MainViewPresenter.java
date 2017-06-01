@@ -24,21 +24,21 @@ import java.io.IOException;
  * Presenter class for the main view of the application
  */
 public class MainViewPresenter {
-    public ChoiceBox servicetypebox;
-    public ChoiceBox servicesequencebox;
-    public ChoiceBox locationtypebox;
-    public DatePicker servicedatebox;
-    public TextField servicehoursbox;
-    public TextField serviceminutesbox;
-    public ChoiceBox servicetimetypebox;
-    public ChoiceBox locationtimesqeuencebox;
-    public ChoiceBox tolocationbox;
-    public ChoiceBox fromlocationbox;
-    public DatePicker locationdatebox;
-    public TextField locationhoursbox;
-    public TextField locationminutesbox;
-    public ChoiceBox locationtimetypebox;
-    public ComboBox portcallpicker;
+    public ChoiceBox serviceTypeBox;
+    public ChoiceBox serviceSequenceBox;
+    public ChoiceBox locationTypeBox;
+    public DatePicker serviceDateBox;
+    public TextField serviceHoursBox;
+    public TextField serviceMinutesBox;
+    public ChoiceBox serviceTimeTypeBox;
+    public ChoiceBox locationTimeSequenceBox;
+    public ChoiceBox toLocationBox;
+    public ChoiceBox fromLocationBox;
+    public DatePicker locationDateBox;
+    public TextField locationHoursBox;
+    public TextField locationMinutesBox;
+    public ChoiceBox locationTimeTypeBox;
+    public ComboBox portCallPicker;
     public Text currentIdDisplay;
     public Circle step1indicator;
     public Circle step2indicator;
@@ -48,12 +48,12 @@ public class MainViewPresenter {
     public Text step2time;
     public Text step3time;
     public Text step4time;
-    public ChoiceBox servicestatelocationnamechoicebox;
-    public ChoiceBox locationstatetolocationnamechoicebox;
-    public ChoiceBox locationstatefromlocationnamecoicebox;
-    public Button gotodetailedviewbutton;
-    public ChoiceBox servicestatetolocationtype;
-    public ChoiceBox servicestatetolocationname;
+    public ChoiceBox serviceStateLocationNameChoiceBox;
+    public ChoiceBox locationStateToLocationNameChoiceBox;
+    public ChoiceBox locationStateFromLocationNameChoiceBox;
+    public Button goToDetailedViewButton;
+    public ChoiceBox serviceStateToLocationTypeBox;
+    public ChoiceBox serviceStateToLocationNameBox;
     public Circle step6indicator;
     public Circle step5indicator;
     public Circle step7indicator;
@@ -74,15 +74,15 @@ public class MainViewPresenter {
      */
     public void initialize(){
 
-        servicetypebox.setItems(FXCollections.observableArrayList(ServiceObject.values()));
-        servicesequencebox.setItems(FXCollections.observableArrayList(ServiceTimeSequence.values()));
-        servicetimetypebox.setItems(FXCollections.observableArrayList(TimeType.values()));
-        locationtypebox.setItems(FXCollections.observableArrayList(LogicalLocation.values()));
-        locationtimesqeuencebox.setItems((FXCollections.observableArrayList(LocationTimeSequence.values())));
-        tolocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
-        fromlocationbox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
-        locationtimetypebox.setItems((FXCollections.observableArrayList(TimeType.values())));
-        servicestatetolocationtype.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
+        serviceTypeBox.setItems(FXCollections.observableArrayList(ServiceObject.values()));
+        serviceSequenceBox.setItems(FXCollections.observableArrayList(ServiceTimeSequence.values()));
+        serviceTimeTypeBox.setItems(FXCollections.observableArrayList(TimeType.values()));
+        locationTypeBox.setItems(FXCollections.observableArrayList(LogicalLocation.values()));
+        locationTimeSequenceBox.setItems((FXCollections.observableArrayList(LocationTimeSequence.values())));
+        toLocationBox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
+        fromLocationBox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
+        locationTimeTypeBox.setItems((FXCollections.observableArrayList(TimeType.values())));
+        serviceStateToLocationTypeBox.setItems((FXCollections.observableArrayList(LogicalLocation.values())));
 
         manager = new PortCallManager();
         this.call = manager.getActiveCall();
@@ -90,8 +90,8 @@ public class MainViewPresenter {
         tsmanager = new TimeStampManager(reader.getAllStatements());
         currentIdDisplay.setText(call.getVessel().getName());
 
-        portcallpicker.setItems((FXCollections.observableArrayList(manager.getIds())));
-        portcallpicker.setValue(call.getId());
+        portCallPicker.setItems((FXCollections.observableArrayList(manager.getIds())));
+        portCallPicker.setValue(call.getId());
         updateTimes();
         updateColors();
     }
@@ -158,25 +158,25 @@ public class MainViewPresenter {
 
 
         //Retrieve the enums and use them in the menus. Uses assertions to check that all required fields are filled.
-        Assert.assertNotNull(locationtimesqeuencebox.getValue(),"Please select a time sequence.");
-        LocationTimeSequence timeSequence = (LocationTimeSequence) locationtimesqeuencebox.getValue();
-        Assert.assertNotNull(tolocationbox.getValue(),"Please select the to location.");
-        LogicalLocation tolocation = (LogicalLocation) tolocationbox.getValue();
+        Assert.assertNotNull(locationTimeSequenceBox.getValue(),"Please select a time sequence.");
+        LocationTimeSequence timeSequence = (LocationTimeSequence) locationTimeSequenceBox.getValue();
+        Assert.assertNotNull(toLocationBox.getValue(),"Please select the to location.");
+        LogicalLocation tolocation = (LogicalLocation) toLocationBox.getValue();
         //No assertion as this field is allowed to be null.
-        LogicalLocation fromlocation = (LogicalLocation) fromlocationbox.getValue();
-        Assert.assertNotNull(locationtimetypebox.getValue(),"Please select the time type.");
-        TimeType locationtimetype = (TimeType) locationtimetypebox.getValue();
-        Assert.assertNotNull(locationstatetolocationnamechoicebox.getValue(),"Please select the to location name.");
-        String tolocationName = (String) locationstatetolocationnamechoicebox.getValue();
+        LogicalLocation fromlocation = (LogicalLocation) fromLocationBox.getValue();
+        Assert.assertNotNull(locationTimeTypeBox.getValue(),"Please select the time type.");
+        TimeType locationtimetype = (TimeType) locationTimeTypeBox.getValue();
+        Assert.assertNotNull(locationStateToLocationNameChoiceBox.getValue(),"Please select the to location name.");
+        String tolocationName = (String) locationStateToLocationNameChoiceBox.getValue();
         //No assertion as this field is allowed to be null.
-        String fromlocationName = (String) locationstatefromlocationnamecoicebox.getValue();
+        String fromlocationName = (String) locationStateFromLocationNameChoiceBox.getValue();
 
         //Create the time string
-        Assert.assertNotNull(locationdatebox.getValue(),"Please select a date.");
-        String time = locationdatebox.getValue().toString();
-        Assert.assertNotNull(locationhoursbox.getText(),"Please enter the hour.");
-        Assert.assertNotNull(locationminutesbox.getText(),"Please enter the minutes.");
-        time = time + "T" + locationhoursbox.getText() + ":" + locationminutesbox.getText() + ":00.000Z";
+        Assert.assertNotNull(locationDateBox.getValue(),"Please select a date.");
+        String time = locationDateBox.getValue().toString();
+        Assert.assertNotNull(locationHoursBox.getText(),"Please enter the hour.");
+        Assert.assertNotNull(locationMinutesBox.getText(),"Please enter the minutes.");
+        time = time + "T" + locationHoursBox.getText() + ":" + locationMinutesBox.getText() + ":00.000Z";
 
         //Send the message
         sender.sendLocationState(call, timeSequence,
@@ -192,29 +192,29 @@ public class MainViewPresenter {
 
 
         //Retrieve the selections from the drop down menus. Uses assertions to check that all required fields are filled.
-        Assert.assertNotNull(servicetypebox.getValue(),"Please select a service state.");
-        ServiceObject servicetype = (ServiceObject)servicetypebox.getValue() ;
-        Assert.assertNotNull(servicesequencebox.getValue(),"Please select a service sequence.");
-        ServiceTimeSequence servicesequence = (ServiceTimeSequence) servicesequencebox.getValue();
-        Assert.assertNotNull(servicetimetypebox.getValue(),"Please select a time type.");
-        TimeType servicetimetype = (TimeType) servicetimetypebox.getValue();
-        Assert.assertNotNull(locationtypebox.getValue(),"Please select a location type.");
-        LogicalLocation location = (LogicalLocation) locationtypebox.getValue();
-        Assert.assertNotNull(servicestatelocationnamechoicebox.getValue(),"Please select a location name.");
-        String locationName = (String) servicestatelocationnamechoicebox.getValue();
+        Assert.assertNotNull(serviceTypeBox.getValue(),"Please select a service state.");
+        ServiceObject servicetype = (ServiceObject) serviceTypeBox.getValue() ;
+        Assert.assertNotNull(serviceSequenceBox.getValue(),"Please select a service sequence.");
+        ServiceTimeSequence servicesequence = (ServiceTimeSequence) serviceSequenceBox.getValue();
+        Assert.assertNotNull(serviceTimeTypeBox.getValue(),"Please select a time type.");
+        TimeType servicetimetype = (TimeType) serviceTimeTypeBox.getValue();
+        Assert.assertNotNull(locationTypeBox.getValue(),"Please select a location type.");
+        LogicalLocation location = (LogicalLocation) locationTypeBox.getValue();
+        Assert.assertNotNull(serviceStateLocationNameChoiceBox.getValue(),"Please select a location name.");
+        String locationName = (String) serviceStateLocationNameChoiceBox.getValue();
         //Create the time string
-        Assert.assertNotNull(servicedatebox.getValue(),"Please select a date.");
-        String time = servicedatebox.getValue().toString();
+        Assert.assertNotNull(serviceDateBox.getValue(),"Please select a date.");
+        String time = serviceDateBox.getValue().toString();
         //Builds a string representing time in the format used by portCDM
-        Assert.assertNotNull(servicehoursbox.getText(),"Please enter the hour.");
-        Assert.assertNotNull(serviceminutesbox.getText(),"Please enter the minutes.");
-        time = time + "T" + servicehoursbox.getText() + ":" + serviceminutesbox.getText() + ":00.000Z";
+        Assert.assertNotNull(serviceHoursBox.getText(),"Please enter the hour.");
+        Assert.assertNotNull(serviceMinutesBox.getText(),"Please enter the minutes.");
+        time = time + "T" + serviceHoursBox.getText() + ":" + serviceMinutesBox.getText() + ":00.000Z";
 
         if(servicetype.toString().equals("PILOTAGE")|| servicetype.toString().equals("ESCORT_TOWAGE")|| servicetype.toString().equals("TOWAGE")){
-            Assert.assertNotNull(servicestatetolocationtype.getValue(),"Please select to location type.");
-            LogicalLocation target = (LogicalLocation) servicestatetolocationtype.getValue();
-            Assert.assertNotNull(servicestatetolocationname.getValue(),"Please select to location name.");
-            String tolocationname = (String) servicestatetolocationname.getValue();
+            Assert.assertNotNull(serviceStateToLocationTypeBox.getValue(),"Please select to location type.");
+            LogicalLocation target = (LogicalLocation) serviceStateToLocationTypeBox.getValue();
+            Assert.assertNotNull(serviceStateToLocationNameBox.getValue(),"Please select to location name.");
+            String tolocationname = (String) serviceStateToLocationNameBox.getValue();
             sender.sendServiceState(call,servicetype,servicesequence,location,locationName,target,tolocationname,time,servicetimetype, call.getId());
         }
         else {
@@ -230,7 +230,7 @@ public class MainViewPresenter {
      * @param actionEvent automatically generated when the user selects a different option in the drop down menu for portcallID
      */
     public void changecall(ActionEvent actionEvent) {
-        setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
+        setCall(manager.getPortCall((String) portCallPicker.getSelectionModel().getSelectedItem()));
     }
 
     /**
@@ -238,7 +238,7 @@ public class MainViewPresenter {
      * @param actionEvent  send when the refresh button is pressen
      */
     public void refreshview(ActionEvent actionEvent) {
-        setCall(manager.getPortCall((String) portcallpicker.getSelectionModel().getSelectedItem()));
+        setCall(manager.getPortCall((String) portCallPicker.getSelectionModel().getSelectedItem()));
     }
 
     /**
@@ -246,9 +246,9 @@ public class MainViewPresenter {
      * @param actionEvent  sent when the go to detailed view button is pressed.
      */
     public void goToDetailedView(ActionEvent actionEvent) {
-       Stage stage = (Stage) gotodetailedviewbutton.getScene().getWindow();
+       Stage stage = (Stage) goToDetailedViewButton.getScene().getWindow();
         try {
-            stage.setScene(new Scene((AnchorPane)FXMLLoader.load(getClass().getResource("/views/DetailedView.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/views/DetailedView.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -261,10 +261,10 @@ public class MainViewPresenter {
         ChoiceBox tempBox;
         ChoiceBox source;
         String locationtype;
-        if (actionEvent.getSource().equals(locationtypebox)){locationtype = locationtypebox.getValue().toString(); tempBox = servicestatelocationnamechoicebox;}
-        else if (actionEvent.getSource().equals(servicestatetolocationtype)){locationtype = servicestatetolocationtype.getValue().toString(); tempBox = servicestatetolocationname;}
-        else if (actionEvent.getSource().equals(tolocationbox)){locationtype = tolocationbox.getValue().toString(); tempBox = locationstatetolocationnamechoicebox;}
-        else if (actionEvent.getSource().equals(fromlocationbox)){locationtype = fromlocationbox.getValue().toString(); tempBox = locationstatefromlocationnamecoicebox;}
+        if (actionEvent.getSource().equals(locationTypeBox)){locationtype = locationTypeBox.getValue().toString(); tempBox = serviceStateLocationNameChoiceBox;}
+        else if (actionEvent.getSource().equals(serviceStateToLocationTypeBox)){locationtype = serviceStateToLocationTypeBox.getValue().toString(); tempBox = serviceStateToLocationNameBox;}
+        else if (actionEvent.getSource().equals(toLocationBox)){locationtype = toLocationBox.getValue().toString(); tempBox = locationStateToLocationNameChoiceBox;}
+        else if (actionEvent.getSource().equals(fromLocationBox)){locationtype = fromLocationBox.getValue().toString(); tempBox = locationStateFromLocationNameChoiceBox;}
         else{return;}
         if(locationtype.equals("BERTH")){
             tempBox.setItems(FXCollections.observableArrayList(LocationManager.getBerths()));
