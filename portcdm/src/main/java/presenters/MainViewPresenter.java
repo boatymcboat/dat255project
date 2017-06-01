@@ -248,7 +248,7 @@ public class MainViewPresenter {
     public void goToDetailedView(ActionEvent actionEvent) {
        Stage stage = (Stage) goToDetailedViewButton.getScene().getWindow();
         try {
-            stage.setScene(new Scene((AnchorPane)FXMLLoader.load(getClass().getResource("/views/DetailedView.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/views/DetailedView.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
